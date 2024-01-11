@@ -1,7 +1,7 @@
 name: "Javi's site"
 navbar:
   title: "Javier Fernández-López"
-  left:
+  right:
     - text: "Home"
       icon: fa-home
       href: index.html

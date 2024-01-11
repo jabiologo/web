@@ -13,6 +13,12 @@ output:
   display: none;
 }
 
+.main-container {
+  max-width: 1800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 body {
 text-align: justify
 }
