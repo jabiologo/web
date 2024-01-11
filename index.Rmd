@@ -3,13 +3,18 @@ title: "Javi's site"
 bibliography: references.bib
 output: 
   html_document:
+    theme: sandstone
     fig_width: 20
     fig_height: 6
 ---
-
+```{=html}
 <style type="text/css">
 .title {
   display: none;
+}
+
+body {
+text-align: justify
 }
 
 #getting-started img {
@@ -17,14 +22,14 @@ output:
 }
 
 </style>
+```
 
 <div class="row" style="padding-top: 30px;">
 <div class="col-sm-6">
 
-# **Javi's site**
+# **About me...**
 
-
-This is a test web site. Just a test
+Interested in statistical ecology and wildlife and natural resource conservation. Currently working on mammal abundance and distribution modeling, focusing on human-animal interactions and monitoring design. Also Bayesian modeling.
 
 
 ## Links
@@ -37,14 +42,11 @@ This is a test web site. Just a test
 
 4. more research in my [Google Schoolar](https://scholar.google.es/citations?hl=es&user=v3biyuIAAAAJ)
 
-5. [EURING test](https://jabiologo.github.io/web/docs/euring.html)
-
 </div>
 <div class="col-sm-6">
 
-### [link test](http://allthiswasfield.blogspot.com/)
 
 <a href = "http://allthiswasfield.blogspot.com/">
-![](images/animated.gif)
+![](images/wordcloud.png)
 </a>
 </div>
