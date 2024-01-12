@@ -40,6 +40,8 @@ text-align: justify
 
 I'm broadly interested in statistical/spatial ecology and wildlife conservation. I'm currently working on mammal abundance and distribution modeling focusing on game species. I combine different data sources such as camera-trap data, distance sampling or hunting statistics by using integrated distribution models in a hierarchical framework. I use Bayesian inference and cartography tools to help for evidence-based decision making in wildlife management and in the design of monitoring programs.
 
+<br/>
+
 ## **About me...**
 
 Graduated in Biology Sciences and Ms in Conservation Biology (Universidad Complutense de Madrid, Madrid, Spain). I developed my PhD about phylogeny, biogeography and distribution of the corticioid fungus genus Xylodon (Real Jardín Botánico, CSIC, Madrid, Spain). I worked during two years as researcher assistant at the Institute for Game and Wildlife Research IREC (UCLM – CSIC, Ciudad Real, Spain) for the [ENETWILD](https://enetwild.com/) project about mammal distribution at European scale. I performed one year postdoc at University of Massachusetts (Boston, USA) with [Liam Revell](https://faculty.umb.edu/liam.revell/people/index.html) and two year postdoc at Centre d’Ecologie Foncionnelle et Evolutive (Montpellier, France) with [Olivier Gimenez](https://www3.cefe.cnrs.fr/en/research/biodiversity-and-conservation/biostatistics-and-population-biology/846-french/recherche/bc/bbp/pdoc/4150-javier-fernandez-lopez). I’m currently a postdoctoral researcher at the Institute for Game and Wildlife Research IREC (UCLM – CSIC, Ciudad Real, Spain).
