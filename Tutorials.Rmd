@@ -8,26 +8,46 @@ output:
     collapsed: false
     number_sections: false
     toc_depth: 1
-    #code_folding: hide
+    theme: sandstone
+    fig_width: 20
+    fig_height: 6
 ---
+```{=html}
+<style type="text/css">
+.title {
+  display: none;
+}
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
+.main-container {
+  max-width: 1600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+body {
+text-align: justify
+}
+
+#getting-started img {
+  margin-right: 10px;
+}
+
+</style>
 ```
 
 # N-mixture models (Spanish)
 
 [Fit N-mixture models using unmarked](https://jabiologo.github.io/web/tutorials/nmixture.html)
 
-# Spatial autocorrelation
+# Spatial autocorrelation (English)
 
 [Control of spatial autocorrelation using hSDM and INLA](https://jabiologo.github.io/web/tutorials/example_INLA.html)
 
 # GBIF
 
-[Download presence records from GBIF using `rgbif`](https://jabiologo.github.io/web/tutorials/gbif_tutorial.html)
+[Download presence records from GBIF using (English) `rgbif`](https://jabiologo.github.io/web/tutorials/gbif_tutorial.html)
 
-# Taller SECEM Granollers 2023
+# Taller SECEM Granollers 2023 (Spanish)
 
 [Introducción a la modelización jerárquica: detectabilidad imperfecta en modelos de ocupación y N-mixture](https://jabiologo.github.io/web/tutorials/tallerSECEM.html)
 

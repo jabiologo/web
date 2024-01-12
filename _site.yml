@@ -15,7 +15,5 @@ navbar:
       href: People.html
     - text: "Tutorials"
       href: Tutorials.html
-    - text: "Máster UCLM"
-      href: masterUCLM.html
 output_dir: "docs"
 
