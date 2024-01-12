@@ -53,7 +53,7 @@ Contact me!
 
 
 <div class="col-sm-6">
-<img height=308 width=409 src="images/javi_circulo.png" style="margin-left: 100px;"> 
+<img height=308 width=409 src="images/javi_circulo.png" style="margin-left: 120px;"> 
 </div>
 
 <center>
