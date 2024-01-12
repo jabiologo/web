@@ -60,6 +60,7 @@ Contact!
 <img height=308 width=409 src="images/javi_circulo.png" style="margin-left: 130px;"> 
 </div>
 
+
 <center>
 <img height=316 width=666 src="images/wordcloud.png"> </a>
 </center>
