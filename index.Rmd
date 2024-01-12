@@ -51,8 +51,9 @@ Contact me!
 </span>
 </div>
 
+
 <div class="col-sm-6">
-<img height=233 width=309 src="images/javi_circulo.png"> 
+<img height=308 width=409 src="images/javi_circulo.png" style="margin-left: 100px;" style="margin-up: 300px;"> 
 </div>
 
 <center>
