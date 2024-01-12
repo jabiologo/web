@@ -45,7 +45,8 @@ I'm broadly interested in statistical/spatial ecology and wildlife conservation.
 ## **About me...**
 
 Graduated in Biology Sciences and Ms in Conservation Biology (Universidad Complutense de Madrid, Madrid, Spain). I developed my PhD about phylogeny, biogeography and distribution of the corticioid fungus genus Xylodon (Real Jardín Botánico, CSIC, Madrid, Spain). I worked during two years as researcher assistant at the Institute for Game and Wildlife Research IREC (UCLM – CSIC, Ciudad Real, Spain) for the [ENETWILD](https://enetwild.com/) project about mammal distribution at European scale. I performed one year postdoc at University of Massachusetts (Boston, USA) with [Liam Revell](https://faculty.umb.edu/liam.revell/people/index.html) and two year postdoc at Centre d’Ecologie Foncionnelle et Evolutive (Montpellier, France) with [Olivier Gimenez](https://www3.cefe.cnrs.fr/en/research/biodiversity-and-conservation/biostatistics-and-population-biology/846-french/recherche/bc/bbp/pdoc/4150-javier-fernandez-lopez). I’m currently a postdoctoral researcher at the Institute for Game and Wildlife Research IREC (UCLM – CSIC, Ciudad Real, Spain).
-
+<br/>
+<br/>
 Contact!
 
 [![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/javi_ferlop.svg?style=social&label=Follow%20%40javi_ferlop)](https://twitter.com/javi_ferlop)
