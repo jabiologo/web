@@ -1,7 +1,11 @@
 ---
 title: "Research"
-output: html_document
 bibliography: references.bib
+output: 
+  html_document:
+    theme: sandstone
+    fig_width: 20
+    fig_height: 6
 nocite: | 
   @rwind2019
   @IMA2019
