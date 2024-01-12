@@ -6,14 +6,19 @@ navbar:
       icon: fa-home
       href: index.html
     - text: "Research"
+      icon: fa-magnifying-glass
       href: Research.html
     - text: "Publications"
+      icon: fa-book
       href: Publications.html
     - text: "Outreach"
       href: Outreach.html
+      icon: fa-volume-high
     - text: "People"
+      icon: fa-person
       href: People.html
     - text: "Teaching"
+      icon: fa-pencil-alt
       href: Tutorials.html
 output_dir: "docs"
 
