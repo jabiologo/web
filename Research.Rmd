@@ -12,3 +12,22 @@ output:
 body {
 text-align: justify}
 </style>
+
+I...
+
+### Mammal distribution and abundance monitoring
+
+### Fungal taxonomy and phylogeography
+
+### Birds distribution under climate change scenarios
+
+### Statistical and spatial ecology
+
+### Transfer of scientific results
+
+### Some useful links...
+1. My github profile [https://github.com/jabiologo](https://github.com/jabiologo)
+2. An old-fashioned [blog](https://allthiswasfield.blogspot.com/) with R code for outreach.
+3. The rWind R package [CRAN link](https://cran.r-project.org/web/packages/rWind/index.html).
+3. The abmR R package [CRAN link](https://cran.r-project.org/web/packages/abmR/index.html).
+4. A list of scientific publications in my [Google Schoolar](https://scholar.google.es/citations?hl=es&user=v3biyuIAAAAJ) profile

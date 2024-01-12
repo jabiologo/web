@@ -13,7 +13,7 @@ navbar:
       href: Outreach.html
     - text: "People"
       href: People.html
-    - text: "Tutorials"
+    - text: "Teaching"
       href: Tutorials.html
 output_dir: "docs"
 

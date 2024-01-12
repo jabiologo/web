@@ -31,3 +31,18 @@ text-align: justify
 ```
 
 # Outreach
+
+Ecoinformática workshop for AEET (Spanish)
+
+<center>
+<a href="https://www.youtube.com/watch?v=ybD4GM_OB3M">
+<img height=225 width=400 src="images/semi.png"> </a>
+</center>
+
+<br/>
+
+Some memes... 
+
+<center>
+<img height=225 width=400 src="images/spider.jpg"> </a>
+</center>

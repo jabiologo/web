@@ -33,28 +33,29 @@ text-align: justify
 <div class="row" style="padding-top: 30px;">
 <div class="col-sm-6">
 
+
 # **About me...**
 
-I'm broadly interested in statistical/spatial ecology and wildlife conservation. I'm currently working on mammal abundance and distribution modeling to improve wildlife management, focusing on human-animal interactions and monitoring programs design. I mostly use Bayesian inference in combination with cartographic tools.
+I'm broadly interested in statistical/spatial ecology and wildlife conservation. I'm currently working on mammal abundance and distribution modeling focusing on game species. I combine different data sources such as camera-trap data, distance sampling or hunting statistics by using integrated distribution models in a hierarchical framework. I use Bayesian inference and cartography tools to help for evidence-based decision making in wildlife management and in the design of monitoring programs.
 
+Graduated in Biology Sciences and Ms in Conservation Biology (Universidad Complutense de Madrid, Madrid, Spain). I developed my PhD about phylogeny, biogeography and distribution of the corticioid fungus genus Xylodon (Real Jardín Botánico, CSIC, Madrid, Spain). I worked during two years as researcher assistant at the Institute for Game and Wildlife Research IREC (UCLM – CSIC, Ciudad Real, Spain) for the [ENETWILD](https://enetwild.com/) project about mammal distribution at European scale. I performed one year postdoc at University of Massachusetts (Boston, USA) with [Liam Revel](https://faculty.umb.edu/liam.revell/people/index.html) and two year postdoc at Centre d’Ecologie Foncionnelle et Evolutive (Montpellier, France) with [Olivier Gimenez](https://www3.cefe.cnrs.fr/en/research/biodiversity-and-conservation/biostatistics-and-population-biology/846-french/recherche/bc/bbp/pdoc/4150-javier-fernandez-lopez). I’m currently a postdoctoral researcher at the Institute for Game and Wildlife Research IREC (UCLM – CSIC, Ciudad Real, Spain).
 
-## Some links...
+Contact me!
 
-1. My github profile [https://github.com/jabiologo](https://github.com/jabiologo)
+[![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/javi_ferlop.svg?style=social&label=Follow%20%40javi_ferlop)](https://twitter.com/javi_ferlop)
 
-2. An old-fashioned [blog](https://allthiswasfield.blogspot.com/) with R code for outreach.
-
-3. The rWind R package [CRAN link](https://cran.r-project.org/web/packages/rWind/index.html).
-
-3. The abmR R package [CRAN link](https://cran.r-project.org/web/packages/abmR/index.html).
-
-4. A list of scientific publications in my [Google Schoolar](https://scholar.google.es/citations?hl=es&user=v3biyuIAAAAJ) profile
-
+<span align="left">
+  <a href="mailto:jflopez.bio@gmail.com">
+    <img src="https://img.shields.io/badge/-jflopez.bio@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:jflopez.bio@gmail.com" />
+  </a>
+</span>
 </div>
+
 <div class="col-sm-6">
-
-
-<a href = "http://allthiswasfield.blogspot.com/">
-![](images/wordcloud.png)
-</a>
+<img height=233 width=309 src="images/javi_circulo.png"> 
 </div>
+
+<center>
+<img height=316 width=666 src="images/wordcloud.png"> </a>
+</center>
+
