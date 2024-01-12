@@ -1,11 +1,23 @@
 ---
 title: "Publications"
 bibliography: references.bib
+csl: nature.csl
 output: 
   html_document:
     theme: sandstone
     fig_width: 20
     fig_height: 6
+nocite: |
+  @Fernández-López_2023
+  @Gochanour_2023
+  @Fernández-López_2022
+  @Fernández-López_2021
+  @Palencia_2021
+  @Garrote_2020
+  @Fernández-López_2019
+  @Garrote_2018
+  @Tellería_2016
+  @Fernández-López_2014
 ---
 ```{=html}
 <style type="text/css">
@@ -30,4 +42,8 @@ text-align: justify
 </style>
 ```
 
+<img height=300 width=1600 src="images/moose.png"> </a>
+
 # Publications
+
+Here you have some selected publications. Find more in my [Google Schoolar](https://scholar.google.es/citations?hl=es&user=v3biyuIAAAAJ) profile or in my [Researchgate](https://www.researchgate.net/profile/Javier_Fernandez-Lopez).
