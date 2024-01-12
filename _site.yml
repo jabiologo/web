@@ -8,11 +8,11 @@ navbar:
     - text: "Research"
       href: Research.html
     - text: "Publications"
-      href: index.html
+      href: Research.html
     - text: "Outreach"
-      href: index.html
+      href: Outreach.html
     - text: "People"
-      href: index.html
+      href: People.html
     - text: "Tutorials"
       href: Tutorials.html
     - text: "Máster UCLM"
