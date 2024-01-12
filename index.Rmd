@@ -35,7 +35,7 @@ text-align: justify
 
 # **About me...**
 
-Interested in statistical ecology and wildlife and natural resource conservation. Currently working on mammal abundance and distribution modeling, focusing on human-animal interactions and monitoring design. Also Bayesian modeling.
+I'm broadly interested in statistical/spatial ecology and wildlife conservation. I'm currently working on mammal abundance and distribution modeling to improve wildlife management, focusing on human-animal interactions and monitoring programs design. I mostly use Bayesian inference in combination with cartographic tools.
 
 
 ## Links
