@@ -42,7 +42,7 @@ text-align: justify
 </style>
 ```
 
-<img height=300 width=1600 src="images/moose.png"> </a>
+<img height=120 width=1600 src="images/moose.png"> </a>
 
 # Publications
 
