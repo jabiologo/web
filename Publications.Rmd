@@ -45,6 +45,7 @@ text-align: justify
 <img height=300 width=1600 src="images/moose.png"> </a>
 <font size="3">
 <br/>
+
 ## **Publications**
 
 Here you have some selected publications. Find more in my [Google Schoolar](https://scholar.google.es/citations?hl=es&user=v3biyuIAAAAJ) profile or in my [Researchgate](https://www.researchgate.net/profile/Javier_Fernandez-Lopez).
