@@ -13,21 +13,30 @@ body {
 text-align: justify}
 </style>
 
-I...
 
-### Mammal distribution and abundance monitoring
+### Ongoing projects
+#### Mammal distribution and abundance monitoring
+**INTHERIA: data integration for mammal monitoring at large-scales**  
+Project funded by the Regional Government of Castile-La Mancha (Talent Return and Retention Program), its main objective is to optimize the design of large-scale multispecies mammal monitoring programs. As principal investigator, I'm using optimization techniques for sampling sites selection as well as hierarchical modeling through Bayesian inference to integrate different data sources for mammal monitoring at national scales (hunting yields, camera trap data, etc.). 
+<br/><br/>
+**Life Iberconejo**   
+Project co-financed by the European Commission’s LIFE programme, its main aim is to analyse the state of rabbit populations in the Iberian Peninsula, their health status and the damage they cause to agriculture. As an external consultant, I'm involved in population monitoring and abundance modeling by combining different data sources such as distance sampling or kilometric abundance indexes. More info at the [Iberconejo project](https://www.iberconejo.eu/en/home/) dedicated website.
+<br/><br/>
 
-### Fungal taxonomy and phylogeography
+#### Software developing for statistical and spatial ecology
 
-### Birds distribution under climate change scenarios
+**rWind R package**   
+Tools for download and manage surface wind and sea currents data from the [Global Forecasting System](https://www.ncei.noaa.gov/products/weather-climate-models/global-forecast) and to compute connectivity between locations. More info at the dedicated publication in Ecography: [rWind: download, edit and include wind data in ecological and evolutionary analysis](https://nsojournals.onlinelibrary.wiley.com/doi/full/10.1111/ecog.03730). Main author, creator and maintainer. License: GPL (≥ 3).
+<br/><br/>
+**abmR R package**    
+Supplies tools for running agent-based models (ABM) in R. The package contains two movement functions, each of which is based on the Ornstein-Uhlenbeck (OU) model. It also contains several visualization and data summarization functions to facilitate the presentation of simulation results. More info at the dedicated publication in Methods in Ecology and Evolution: [abmR: An R package for agent-based model analysis of large-scale movements across taxa](https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.14014). Author. License: GPL (≥ 3).
+<br/><br/>
 
-### Statistical and spatial ecology
+### Previous work
 
-### Transfer of scientific results
+#### Fungal taxonomy and phylogeography
+#### Birds distribution under climate change scenarios
 
-### Some useful links...
-1. My github profile [https://github.com/jabiologo](https://github.com/jabiologo)
-2. An old-fashioned [blog](https://allthiswasfield.blogspot.com/) with R code for outreach.
-3. The rWind R package [CRAN link](https://cran.r-project.org/web/packages/rWind/index.html).
-3. The abmR R package [CRAN link](https://cran.r-project.org/web/packages/abmR/index.html).
-4. A list of scientific publications in my [Google Schoolar](https://scholar.google.es/citations?hl=es&user=v3biyuIAAAAJ) profile
+
+
+
