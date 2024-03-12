@@ -14,7 +14,7 @@ text-align: justify}
 </style>
 
 
-### Ongoing projects
+### --Ongoing projects--
 #### Mammal distribution and abundance monitoring
 **INTHERIA: data integration for mammal monitoring at large-scales**  
 Project funded by the Regional Government of Castile-La Mancha (Talent Return and Retention Program), its main objective is to optimize the design of large-scale multispecies mammal monitoring programs. As principal investigator, I'm using optimization techniques for sampling sites selection as well as hierarchical modeling through Bayesian inference to integrate different data sources for mammal monitoring at national scales (hunting yields, camera trap data, etc.). 
@@ -32,7 +32,7 @@ Tools for download and manage surface wind and sea currents data from the [Globa
 Supplies tools for running agent-based models (ABM) in R. The package contains two movement functions, each of which is based on the Ornstein-Uhlenbeck (OU) model. It also contains several visualization and data summarization functions to facilitate the presentation of simulation results. More info at the dedicated publication in Methods in Ecology and Evolution: [abmR: An R package for agent-based model analysis of large-scale movements across taxa](https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.14014). Author. License: GPL (≥ 3).
 <br/><br/>
 
-### Previous work
+### --Previous work--
 
 #### Fungal taxonomy and phylogeography
 #### Birds distribution under climate change scenarios
