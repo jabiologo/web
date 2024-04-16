@@ -41,6 +41,7 @@ knitr::opts_chunk$set(echo = TRUE)
 klippy::klippy(tooltip_message = 'Click para copiar', tooltip_success = 'Hecho!',position = c('top', 'right'))
 ```
  
+ 
 # Presentación
 
  En este espacio se encuentran los contenidos teóricos y prácticos para el taller **Inferencia Bayesiana en Ecología con R (IBER24)** que se impartirá en el Instituto de Investigación en Recursos Cinegéticos del 13 al 15 de mayo de 2024. Próximamente se irán incluyendo los materiales necesarios para la realización del curso

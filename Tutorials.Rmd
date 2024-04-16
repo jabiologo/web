@@ -55,3 +55,4 @@ text-align: justify
 
 [Taller introductorio a la Inferencia Bayesiana en Ecología con R y NIMBLE](https://jabiologo.github.io/web/tutorials/IBER24.html)
 
+
