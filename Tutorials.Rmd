@@ -51,3 +51,7 @@ text-align: justify
 
 [Introducción a la modelización jerárquica: detectabilidad imperfecta en modelos de ocupación y N-mixture](https://jabiologo.github.io/web/tutorials/tallerSECEM.html)
 
+# IBER24 (Spanish)
+
+[Taller introductorio a la Inferencia Bayesiana en Ecología con R y NIMBLE](https://jabiologo.github.io/web/tutorials/IBER24.html)
+
