@@ -1,78 +1,72 @@
 ---
-title: "IBER24"
+title: "Inferencia Bayesiana en Ecología con R (IBER)"
 csl: nature.csl
 output: 
   html_document:
-    theme: sandstone
+    toc: true
+    toc_float: true
+    collapsed: false
+    number_sections: false
+    toc_depth: 1
 ---
-```{=html}
-<style type="text/css">
-.title {
-  display: none;
-}
 
-.main-container {
-  max-width: 1600px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
+<style>
 body {
-text-align: justify
-}
-
-#getting-started img {
-  margin-right: 10px;
-}
-
+text-align: justify}
 </style>
-```
 
-<img height=300 width=1600 src="images/moose.png"> </a>
+<br/>
+<br/>
+<img height=300 width=270 src="logo_hex.png"> </a>
 <font size="3">
 <br/>
 
  
-# Presentación
+# **Presentación**
 
- En este espacio se encuentran los contenidos teóricos y prácticos para el taller **Inferencia Bayesiana en Ecología con R (IBER24)** que se impartirá en el Instituto de Investigación en Recursos Cinegéticos del 13 al 15 de mayo de 2024. Próximamente se irán incluyendo los materiales necesarios para la realización del curso
+ En este espacio se encuentran los contenidospara el taller **Inferencia Bayesiana en Ecología con R (IBER)** que se impartirá en el Instituto de Investigación en Recursos Cinegéticos del 13 al 15 de mayo de 2024. En los siguientes enlaces se pueden descargar los materiales se utilizarán durante el taller:
  
- # **Inferencia Bayesiana en Ecología con R (IBER24)** **(d)IBER**
+* [Presentaciones]() de los contenidos teóricos (próximamente).
+* [Scripts]() y [datos]() necesarios para las sesiones prácticas (próximamente).
 
-**What:** This is a workshop on introduction to Bayesian inference. Hopefully, you will learn about how to make Bayesian models for population ecology. Our hope is to provide you with what you need to go your own path in Bayesian modelling. We will present how to run occupancy model, N-mixture model, and Spatial Capture-Recapture models.
+Gran parte de este curso, incluidos algunos materiales, diseño de la web y el conocimiento de los ponentes se debe a [Olivier Gimenez](https://oliviergimenez.github.io/).
 
-**For whom:** This is a workshop for ecologists. No previous experience with Nimble or Bayesian statistics is assumed, and few knowledge of R is required.
+# **Información general**
 
-**Who:** Valentin Lauret, Javi Fernandez-Lopez
+**Qué:** Este es un taller introductorio a la Inferencia Bayesiana. Se explicarán los conceptos básicos de probabilidad y modelos lineales generalizados para posteriormente poder ajustar este tipo de modelos mediante Inferencia Bayesiana en [R y NIMBLE](https://r-nimble.org/). Finalmente se darán unas pinceladas sobre cómo ajustar modelos algo más complejos para el estudio de la abundancia y la distribución de las especies: modelos de ocupación, _N-mixture_ y _spatial capture-recapture_.
 
-**When:** May 13-15, 2024. From 9h30 to 13h30.
+**Para quién:** Este es un taller pensado para ecólogos. No se requiere experiencia previa en Inferencia Bayesiana o NIMBLE. Algo de experiencia en R es necesaria.
 
-**Where:** Sala de master, IREC, Royal City.
+**Quién:** Valentin Lauret (IREC), Javi Fernandez-Lopez (IREC)
 
-## Program
+**Cuándo** 13-15 de Mayo, 2024. De 9h30 a 13h30.
 
-### Day 1 - Introduction to modelling with R and Nimble
+**Where:** Salón de Actos del Instituto de Investigaciones en Recursos Cinegéticos, IREC, Royal City ;)
 
-  1. **Generalized Linear Models with R**: probability distribution, basics of programmation, simulations and models.
-  2. **Introduction to Baysian analysis and Nimble**: what is Bayesian, what is Nimble, what for in ecology.
+# **Programa**
+
+### Día 1 - Introducción al modelado con R y NIMBLE
+
+  1. **Modelos lineales generalizados con R**: distribuciones de probabilidad, programación, simulaciones y modelos básicos.
+  2. **Introducción al análisis Bayesiano en NIMBLE**: Qué es Bayesiano, qué es NIMBLE, aplicaciones en ecología.
   
-### Day 2 - Ecological models
+### Día 2 - Modelos ecológicos más avanzados
 
-  1. Occupancy models
-  2. N-mixture models
-  3. Spatial Capture-Recpature
+  1. Modelos de Ocupación
+  2. Modelos _N-mixture_
+  3. _Spatial Capture-Recpature_
   
-### Day 3 - Applications
+### Día 3 - Aplicaciones
 
-  1. A case study by Pepe Jiménez.
-  2. Work with provided datasets or your own data.
+  1. Un caso de estudio, impartido por Pepe Jiménez.
+  2. Trabajo personal con datos propios (o provistos por los ponentes).
 
-## Requirements
+#  **Requerimientos**
 
-  * Install [R](https://cloud.r-project.org/) and [RStudio](https://posit.co/download/rstudio-desktop/#download).
+  * Es necesario instalar [R](https://cloud.r-project.org/) (y  [RStudio](https://posit.co/download/rstudio-desktop/#download) para mayor comodidad).
 
-  * Install `Nimble` following [these guidelines](https://r-nimble.org/download). Then run the following code in R. If that runs without error, you’re all set. If not, please get in touch with us.
-
+  * Es necesario instalar `Nimble` siguiendo [estos consejos](https://r-nimble.org/download). Nótese que para usuarios de Windows quizás sea necesario instalar [RTools](https://cran.r-project.org/bin/windows/Rtools/) si no se ha instalado previamente. Cuando esté todo instalado, ejecuta el siguiente código en R. Si funciona sin errores, todo está correcto. Sino, ponte en contacto con nosotros!
+  
 ```
 library(nimble)
   code <- nimbleCode({
@@ -82,7 +76,7 @@ library(nimble)
   cModel <- compileNimble(model)
 ```
 
-  * Install the following R packages: `tidyverse`, `mcmcplots`, `coda`. You can install them all at once by running the following code in R:
+  * Instalar los siguientes paquetes de R: `tidyverse`, `mcmcplots`, `coda`. Puedes instalarlos todos ejecutando el siguiente código en R:
 
 ```
 install.packages(c("tidyverse", "mcmcplots", "coda"))
