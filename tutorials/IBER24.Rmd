@@ -1,16 +1,10 @@
 ---
 title: "IBER24"
-author: "Javier Fernández-López & Valentin Lauret"
-date: "2024-04-16"
-output:
+csl: nature.csl
+output: 
   html_document:
-    toc: true
-    toc_float: true
-    collapsed: false
-    number_sections: false
-    toc_depth: 1
+    theme: sandstone
 ---
-
 ```{=html}
 <style type="text/css">
 .title {
@@ -34,15 +28,10 @@ text-align: justify
 </style>
 ```
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-<img height=300 width=1600 src="images/logo_hex.png"> </a>
+<img height=300 width=1600 src="images/moose.png"> </a>
 <font size="3">
 <br/>
 
- ![]("logo_hex.png")
  
 # Presentación
 

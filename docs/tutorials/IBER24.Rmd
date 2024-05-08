@@ -38,7 +38,9 @@ text-align: justify
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
- 
+<img src="images/logo_hex.png"> </a>
+<br/>
+
  
 # Presentación
 
