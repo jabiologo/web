@@ -17,7 +17,9 @@ text-align: justify}
 
 <br/>
 <br/>
-<img height=300 width=270 src="logo_hex.png"> </a>
+<p align="center">
+<img height=300 width=300 src="logo_hex_irec.png"> </a>
+</p>
 <font size="3">
 <br/>
 
@@ -37,11 +39,11 @@ Gran parte de este curso, incluidos algunos materiales, diseño de la web y el c
 
 **Para quién:** Este es un taller pensado para ecólogos. No se requiere experiencia previa en Inferencia Bayesiana o NIMBLE. Algo de experiencia en R es necesaria.
 
-**Quién:** Valentin Lauret (IREC), Javi Fernandez-Lopez (IREC)
+**Quién:** Impertido por [Valentin Lauret (IREC)](https://scholar.google.com/citations?hl=es&user=hbi_zlMAAAAJ) y [Javier Fernandez-Lopez (IREC)](https://scholar.google.com/citations?user=v3biyuIAAAAJ&hl=es&authuser=1)
 
 **Cuándo** 13-15 de Mayo, 2024. De 9h30 a 13h30.
 
-**Where:** Salón de Actos del Instituto de Investigaciones en Recursos Cinegéticos, IREC, Royal City ;)
+**Dónde:** Salón de Actos del Instituto de Investigaciones en Recursos Cinegéticos, IREC, Royal City ;)
 
 # **Programa**
 
@@ -58,7 +60,7 @@ Gran parte de este curso, incluidos algunos materiales, diseño de la web y el c
   
 ### Día 3 - Aplicaciones
 
-  1. Un caso de estudio, impartido por Pepe Jiménez.
+  1. Un caso de estudio, impartido por [Pepe Jiménez](https://scholar.google.com/citations?user=ACYEKqAAAAAJ&hl=es).
   2. Trabajo personal con datos propios (o provistos por los ponentes).
 
 #  **Requerimientos**
