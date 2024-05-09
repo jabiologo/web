@@ -30,7 +30,7 @@ text-align: justify}
  
 * [Presentaciones]() de los contenidos teóricos (próximamente).
 * [Scripts]() y [datos]() necesarios para las sesiones prácticas (próximamente).
-* [_Cheatsheet_](https://jabiologo.github.io/web/tutorials/prob_dist.pdf) sobre distribuciones de probabilidad (_by_ [Sonia Illanas (IREC)](https://scholar.google.com/citations?user=ew25H7QAAAAJ&hl=es) & [Javier Fernández-López (IREC)](https://scholar.google.com/citations?user=v3biyuIAAAAJ&hl=es&authuser=1))
+* [_Cheatsheet_](https://jabiologo.github.io/web/tutorials/prob_dist.pdf) sobre distribuciones de probabilidad (_by_ [Sonia Illanas (IREC)](https://scholar.google.com/citations?hl=es&user=ew25H7QAAAAJ&view_op=list_works&sortby=pubdate) & [Javier Fernández-López (IREC)](https://scholar.google.com/citations?hl=es&user=v3biyuIAAAAJ&view_op=list_works&sortby=pubdate))
 
 Gran parte de este curso, incluidos algunos materiales, diseño de la web y el conocimiento de los ponentes se debe a [Olivier Gimenez](https://oliviergimenez.github.io/).
 
