@@ -30,6 +30,7 @@ text-align: justify}
  
 * [Presentaciones]() de los contenidos teóricos (próximamente).
 * [Scripts]() y [datos]() necesarios para las sesiones prácticas (próximamente).
+* [_Cheatsheet_](https://jabiologo.github.io/web/tutorials/prob_dist.pdf) sobre distribuciones de probabilidad (_by_ [Sonia Illanas (IREC)](https://scholar.google.com/citations?user=ew25H7QAAAAJ&hl=es) & [Javier Fernández-López (IREC)](https://scholar.google.com/citations?user=v3biyuIAAAAJ&hl=es&authuser=1))
 
 Gran parte de este curso, incluidos algunos materiales, diseño de la web y el conocimiento de los ponentes se debe a [Olivier Gimenez](https://oliviergimenez.github.io/).
 
@@ -39,7 +40,7 @@ Gran parte de este curso, incluidos algunos materiales, diseño de la web y el c
 
 **Para quién:** Este es un taller pensado para ecólogos. No se requiere experiencia previa en Inferencia Bayesiana o NIMBLE. Algo de experiencia en R es necesaria.
 
-**Quién:** Impertido por [Valentin Lauret (IREC)](https://scholar.google.com/citations?hl=es&user=hbi_zlMAAAAJ) y [Javier Fernandez-Lopez (IREC)](https://scholar.google.com/citations?user=v3biyuIAAAAJ&hl=es&authuser=1)
+**Quién:** Impartido por [Valentin Lauret (IREC)](https://scholar.google.com/citations?hl=es&user=hbi_zlMAAAAJ) y [Javier Fernandez-Lopez (IREC)](https://scholar.google.com/citations?user=v3biyuIAAAAJ&hl=es&authuser=1)
 
 **Cuándo** 13-15 de Mayo, 2024. De 9h30 a 13h30.
 
