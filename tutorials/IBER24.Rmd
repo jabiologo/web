@@ -28,8 +28,8 @@ text-align: justify}
 
  En este espacio se encuentran los contenidospara el taller **Inferencia Bayesiana en Ecología con R (IBER)** que se impartirá en el Instituto de Investigación en Recursos Cinegéticos del 13 al 15 de mayo de 2024. En los siguientes enlaces se pueden descargar los materiales se utilizarán durante el taller:
  
-* [Presentaciones]() de los contenidos teóricos (próximamente).
-* [Scripts]() y [datos]() necesarios para las sesiones prácticas (próximamente).
+* Presentaciones de los contenidos teóricos (ver **Programa** más abajo).
+* Scripts y datos necesarios para las sesiones prácticas (ver **Programa** más abajo).
 * [_Cheatsheet_](https://jabiologo.github.io/web/tutorials/prob_dist.pdf) sobre distribuciones de probabilidad (_by_ [Sonia Illanas (IREC)](https://scholar.google.com/citations?hl=es&user=ew25H7QAAAAJ&view_op=list_works&sortby=pubdate) & [Javier Fernández-López (IREC)](https://scholar.google.com/citations?hl=es&user=v3biyuIAAAAJ&view_op=list_works&sortby=pubdate))
 
 Gran parte de este curso, incluidos algunos materiales, diseño de la web y el conocimiento de los ponentes se debe a [Olivier Gimenez](https://oliviergimenez.github.io/).
@@ -50,8 +50,8 @@ Gran parte de este curso, incluidos algunos materiales, diseño de la web y el c
 
 ### Día 1 - Introducción al modelado con R y NIMBLE
 
-  1. **Modelos lineales generalizados con R**: distribuciones de probabilidad, programación, simulaciones y modelos básicos.
-  2. **Introducción al análisis Bayesiano en NIMBLE**: Qué es Bayesiano, qué es NIMBLE, aplicaciones en ecología.
+  1. **Modelos lineales generalizados con R**: distribuciones de probabilidad, programación, simulaciones y modelos básicos. [Presentaciones](https://jabiologo.quarto.pub/bloque_1_1_teoria/#/) y [Script](https://raw.githubusercontent.com/jabiologo/web/master/script_bloque_1_1.R)
+  2. **Introducción al análisis Bayesiano en NIMBLE**: Qué es Bayesiano, qué es NIMBLE, aplicaciones en ecología. [Presentaciones](https://vlauret.quarto.pub/diberticurso_2_introbayesian/#/title-slide) y Script
   
 ### Día 2 - Modelos ecológicos más avanzados
 
