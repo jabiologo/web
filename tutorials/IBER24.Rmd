@@ -51,7 +51,7 @@ Gran parte de este curso, incluidos algunos materiales, diseño de la web y el c
 ### Día 1 - Introducción al modelado con R y NIMBLE
 
   1. **Modelos lineales generalizados con R**: distribuciones de probabilidad, programación, simulaciones y modelos básicos. [Presentaciones](https://jabiologo.quarto.pub/bloque_1_1_teoria/#/) y [Script](https://raw.githubusercontent.com/jabiologo/web/master/script_bloque_1_1.R)
-  2. **Introducción al análisis Bayesiano en NIMBLE**: Qué es Bayesiano, qué es NIMBLE, aplicaciones en ecología. [Presentaciones](https://vlauret.quarto.pub/diberticurso_2_introbayesian/#/title-slide) y Script
+  2. **Introducción al análisis Bayesiano en NIMBLE**: Qué es Bayesiano, qué es NIMBLE, aplicaciones en ecología. [Presentaciones](https://vlauret.quarto.pub/diberticurso_2_introbayesian/#/title-slide) y [Script](https://raw.githubusercontent.com/valentinlauret/diberticurso/main/codes/2_introBayesian.R)
   
 ### Día 2 - Modelos ecológicos más avanzados
 
