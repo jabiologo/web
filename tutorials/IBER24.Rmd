@@ -56,7 +56,7 @@ Gran parte de este curso, incluidos algunos materiales, diseño de la web y el c
 ### Día 2 - Modelos ecológicos más avanzados
 
   1. Modelos de Ocupación. [Presentaciones](https://jabiologo.quarto.pub/bloaque_2_1_teoria) y [Script](https://raw.githubusercontent.com/jabiologo/web/master/script_bloque_2_1.R)
-  2. Modelos _N-mixture_. [Presentaciones]() y [Script]()
+  2. Modelos _N-mixture_. [Presentaciones](https://jabiologo.quarto.pub/bloque_2_2) y Script
   3. _Spatial Capture-Recpature_. [Presentaciones](https://vlauret.quarto.pub/diberticurso_5_scr) y [Script](https://raw.githubusercontent.com/valentinlauret/diberticurso/main/codes/5_SCR.R)
   
 ### Día 3 - Aplicaciones
