@@ -63,7 +63,7 @@ Gran parte de este curso, incluidos algunos materiales, diseño de la web y el c
 
   1. Un caso de estudio, impartido por [Pepe Jiménez](https://scholar.google.com/citations?user=ACYEKqAAAAAJ&hl=es).
   2. Trabajo personal con datos propios (o provistos por los ponentes).
-  3. [Conclusiones y cierre]()
+  3. [Conclusiones y cierre](https://vlauret.quarto.pub/diberticurso_6_conclusion/)
 
 # Juegos de datos
 
