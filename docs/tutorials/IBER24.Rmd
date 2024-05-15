@@ -68,7 +68,7 @@ Gran parte de este curso, incluidos algunos materiales, diseño de la web y el c
 # Juegos de datos
 
 -   [Datos](https://raw.githubusercontent.com/jabiologo/web/master/script_bloque_2_2.R) para ajustar modelos a partir de conteos repetidos (N-mixture).
--   [Datos]() para ajustar modelos con factores aleatorios (modelos mixtos o GLMM)
+-   [Datos](https://raw.githubusercontent.com/jabiologo/nimble/main/GLMM_simu.R) para ajustar modelos con factores aleatorios (modelos mixtos o GLMM)
 -   [Datos](https://github.com/valentinlauret/diberticurso/blob/main/codes/lagartos.zip) para ajustar mdelos a partir de conteos repetidos con lagartos (N-mixture)
 -   [Datos](https://raw.githubusercontent.com/valentinlauret/diberticurso/main/codes/simuSCR.R) para simular y ajustar modelos de captura-recaptura espacialmente explícitos (SCR)
 -   [Datos](https://github.com/valentinlauret/diberticurso/blob/main/codes/womad.zip) para saber si hay más Marios o Albertos en el WOMAD24
