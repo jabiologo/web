@@ -56,13 +56,19 @@ Gran parte de este curso, incluidos algunos materiales, diseño de la web y el c
 ### Día 2 - Modelos ecológicos más avanzados
 
   1. Modelos de Ocupación. [Presentaciones](https://jabiologo.quarto.pub/bloaque_2_1_teoria) y [Script](https://raw.githubusercontent.com/jabiologo/web/master/script_bloque_2_1.R)
-  2. Modelos _N-mixture_. [Presentaciones](https://jabiologo.quarto.pub/bloque_2_2) y Script
+  2. Modelos _N-mixture_. [Presentaciones](https://jabiologo.quarto.pub/bloque_2_2) y [Script](https://www.revistaecosistemas.net/index.php/ecosistemas/article/view/2527)
   3. _Spatial Capture-Recpature_. [Presentaciones](https://vlauret.quarto.pub/diberticurso_5_scr) y [Script](https://raw.githubusercontent.com/valentinlauret/diberticurso/main/codes/5_SCR.R)
   
 ### Día 3 - Aplicaciones
 
   1. Un caso de estudio, impartido por [Pepe Jiménez](https://scholar.google.com/citations?user=ACYEKqAAAAAJ&hl=es).
   2. Trabajo personal con datos propios (o provistos por los ponentes).
+  3. [Conclusiones y cierre]()
+
+# Juegos de datos
+
+-   [Datos](https://raw.githubusercontent.com/jabiologo/web/master/script_bloque_2_2.R) para ajustar modelos a partir de conteos repetidos (N-mixture).
+-   [Datos]() para ajustar modelos con factores aleatorios (modelos mixtos o GLMM)
 
 #  **Requerimientos**
 
