@@ -1,30 +1,47 @@
 ---
 title: "Estadística básica en ciencias experimentales"
-author: "Javier Fernández-López"
-date: '2024-10-15'
-output: html_document
+csl: nature.csl
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    collapsed: false
+    number_sections: false
+    toc_depth: 1
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+<style>
+body {
+text-align: justify}
+</style>
 
-## R Markdown
+<br/>
+<br/>
+<p align="center">
+<img height=100 width=550 src="muibarac.png"> </a>
+</p>
+<font size="3">
+<br/>
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+ 
+# **Presentación**
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+En este espacio se encuentran los contenidos para las prácticas del tema **Estadística básica en ciencias experimentales** de la asignatura Bases de la investigación en ciencias experimentales (Máster Universitario en Investigación Básica y Aplicada en Recursos Cinegéticos - MUIBARC). En los siguientes enlaces se pueden descargar los materiales se utilizarán durante el taller:
+ 
+* Presentaciones de los contenidos prácticos (ver **Prácticas** más abajo).
+* Scripts y datos necesarios para las sesiones prácticas (ver **Prácticas** más abajo).
+* Datos necesarios los ejercicios (ver **Ejercicios** más abajo).
 
-```{r cars}
-summary(cars)
-```
+Este tema se ha realizado en base a los contenidos previamente desarrollados por Lorenzo Pérez Rodríguez y extendidos por Jéssica Jiménez-Peñuela, Daniel Parejo-Pulido y Javier Fernández-López.
 
-## Including Plots
+# **Introducción al entorno R**
 
-You can also embed plots, for example:
+R es un entorno y lenguaje de programación con un enfoque al análisis estadístico.
 
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
+# **Prácticas**
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+R es un entorno y lenguaje de programación con un enfoque al análisis estadístico.
+
+# **Ejercicios**
+
+R es un entorno y lenguaje de programación con un enfoque al análisis estadístico.
