@@ -23,6 +23,13 @@ text-align: justify}
 <font size="3">
 <br/>
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r klippy, echo=FALSE, include=TRUE}
+klippy::klippy(tooltip_message = 'Click para copiar', tooltip_success = 'Hecho!',position = c('top', 'right'))
+```
+
  
 # **Presentación**
 
@@ -38,30 +45,71 @@ Este tema se ha realizado en base a los contenidos previamente desarrollados por
 # **Introducción al entorno R**
 
 #### **¿Por qué R?** 
-R es un entorno y lenguaje de programación con un enfoque al análisis estadístico. Concerns: Herramienta VS contenidos. R curva de aprendizaje más lenta. R para todos los SO. R libre y gratuito, no como otros sorfwares (STATISTICA, etc). Potencialidad: GIS, Stadistica, pequeñas apps, etc. 
+R es un entorno y lenguaje de programación con un enfoque al análisis estadístico. Al preparar estas prácticas tuvimos serias dudas sobre si adoptar **R** como _herramienta_ para aplicar los _contenidos_ vistos en la teoría, u optar por un software con el clásico diseño "por ventanas". Entendemos que adoptar herramientas _complicadas_ para trabajar contenidos que ya de por sí son complicados puede tener sus desventajas (estár más pendiente de aprender a utilizar la herramienta que a enterarse de la teoría, por ejemplo). También sabemos que R tiene una **curva de aprendizaje empinada**, sobre todo al principio. Sin embargo, hay varias razones para empezar a trabajar con esta herramienta:
+
+* R es una herramienta libre y gratuita para todos los sistemas operativos.
+* R no es solo un software para análisis estadístico.
+* Es muy probable que tarde o temprano tengáis que utilizarla.
+<br/><br/>
 
 #### **Descarga e instalación de R y RStudio** 
 
+Como ya hemos comentado, en esta práctica utilizaremos dos softwares que deberemos descargar e instalar en el caso de ser necesario:
+
+* **R** lo podemos descargar en [https://cran.r-project.org/](https://cran.r-project.org/) para los sistemas operativos Windows, macOS y Linux.
+* **RStudio** lo podemos descargar en [https://posit.co/download/rstudio-desktop/](https://posit.co/download/rstudio-desktop/), también para cualquer sistema operativo
+
+Una vez descargados, RStudio se vinculará con R automáticamente.
+<br/><br/>
+
 #### **Un paseo por R y RStudio** 
 
-* Diferenciar R de RStudio (IDE)
-* Cambio de color y tamaño de la letra en RStudio. Diferenciar consola, script, entorno de trabajo, visualizador, plots, ficheros
+Es importante diferenciar entre R y RStudio. El software o lenguaje que utilizamos para los análisis estadisticos es **R**, por tanto podemos utilizar la consola de R por sí sola. **RStudio es un IDE** (del inglés _integrated development environment_), un entorno de desarrollo integrado, una "carcasa" que envuelve a R y facilita su uso. 
+Es imporante familiarizarse con RStudio, ya que utilizaremos R a través de él. Tómate unos minutos para explorar sus diferentes paneles y personalizar su diseño:
 
+* Diferencia entre _consola_ y _script_
+* Visualiza tu _entorno de trabajo_, tu ventana de _gráficos (plots)_, tus _librerías (paquetes)_ cargadas, etc. 
+* También puedes cambiar el color de fondo, aumentar el tamaño de letra, etc.
+<br/><br/>
 
-#### **Las funciones**
+#### **Las `funciones()`**
 
-* Argumentos
+Las **`funciones()`** son la "maquinaria" de R, las que realizan el trabajo. Se pueden identificar porque generalmente van seguidas de unos paréntesis entre los cuales se colocan sus **argumentos**. Los argumentos de una función son elementos que necesita esa función para ejecutarse y suelen ir separados por _comas_ $,$. Por ejemplo, existe una función que se llama "concatenar" (que en el lenguaje R se escribe `c()`), que simplemente sirve para unir en el mismo vector una serie de elementos (letras, números, etc.). Vamos a utilizar esa función para unir en un único vector una serie de números.
+
+```{r ch1, message=F, cache = T, eval = T}
+# La almohadilla se utiliza para incluir un comentario. Todo lo que se encuentre
+# después de una almohadilla no se ejecutará en la consola.
+
+# Unir los números 3, 7, 12 y 4 en un único vector
+c(3, 7, 12, 4)
+
+```
+
+* ¿Cuál es la función? ¿Cuáles son sus argumentos?
+
+Imaginemos que ahora queremos hallar la media de esos números. Podemos utilizar otra función denominada `mean()` a la cual le introduciremos los numeros que hemos concatenado anteriormente como único argumento:
+
+```{r ch2, message=F, cache = T, eval = T}
+# Obtener la media de los números 3, 7, 12 y 4
+mean(c(3, 7, 12, 4))
+```
+
 * Librerías (paquetes) (descarga, instalación y carga)
+<br/><br/>
 
 #### **Los objetos**
 
 * Clases
+<br/><br/>
 
 #### **Directorio y entorno de trabajo**
 
 
+<br/><br/>
 
-#### **La ayuda! `help()`**
+#### **La ayuda! `help()` y preguntar a Google**
+
+<br/><br/>
 
 # **Prácticas**
 
