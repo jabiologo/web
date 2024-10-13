@@ -1787,9 +1787,53 @@ paquetes con las herramientas (funciones) que necesite y ponerlo a
 disposición de la comunidad de usuarios. Si tenéis curiosidad, <a href="https://www.youtube.com/watch?v=ctsGXwaxA1o&amp;list=PL4ZUlAlk7Qic9a6aBIMcRs7_CLbIzCalW">aquí</a>
 podéis encontrar un pequeño tutorial sobre como hacerlo.</p>
 <p><br /><br /> #### <strong>Los objetos</strong></p>
-<ul>
-<li>Clases <br /><br /></li>
-</ul>
+<p>Los <strong>objetos</strong> en R son los contenedores donde
+almacenamos los resultados (outputs) de las funciones. Podemos
+identificarlos porque suelen aparecer por primera vez precediendo a los
+caracteres <code>&lt;-</code>, que simbolizan una flecha que señala
+hacia la izquierda. Cada vez que se quiera crear un objeto se le ha de
+dar un nombre, el que queramos, aunque suele ser conveniente darle un
+nombre que tenga sentido. Por ejemplo, vamos a almacenar en un objeto
+que vamos a llamar “numeros” la concatenación de valores que creamos
+anteriormente:</p>
+<pre class="r"><code># Almacenamos en un objeto llamado &quot;numeros&quot; el resultado de concatenar 3, 7, 12 y 4
+numeros &lt;- c(3, 7, 12, 4)
+
+# Ahora podemos &quot;llamar&quot; a &quot;numeros&quot; para ver qué tiene dentro
+numeros</code></pre>
+<pre><code>## [1]  3  7 12  4</code></pre>
+<pre class="r"><code># También podemos utilizar a &quot;numeros&quot; dentro de otra función, por ejemplo mean()
+mean(numeros)</code></pre>
+<pre><code>## [1] 6.5</code></pre>
+<pre class="r"><code># Por último podemos guardar dentro de otro objeto el resultado de la linea anterior
+
+m &lt;- mean(numeros)
+m</code></pre>
+<pre><code>## [1] 6.5</code></pre>
+<p>Todos los objetos en R tienen una clase, que informa sobre el tipo de
+objeto que es. Por ejemplo, si es un vector de números será
+<code>numeric</code>, pero si lo que almacena son caracteres su clase
+será <code>character</code>. Hay muschísimas clases de objetos (¡incluso
+se pueden crear clases nuevas!). Conocer la clase de nuestros objetos es
+muy important, puesto que <strong>algunas funciones necesitan que sus
+argumentos sean de una clase específica</strong>, y sino no funcionarán.
+Por ejemplo, no podemos hacer la media de las letras “a”, “b” y “c”,
+pero sí podremos hacer la media de los números 1, 2 y 3.</p>
+<pre class="r"><code># Para averiguar la clase de un objeto usamos la función class()
+class(numeros)</code></pre>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<pre class="r"><code># Vamos a crear un objeto con los caracteres &quot;a&quot;, &quot;b&quot; y &quot;c&quot;
+letras &lt;- c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;)
+
+# Exploramos la clase de letras
+class(letras)</code></pre>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<pre class="r"><code># Vamos a intentar hacer la media de letras
+mean(letras)</code></pre>
+<pre><code>## Warning in mean.default(letras): argument is not numeric or logical: returning
+## NA</code></pre>
+<pre><code>## [1] NA</code></pre>
+<p><br /><br /></p>
 </div>
 <div id="directorio-y-entorno-de-trabajo" class="section level4">
 <h4><strong>Directorio y entorno de trabajo</strong></h4>
