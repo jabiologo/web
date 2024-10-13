@@ -18,7 +18,7 @@ text-align: justify}
 <br/>
 <br/>
 <p align="center">
-<img height=100 width=550 src="muibarac.png"> </a>
+<img height=100 width=550 src="estadisticaBasica_files/muibarac.png"> </a>
 </p>
 <font size="3">
 <br/>
@@ -70,6 +70,13 @@ Es imporante familiarizarse con RStudio, ya que utilizaremos R a través de él.
 * Diferencia entre _consola_ y _script_
 * Visualiza tu _entorno de trabajo_, tu ventana de _gráficos (plots)_, tus _librerías (paquetes)_ cargadas, etc. 
 * También puedes cambiar el color de fondo, aumentar el tamaño de letra, etc.
+
+
+<br/>
+<p align="center">
+<img height=350 width=600 src="estadisticaBasica_files/rstudio.png"> </a>
+</p>
+<font size="3">
 <br/><br/>
 
 #### **Las `funciones()`**
@@ -94,9 +101,18 @@ Imaginemos que ahora queremos hallar la media de esos números. Podemos utilizar
 mean(c(3, 7, 12, 4))
 ```
 
-* Librerías (paquetes) (descarga, instalación y carga)
-<br/><br/>
+Todas las funciones de R se alamcenan en "bibliotecas" o librerías (habitualmente denominados paquetes). Estos paquetes podemos entenderlos como cajas de herramientas donde se almacenan las herramientas que queremos utilizar. Hay algunos paquetes que vienen instalados y cargados por defecto en R. Sin embargo, otros los tenemos que descargar e instalar por primera vez y luego cargarlos en nuestra sesión cada vez que queramos utilizarlos. Por ejemplo, el paquete `lme4` se utiliza frecuentemente para ajustar modelos generales lineales mixtos. Podemos descargarlo, instalarlo y cargarlo en nuestra sesión de R de la siguiente manera:
 
+```{r ch3, message=F, cache = T, eval = F}
+# Descargamos e instalamos el paquete
+install.packages("lme4")
+# Cargamos el paquete en nuestra sesión
+library(lme4)
+```
+
+Una de las grandes ventajas (o inconvenientes?) de R es que es un software libre, por lo que cualquiera puede desarrollar sus propios paquetes con las herramientas (funciones) que necesite y ponerlo a disposición de la comunidad de usuarios. Si tenéis curiosidad, [aquí](https://www.youtube.com/watch?v=ctsGXwaxA1o&list=PL4ZUlAlk7Qic9a6aBIMcRs7_CLbIzCalW) podéis encontrar un pequeño tutorial sobre como hacerlo.
+
+<br/><br/>
 #### **Los objetos**
 
 * Clases
