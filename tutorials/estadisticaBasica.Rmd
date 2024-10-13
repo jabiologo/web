@@ -193,8 +193,8 @@ Quizás la lección más importante es que normalmente ningún usuario habitual 
 
 # **Prácticas**
 
-R es un entorno y lenguaje de programación con un enfoque al análisis estadístico.
+-
 
 # **Ejercicios**
 
-R es un entorno y lenguaje de programación con un enfoque al análisis estadístico.
+-
