@@ -28,6 +28,7 @@ text-align: justify}
 
 En este espacio se encuentran los contenidos para las prácticas del tema **Estadística básica en ciencias experimentales** de la asignatura Bases de la investigación en ciencias experimentales (Máster Universitario en Investigación Básica y Aplicada en Recursos Cinegéticos - MUIBARC). En los siguientes enlaces se pueden descargar los materiales se utilizarán durante el taller:
  
+* Una **introducción al entorno R**, la herramienta que utilizaremos en las prácticas
 * Presentaciones de los contenidos prácticos (ver **Prácticas** más abajo).
 * Scripts y datos necesarios para las sesiones prácticas (ver **Prácticas** más abajo).
 * Datos necesarios los ejercicios (ver **Ejercicios** más abajo).
@@ -36,7 +37,31 @@ Este tema se ha realizado en base a los contenidos previamente desarrollados por
 
 # **Introducción al entorno R**
 
-R es un entorno y lenguaje de programación con un enfoque al análisis estadístico.
+#### **¿Por qué R?** 
+R es un entorno y lenguaje de programación con un enfoque al análisis estadístico. Concerns: Herramienta VS contenidos. R curva de aprendizaje más lenta. R para todos los SO. R libre y gratuito, no como otros sorfwares (STATISTICA, etc). Potencialidad: GIS, Stadistica, pequeñas apps, etc. 
+
+#### **Descarga e instalación de R y RStudio** 
+
+#### **Un paseo por R y RStudio** 
+
+* Diferenciar R de RStudio (IDE)
+* Cambio de color y tamaño de la letra en RStudio. Diferenciar consola, script, entorno de trabajo, visualizador, plots, ficheros
+
+
+#### **Las funciones**
+
+* Argumentos
+* Librerías (paquetes) (descarga, instalación y carga)
+
+#### **Los objetos**
+
+* Clases
+
+#### **Directorio y entorno de trabajo**
+
+
+
+#### **La ayuda! `help()`**
 
 # **Prácticas**
 
