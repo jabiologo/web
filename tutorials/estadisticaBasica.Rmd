@@ -111,8 +111,8 @@ library(lme4)
 ```
 
 Una de las grandes ventajas (o inconvenientes?) de R es que es un software libre, por lo que cualquiera puede desarrollar sus propios paquetes con las herramientas (funciones) que necesite y ponerlo a disposición de la comunidad de usuarios. Si tenéis curiosidad, [aquí](https://www.youtube.com/watch?v=ctsGXwaxA1o&list=PL4ZUlAlk7Qic9a6aBIMcRs7_CLbIzCalW) podéis encontrar un pequeño tutorial sobre como hacerlo.
-
 <br/><br/>
+
 #### **Los objetos**
 
 Los **objetos** en R son los contenedores donde almacenamos los resultados (outputs) de las funciones. Podemos identificarlos porque suelen aparecer por primera vez precediendo a los caracteres `<-`, que simbolizan una flecha que señala hacia la izquierda. Cada vez que se quiera crear un objeto se le ha de dar un nombre, el que queramos, aunque suele ser conveniente darle un nombre que tenga sentido. Por ejemplo, vamos a almacenar en un objeto que vamos a llamar "numeros" la concatenación de valores que creamos anteriormente:
@@ -149,15 +149,42 @@ class(letras)
 mean(letras)
 
 ```
+<br/>
 
-<br/><br/>
+#### **Entorno y directorio de trabajo**
+Todos los objetos que vayamos creando o cargando en R se pueden visualizar en el panel `Environment` que suele situarse en la parte superior derecha en RStudio. En ese panel aparece información sobre los objetos, una previsualización o incluso, si el objeto lo permite, podemos hacer click en él y visualizarlos de forma intuitiva en formato "hoja de cálculo". <br/>
+También es importante ser conscientes del directorio de trabajo en el que estamos trabajando, esto es, la carpeta en la que se guardarán los ficheros que salgan de R, o la carpeta desde donde se cargarán los ficheros. Para saber nuestro directorio de trabajo actual utilizamos la función `getwd()`, mienstras que para cambiarla utilizaremos `setwd("mi_directorio_de_trabajo_nuevo")`.
 
-#### **Directorio y entorno de trabajo**
+```{r ch6, message=T, cache = T, eval = T}
+# Exploramos mi directorio de trabajo actual
+getwd()
 
+# Cambiamos el directorio de trabajo
+setwd("/home/javifl/github/web/tutorials/estadisticaBasica_files")
 
+```
 <br/><br/>
 
 #### **La ayuda! `help()` y preguntar a Google**
+
+Otra de las ventajas de R con respecto a otros lenguajes de programación es que sus paquetes deben de cumplir una serie de estándares para poder estar en el repositorio "oficial" [CRAN](https://cran.r-project.org/). Uno de los requerimientos es que las funciones de los diferentes paquetes deben de estar bien documentadas, es decir, debe existir un _manual_ que indique cómo se usa cada una de las funciones del paquete. Ese manual sigue siempre la misma estructura: nombre y descripción de la función, cómo se usa, los argumentos que necesita, el objeto que resulta al aplicar la función (Value), y unos ejemplos de cómo usar la función. Este manual o ayuda puede incluir más apartados, pero los mencionados suelen ser obligatorios. La forma de "llamar a la ayuda" en R es utilizando la función `help()`. Veamos un ejemplo:
+
+```{r ch7, message=T, cache = T, eval = T}
+# Vamos a intentar obtener la media del objeto letras
+mean(letras)
+
+# No entendemos por qué obtenemos este error... vamos a consultar la ayuda para
+# entender qué necesita la función mean()
+help(mean)
+
+# Como vemos en el apartado Arguments, a la función mean() sólo se le pueden
+# proporcionar objetos que sean de la clase numeric, logical, vectors, date,
+# date-time y time_interval.
+# Dado que la clase de letras es character, ahora entendemos por qué no podemos
+# utilizar mean con letras.
+```
+
+Quizás la lección más importante es que normalmente ningún usuario habitual ha asistido a ningún curso especializado de R: la mayoría aprende a base de prueba/error y muchas horas delante del ordendaor con `ERROR` o `WARNINGS` en nuestra pantalla. Por eso es esencial no perder la paciencia y preguntar siempre a Google antes de preguntar al compañero que sabe (siemrpe hay alguien que ha tenido la misma duda antes que nosotros y ha dejado un comentario en un foro o blog). De esta forma interiorizaremos mucho mejor el funcionamiento de este lenguaje y aprenderemos mucho más rápido!
 
 <br/><br/>
 

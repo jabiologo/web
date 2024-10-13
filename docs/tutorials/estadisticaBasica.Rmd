@@ -18,7 +18,7 @@ text-align: justify}
 <br/>
 <br/>
 <p align="center">
-<img height=100 width=550 src="muibarac.png"> </a>
+<img height=100 width=550 src="estadisticaBasica_files/muibarac.png"> </a>
 </p>
 <font size="3">
 <br/>
@@ -70,6 +70,13 @@ Es imporante familiarizarse con RStudio, ya que utilizaremos R a través de él.
 * Diferencia entre _consola_ y _script_
 * Visualiza tu _entorno de trabajo_, tu ventana de _gráficos (plots)_, tus _librerías (paquetes)_ cargadas, etc. 
 * También puedes cambiar el color de fondo, aumentar el tamaño de letra, etc.
+
+
+<br/>
+<p align="center">
+<img height=350 width=600 src="estadisticaBasica_files/rstudio.png"> </a>
+</p>
+<font size="3">
 <br/><br/>
 
 #### **Las `funciones()`**
@@ -94,20 +101,90 @@ Imaginemos que ahora queremos hallar la media de esos números. Podemos utilizar
 mean(c(3, 7, 12, 4))
 ```
 
-* Librerías (paquetes) (descarga, instalación y carga)
+Todas las funciones de R se alamcenan en "bibliotecas" o librerías (habitualmente denominados paquetes). Estos paquetes podemos entenderlos como cajas de herramientas donde se almacenan las herramientas que queremos utilizar. Hay algunos paquetes que vienen instalados y cargados por defecto en R. Sin embargo, otros los tenemos que descargar e instalar por primera vez y luego cargarlos en nuestra sesión cada vez que queramos utilizarlos. Por ejemplo, el paquete `lme4` se utiliza frecuentemente para ajustar modelos generales lineales mixtos. Podemos descargarlo, instalarlo y cargarlo en nuestra sesión de R de la siguiente manera:
+
+```{r ch3, message=F, cache = T, eval = F}
+# Descargamos e instalamos el paquete
+install.packages("lme4")
+# Cargamos el paquete en nuestra sesión
+library(lme4)
+```
+
+Una de las grandes ventajas (o inconvenientes?) de R es que es un software libre, por lo que cualquiera puede desarrollar sus propios paquetes con las herramientas (funciones) que necesite y ponerlo a disposición de la comunidad de usuarios. Si tenéis curiosidad, [aquí](https://www.youtube.com/watch?v=ctsGXwaxA1o&list=PL4ZUlAlk7Qic9a6aBIMcRs7_CLbIzCalW) podéis encontrar un pequeño tutorial sobre como hacerlo.
 <br/><br/>
 
 #### **Los objetos**
 
-* Clases
-<br/><br/>
+Los **objetos** en R son los contenedores donde almacenamos los resultados (outputs) de las funciones. Podemos identificarlos porque suelen aparecer por primera vez precediendo a los caracteres `<-`, que simbolizan una flecha que señala hacia la izquierda. Cada vez que se quiera crear un objeto se le ha de dar un nombre, el que queramos, aunque suele ser conveniente darle un nombre que tenga sentido. Por ejemplo, vamos a almacenar en un objeto que vamos a llamar "numeros" la concatenación de valores que creamos anteriormente:
 
-#### **Directorio y entorno de trabajo**
+```{r ch4, message=F, cache = T, eval = T}
+# Almacenamos en un objeto llamado "numeros" el resultado de concatenar 3, 7, 12 y 4
+numeros <- c(3, 7, 12, 4)
 
+# Ahora podemos "llamar" a "numeros" para ver qué tiene dentro
+numeros
 
+# También podemos utilizar a "numeros" dentro de otra función, por ejemplo mean()
+mean(numeros)
+
+# Por último podemos guardar dentro de otro objeto el resultado de la linea anterior
+
+m <- mean(numeros)
+m
+```
+
+ Todos los objetos en R tienen una clase, que informa sobre el tipo de objeto que es. Por ejemplo, si es un vector de números será `numeric`, pero si lo que almacena son caracteres su clase será `character`. Hay muschísimas clases de objetos (¡incluso se pueden crear clases nuevas!). Conocer la clase de nuestros objetos es muy important, puesto que **algunas funciones necesitan que sus argumentos sean de una clase específica**, y sino no funcionarán. Por ejemplo, no podemos hacer la media de las letras "a", "b" y "c", pero sí podremos hacer la media de los números 1, 2 y 3.
+
+```{r ch5, message=T, cache = T, eval = T}
+# Para averiguar la clase de un objeto usamos la función class()
+class(numeros)
+
+# Vamos a crear un objeto con los caracteres "a", "b" y "c"
+letras <- c("a", "b", "c")
+
+# Exploramos la clase de letras
+class(letras)
+
+# Vamos a intentar hacer la media de letras
+mean(letras)
+
+```
+<br/>
+
+#### **Entorno y directorio de trabajo**
+Todos los objetos que vayamos creando o cargando en R se pueden visualizar en el panel `Environment` que suele situarse en la parte superior derecha en RStudio. En ese panel aparece información sobre los objetos, una previsualización o incluso, si el objeto lo permite, podemos hacer click en él y visualizarlos de forma intuitiva en formato "hoja de cálculo". <br/>
+También es importante ser conscientes del directorio de trabajo en el que estamos trabajando, esto es, la carpeta en la que se guardarán los ficheros que salgan de R, o la carpeta desde donde se cargarán los ficheros. Para saber nuestro directorio de trabajo actual utilizamos la función `getwd()`, mienstras que para cambiarla utilizaremos `setwd("mi_directorio_de_trabajo_nuevo")`.
+
+```{r ch6, message=T, cache = T, eval = T}
+# Exploramos mi directorio de trabajo actual
+getwd()
+
+# Cambiamos el directorio de trabajo
+setwd("/home/javifl/github/web/tutorials/estadisticaBasica_files")
+
+```
 <br/><br/>
 
 #### **La ayuda! `help()` y preguntar a Google**
+
+Otra de las ventajas de R con respecto a otros lenguajes de programación es que sus paquetes deben de cumplir una serie de estándares para poder estar en el repositorio "oficial" [CRAN](https://cran.r-project.org/). Uno de los requerimientos es que las funciones de los diferentes paquetes deben de estar bien documentadas, es decir, debe existir un _manual_ que indique cómo se usa cada una de las funciones del paquete. Ese manual sigue siempre la misma estructura: nombre y descripción de la función, cómo se usa, los argumentos que necesita, el objeto que resulta al aplicar la función (Value), y unos ejemplos de cómo usar la función. Este manual o ayuda puede incluir más apartados, pero los mencionados suelen ser obligatorios. La forma de "llamar a la ayuda" en R es utilizando la función `help()`. Veamos un ejemplo:
+
+```{r ch7, message=T, cache = T, eval = T}
+# Vamos a intentar obtener la media del objeto letras
+mean(letras)
+
+# No entendemos por qué obtenemos este error... vamos a consultar la ayuda para
+# entender qué necesita la función mean()
+help(mean)
+
+# Como vemos en el apartado Arguments, a la función mean() sólo se le pueden
+# proporcionar objetos que sean de la clase numeric, logical, vectors, date,
+# date-time y time_interval.
+# Dado que la clase de letras es character, ahora entendemos por qué no podemos
+# utilizar mean con letras.
+```
+
+Quizás la lección más importante es que normalmente ningún usuario habitual ha asistido a ningún curso especializado de R: la mayoría aprende a base de prueba/error y muchas horas delante del ordendaor con `ERROR` o `WARNINGS` en nuestra pantalla. Por eso es esencial no perder la paciencia y preguntar siempre a Google antes de preguntar al compañero que sabe (siemrpe hay alguien que ha tenido la misma duda antes que nosotros y ha dejado un comentario en un foro o blog). De esta forma interiorizaremos mucho mejor el funcionamiento de este lenguaje y aprenderemos mucho más rápido!
 
 <br/><br/>
 

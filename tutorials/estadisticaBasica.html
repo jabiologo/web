@@ -1785,8 +1785,10 @@ library(lme4)</code></pre>
 software libre, por lo que cualquiera puede desarrollar sus propios
 paquetes con las herramientas (funciones) que necesite y ponerlo a
 disposición de la comunidad de usuarios. Si tenéis curiosidad, <a href="https://www.youtube.com/watch?v=ctsGXwaxA1o&amp;list=PL4ZUlAlk7Qic9a6aBIMcRs7_CLbIzCalW">aquí</a>
-podéis encontrar un pequeño tutorial sobre como hacerlo.</p>
-<p><br /><br /> #### <strong>Los objetos</strong></p>
+podéis encontrar un pequeño tutorial sobre como hacerlo. <br /><br /></p>
+</div>
+<div id="los-objetos" class="section level4">
+<h4><strong>Los objetos</strong></h4>
 <p>Los <strong>objetos</strong> en R son los contenedores donde
 almacenamos los resultados (outputs) de las funciones. Podemos
 identificarlos porque suelen aparecer por primera vez precediendo a los
@@ -1833,15 +1835,67 @@ mean(letras)</code></pre>
 <pre><code>## Warning in mean.default(letras): argument is not numeric or logical: returning
 ## NA</code></pre>
 <pre><code>## [1] NA</code></pre>
-<p><br /><br /></p>
+<p><br /></p>
 </div>
-<div id="directorio-y-entorno-de-trabajo" class="section level4">
-<h4><strong>Directorio y entorno de trabajo</strong></h4>
+<div id="entorno-y-directorio-de-trabajo" class="section level4">
+<h4><strong>Entorno y directorio de trabajo</strong></h4>
+<p>Todos los objetos que vayamos creando o cargando en R se pueden
+visualizar en el panel <code>Environment</code> que suele situarse en la
+parte superior derecha en RStudio. En ese panel aparece información
+sobre los objetos, una previsualización o incluso, si el objeto lo
+permite, podemos hacer click en él y visualizarlos de forma intuitiva en
+formato “hoja de cálculo”. <br /> También es importante ser conscientes
+del directorio de trabajo en el que estamos trabajando, esto es, la
+carpeta en la que se guardarán los ficheros que salgan de R, o la
+carpeta desde donde se cargarán los ficheros. Para saber nuestro
+directorio de trabajo actual utilizamos la función <code>getwd()</code>,
+mienstras que para cambiarla utilizaremos
+<code>setwd(&quot;mi_directorio_de_trabajo_nuevo&quot;)</code>.</p>
+<pre class="r"><code># Exploramos mi directorio de trabajo actual
+getwd()</code></pre>
+<pre><code>## [1] &quot;/home/javifl/github/web/tutorials&quot;</code></pre>
+<pre class="r"><code># Cambiamos el directorio de trabajo
+setwd(&quot;/home/javifl/github/web/tutorials/estadisticaBasica_files&quot;)</code></pre>
 <p><br /><br /></p>
 </div>
 <div id="la-ayuda-help-y-preguntar-a-google" class="section level4">
 <h4><strong>La ayuda! <code>help()</code> y preguntar a
 Google</strong></h4>
+<p>Otra de las ventajas de R con respecto a otros lenguajes de
+programación es que sus paquetes deben de cumplir una serie de
+estándares para poder estar en el repositorio “oficial” <a href="https://cran.r-project.org/">CRAN</a>. Uno de los requerimientos
+es que las funciones de los diferentes paquetes deben de estar bien
+documentadas, es decir, debe existir un <em>manual</em> que indique cómo
+se usa cada una de las funciones del paquete. Ese manual sigue siempre
+la misma estructura: nombre y descripción de la función, cómo se usa,
+los argumentos que necesita, el objeto que resulta al aplicar la función
+(Value), y unos ejemplos de cómo usar la función. Este manual o ayuda
+puede incluir más apartados, pero los mencionados suelen ser
+obligatorios. La forma de “llamar a la ayuda” en R es utilizando la
+función <code>help()</code>. Veamos un ejemplo:</p>
+<pre class="r"><code># Vamos a intentar obtener la media del objeto letras
+mean(letras)</code></pre>
+<pre><code>## Warning in mean.default(letras): argument is not numeric or logical: returning
+## NA</code></pre>
+<pre><code>## [1] NA</code></pre>
+<pre class="r"><code># No entendemos por qué obtenemos este error... vamos a consultar la ayuda para
+# entender qué necesita la función mean()
+help(mean)
+
+# Como vemos en el apartado Arguments, a la función mean() sólo se le pueden
+# proporcionar objetos que sean de la clase numeric, logical, vectors, date,
+# date-time y time_interval.
+# Dado que la clase de letras es character, ahora entendemos por qué no podemos
+# utilizar mean con letras.</code></pre>
+<p>Quizás la lección más importante es que normalmente ningún usuario
+habitual ha asistido a ningún curso especializado de R: la mayoría
+aprende a base de prueba/error y muchas horas delante del ordendaor con
+<code>ERROR</code> o <code>WARNINGS</code> en nuestra pantalla. Por eso
+es esencial no perder la paciencia y preguntar siempre a Google antes de
+preguntar al compañero que sabe (siemrpe hay alguien que ha tenido la
+misma duda antes que nosotros y ha dejado un comentario en un foro o
+blog). De esta forma interiorizaremos mucho mejor el funcionamiento de
+este lenguaje y aprenderemos mucho más rápido!</p>
 <p><br /><br /></p>
 </div>
 </div>
