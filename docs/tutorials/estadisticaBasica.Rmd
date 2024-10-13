@@ -1,13 +1,16 @@
 ---
 title: "Estadística básica en ciencias experimentales"
 csl: nature.csl
-output: 
+output:
   html_document:
-    toc: true
-    toc_float: true
-    collapsed: false
-    number_sections: false
+    toc: yes
+    toc_float: yes
+    collapsed: no
+    number_sections: no
     toc_depth: 1
+  pdf_document:
+    toc: yes
+    toc_depth: '1'
 ---
 
 <style>
@@ -26,7 +29,7 @@ text-align: justify}
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-```{r klippy, echo=FALSE, include=TRUE}
+```{r klippy, echo=FALSE, include=TRUE, eval=T}
 klippy::klippy(tooltip_message = 'Click para copiar', tooltip_success = 'Hecho!',position = c('top', 'right'))
 ```
 
