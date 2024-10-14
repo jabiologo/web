@@ -169,19 +169,68 @@ setwd("/home/javifl/github/web/tutorials/estadisticaBasica_files")
 <br/><br/>
 
 #### **Trabajo con `data.frame`**
-Uno de los objetos que más vamos a utilizar en la práctica es el `data.frame`, que podría asimilarse a un fichero similar a lo que podríamos visualizar en una hoja de cálculo tipo Excel. Vamos a utilizar la función `read.csv` leer un archivo de texto plano delimitado por comas (CSV del inglés _"comma separated values"_). Podéis echar un vistazo a este archivo [pinchando aquí](https://raw.githubusercontent.com/jabiologo/web/master/tutorials/estadisticaBasica_files/datosPracticas.csv).
+Uno de los objetos que más vamos a utilizar en la práctica es el `data.frame`, que podría asimilarse a un fichero similar a lo que podríamos visualizar en una hoja de cálculo tipo Excel. Vamos a utilizar la función `read.csv` leer un archivo de texto plano delimitado por comas (CSV del inglés _"comma separated values"_) y ensayar algunas cosas con él. Podéis echar un vistazo a este archivo [pinchando aquí](https://raw.githubusercontent.com/jabiologo/web/master/tutorials/estadisticaBasica_files/datosPracticas.csv).
 
 ```{r ch7, message=T, cache = T, eval = T}
-# Exploramos mi directorio de trabajo actual
+# Guardamos el archivo en un obejto que denominaremos "datos"
 datos <- read.csv("https://raw.githubusercontent.com/jabiologo/web/master/tutorials/estadisticaBasica_files/datosPracticas.csv")
+
+class(datos)
+
+# Podemos utilizar la función head() para explorar los primeros elementos de datos
+head(datos)
+
+# Podemos utilizar la función str() para ver la estructura interna del data.frame
+str(datos)
+
+# O incluso podemos pedirle un resumen con summary()
+summary(datos)
+
+```
+<br/>
+
+Tenemos varias formas de manejar los datos contenidos en un `data.frame`. Por ejemplo, si queremos explorar alguna columna podemos utilizar el símbolo del dólar `$` para seleccionarla por su nombre. Por ejemplo `datos$peso`. Si lo que queremos es seleccionar un dato en concreto, podemos utilizar los corchetes `[]` para acceder a los elementos del `data.frame` indicando su posición en cuanto a filas y columnas separados por una coma con la forma `datos[fila,columna]`. Por ejemplo, si queremos seleccionar el dato que está en la fila 3 y columna 4, podemos emplear `datos[3,4]`. Si dejamos uno de los dos huecos en blanco, obtendremos toda la fila o toda la columna. Por ejemplo, si quremos todos los datos de la fila 7, podemos hacer `datos[7, ]`. Veamos estos ejemplos.
+
+```{r ch8, message=T, cache = T, eval = T}
+# Visualizamos los nombres de las columnas de datos
+colnames(datos)
+
+# Visualizamos los 15 primeros elementos de la columna peso
+datos$peso[1:15]
+
+# Visualizamos el dato que está en la fila 3 y columna 4
+datos[3,4]
+
+# Visualizamos todos los datos de la fila 7
+datos[7,]
 
 ```
 
+Por último, vamos a ver una forma más moderna (y cómoda) de trabajar con los datos a través de `tydiverse`. Tydiverse es una coleccion de paquetes de R con una sintaxis en teoría más intuitiva que se centran en el manejo de datos. Utilizan el formato de "tuberías" o pipes mediante el símbolo `%>%`. Veamos un ejemplo.
 
+```{r ch9, message=T, cache = T, eval = T}
+# Instalamos (en caso necesario) y cargamos las librerías de tidyverse
+# install.packages(tidiverse)
+library(tidyverse)
 
+# Tomamos el objeto datos, y lo filtramos dejando tan solo los machos
+datosMacho <- datos %>% filter(sex == "Macho")
+
+# Visualizamos los primeros elementos del nuevo objeto
+head(datosMacho)
+
+# También podemos obtener una muestra aleatoria de un número de filas
+muestra11 <- datos %>% sample_n(11)
+
+# Número de filas de muestra11
+nrow(muestra11)
+
+muestra11
+```
 
 
 <br/><br/>
+
 #### **La ayuda `help()` y preguntar a Google**
 
 Otra de las ventajas de R con respecto a otros lenguajes de programación es que sus paquetes deben de cumplir una serie de estándares para poder estar en el repositorio "oficial" [CRAN](https://cran.r-project.org/). Uno de los requerimientos es que las funciones de los diferentes paquetes deben de estar bien documentadas, es decir, debe existir un _manual_ que indique cómo se usa cada una de las funciones del paquete. Ese manual sigue siempre la misma estructura: nombre y descripción de la función, cómo se usa, los argumentos que necesita, el objeto que resulta al aplicar la función (Value), y unos ejemplos de cómo usar la función. Este manual o ayuda puede incluir más apartados, pero los mencionados suelen ser obligatorios. La forma de "llamar a la ayuda" en R es utilizando la función `help()`. Veamos un ejemplo:
