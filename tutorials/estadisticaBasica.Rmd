@@ -169,8 +169,19 @@ setwd("/home/javifl/github/web/tutorials/estadisticaBasica_files")
 <br/><br/>
 
 #### **Trabajo con `data.frame`**
+Uno de los objetos que más vamos a utilizar en la práctica es el `data.frame`, que podría asimilarse a un fichero similar a lo que podríamos visualizar en una hoja de cálculo tipo Excel.
+
+```{r ch7, message=T, cache = T, eval = T}
+# Exploramos mi directorio de trabajo actual
+datos <- read.csv("https://raw.githubusercontent.com/jabiologo/web/master/tutorials/tallerSECEM_files/occuDatos.csv")
+
+```
 
 
+
+
+
+<br/><br/>
 #### **La ayuda `help()` y preguntar a Google**
 
 Otra de las ventajas de R con respecto a otros lenguajes de programación es que sus paquetes deben de cumplir una serie de estándares para poder estar en el repositorio "oficial" [CRAN](https://cran.r-project.org/). Uno de los requerimientos es que las funciones de los diferentes paquetes deben de estar bien documentadas, es decir, debe existir un _manual_ que indique cómo se usa cada una de las funciones del paquete. Ese manual sigue siempre la misma estructura: nombre y descripción de la función, cómo se usa, los argumentos que necesita, el objeto que resulta al aplicar la función (Value), y unos ejemplos de cómo usar la función. Este manual o ayuda puede incluir más apartados, pero los mencionados suelen ser obligatorios. La forma de "llamar a la ayuda" en R es utilizando la función `help()`. Veamos un ejemplo:
