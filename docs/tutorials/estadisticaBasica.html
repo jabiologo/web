@@ -2013,9 +2013,46 @@ este lenguaje y aprenderemos mucho más rápido!</p>
 </div>
 <div id="prácticas" class="section level1">
 <h1><strong>Prácticas</strong></h1>
+<p>Los fungicidas triazoles son compuestos químicos que se aplican
+habitualmente en semillas de cultivos para prevenir el crecimiento de
+hongos patógenos de plantas. Sin embargo, cuando las semillas son
+consumidas por la fauna silvestre, estos compuestos pueden producir
+efectos perjudiciales en su sauld y desarrollo. Queremos estudiar el
+efecto de los fungicidas triazoles sobre la condición corporal (peso) en
+perdices rojas (<em>Alectoris rufa</em>). Para ello se han capturado un
+total de 300 perdices en tres hábitats diferentes (semiurbano, agrícola
+y monte matorralizado) a las que se les ha sexado y extraido muestras de
+heces para obtener la concentración de fungicidas triazoles (ngramos de
+compuesto/gramo de heces). La base de datos obtenida está almacenada en
+<a href="https://raw.githubusercontent.com/jabiologo/web/master/tutorials/estadisticaBasica_files/datosPracticas.csv">este
+enlace</a>. A continuación iremos realizando algunos test estadísticos
+vistos en teoría para responder a nuestra pregunta.</p>
+<pre class="r"><code># Guardamos el archivo en un obejto que denominaremos &quot;datos&quot;
+datos &lt;- read.csv(&quot;https://raw.githubusercontent.com/jabiologo/web/master/tutorials/estadisticaBasica_files/datosPracticas.csv&quot;)
+
+# Podemos utilizar la función str() para ver la estructura interna del data.frame
+str(datos)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    300 obs. of  4 variables:
+##  $ peso: num  419 465 434 509 515 ...
+##  $ sex : chr  &quot;Macho&quot; &quot;Hembra&quot; &quot;Hembra&quot; &quot;Macho&quot; ...
+##  $ hab : chr  &quot;Agricola&quot; &quot;Urbano&quot; &quot;Urbano&quot; &quot;Agricola&quot; ...
+##  $ tri : num  47.9 13 18.1 20.9 15.3 ...</code></pre>
+<p><br /></p>
+<div id="vuestro-turno" class="section level3">
+<h3>Vuestro turno</h3>
 <ul>
-<li></li>
+<li>¿Cuál es nuestra variable dependiente/respuesta?</li>
+<li>¿Cuál o cuáles podrían ser nuestras variables independientes o
+predictores?</li>
+<li>¿De qué tipo son nuestras variables? Contínuas, categóricas…</li>
+<li>Si hay variables categóricas (factores), ¿cuántos niveles
+tienen?</li>
+<li>¿Qué tamaño muestral (<em>n</em>) tengo?</li>
+<li>¿Están mis datos balanceados?</li>
+<li>¿Qué distribución sigue mi variable respuesta? ¿y las variables
+predictoras?</li>
 </ul>
+</div>
 </div>
 <div id="ejercicios" class="section level1">
 <h1><strong>Ejercicios</strong></h1>
