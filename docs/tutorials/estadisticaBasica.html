@@ -1861,10 +1861,17 @@ setwd(&quot;/home/javifl/github/web/tutorials/estadisticaBasica_files&quot;)</co
 </div>
 <div id="trabajo-con-data.frame" class="section level4">
 <h4><strong>Trabajo con <code>data.frame</code></strong></h4>
-</div>
-<div id="la-ayuda-help-y-preguntar-a-google" class="section level4">
-<h4><strong>La ayuda <code>help()</code> y preguntar a
-Google</strong></h4>
+<p>Uno de los objetos que más vamos a utilizar en la práctica es el
+<code>data.frame</code>, que podría asimilarse a un fichero similar a lo
+que podríamos visualizar en una hoja de cálculo tipo Excel. Vamos a
+utilizar la función <code>read.csv</code> leer un archivo de texto plano
+delimitado por comas (CSV del inglés <em>“comma separated values”</em>).
+Podéis echar un vistazo a este archivo <a href="https://raw.githubusercontent.com/jabiologo/web/master/tutorials/estadisticaBasica_files/datosPracticas.csv">pinchando
+aquí</a>.</p>
+<pre class="r"><code># Exploramos mi directorio de trabajo actual
+datos &lt;- read.csv(&quot;https://raw.githubusercontent.com/jabiologo/web/master/tutorials/estadisticaBasica_files/datosPracticas.csv&quot;)</code></pre>
+<p><br /><br /> #### <strong>La ayuda <code>help()</code> y preguntar a
+Google</strong></p>
 <p>Otra de las ventajas de R con respecto a otros lenguajes de
 programación es que sus paquetes deben de cumplir una serie de
 estándares para poder estar en el repositorio “oficial” <a href="https://cran.r-project.org/">CRAN</a>. Uno de los requerimientos

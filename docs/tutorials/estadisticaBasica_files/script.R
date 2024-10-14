@@ -30,7 +30,7 @@ levels(df$sex) <- c("Hembra", "Macho")
 levels(df$hab) <- c("Urbano", "Agricola", "Matorral")
 m0 <- glm(peso ~ sex + tri + hab, data = df)
 summary(m0)
-write.csv(df, "datosPracticas.csv")
+write.csv(df, "datosPracticas.csv", row.names = FALSE)
 dfSmall <- df %>% sample_n(40)
 
 hist(df$peso)  
