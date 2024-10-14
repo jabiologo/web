@@ -36,7 +36,7 @@ klippy::klippy(tooltip_message = 'Click para copiar', tooltip_success = 'Hecho!'
  
 # **Presentación**
 
-En este espacio se encuentran los contenidos para las prácticas del tema **Estadística básica en ciencias experimentales** de la asignatura Bases de la investigación en ciencias experimentales (Máster Universitario en Investigación Básica y Aplicada en Recursos Cinegéticos - MUIBARC). En los siguientes enlaces se pueden descargar los materiales se utilizarán durante el taller:
+En este espacio se encuentran los contenidos para las prácticas del tema **Estadística básica en ciencias experimentales** de la asignatura Bases de la investigación en ciencias experimentales, coordinada por Joaquín Vicente (Máster Universitario en Investigación Básica y Aplicada en Recursos Cinegéticos - MUIBARC). En los siguientes enlaces se pueden descargar los materiales se utilizarán durante el taller:
  
 * Una **introducción al entorno R**, la herramienta que utilizaremos en las prácticas
 * Presentaciones de los contenidos prácticos (ver **Prácticas** más abajo).
@@ -51,8 +51,8 @@ Este tema se ha realizado en base a los contenidos previamente desarrollados por
 R es un entorno y lenguaje de programación con un enfoque al análisis estadístico. Al preparar estas prácticas tuvimos serias dudas sobre si adoptar **R** como _herramienta_ para aplicar los _contenidos_ vistos en la teoría, u optar por un software con el clásico diseño "por ventanas". Entendemos que adoptar herramientas _complicadas_ para trabajar contenidos que ya de por sí son complicados puede tener sus desventajas (estár más pendiente de aprender a utilizar la herramienta que a enterarse de la teoría, por ejemplo). También sabemos que R tiene una **curva de aprendizaje empinada**, sobre todo al principio. Sin embargo, hay varias razones para empezar a trabajar con esta herramienta:
 
 * R es una herramienta libre y gratuita para todos los sistemas operativos.
-* R no es solo un software para análisis estadístico.
-* Es muy probable que tarde o temprano tengáis que utilizarla.
+* R no es solamente un software para análisis estadístico.
+* Es muy probable que tarde o temprano tengáis que utilizar esta herramienta.
 <br/><br/>
 
 #### **Descarga e instalación de R y RStudio** 
@@ -168,7 +168,10 @@ setwd("/home/javifl/github/web/tutorials/estadisticaBasica_files")
 ```
 <br/><br/>
 
-#### **La ayuda! `help()` y preguntar a Google**
+#### **Trabajo con `data.frame`**
+
+
+#### **La ayuda `help()` y preguntar a Google**
 
 Otra de las ventajas de R con respecto a otros lenguajes de programación es que sus paquetes deben de cumplir una serie de estándares para poder estar en el repositorio "oficial" [CRAN](https://cran.r-project.org/). Uno de los requerimientos es que las funciones de los diferentes paquetes deben de estar bien documentadas, es decir, debe existir un _manual_ que indique cómo se usa cada una de las funciones del paquete. Ese manual sigue siempre la misma estructura: nombre y descripción de la función, cómo se usa, los argumentos que necesita, el objeto que resulta al aplicar la función (Value), y unos ejemplos de cómo usar la función. Este manual o ayuda puede incluir más apartados, pero los mencionados suelen ser obligatorios. La forma de "llamar a la ayuda" en R es utilizando la función `help()`. Veamos un ejemplo:
 
