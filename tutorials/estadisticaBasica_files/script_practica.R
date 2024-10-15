@@ -96,3 +96,9 @@ datosRed <- datos %>% sample_n(12)
 m5 <- lm(peso ~ tri + sex + hab, data = datosRed)
 summary(m5)
 plot(allEffects(m5))
+
+
+# Q-Q Plot
+plot(quantile(rnorm(1000),probs = seq(0, 1, 0.01)), 
+     quantile(sort(runif(1000)),probs = seq(0, 1, 0.01)))
+
