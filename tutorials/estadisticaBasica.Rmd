@@ -286,6 +286,12 @@ str(datos)
 * ¿Están mis datos balanceados?
 * ¿Qué distribución sigue mi variable respuesta? ¿y las variables predictoras?
 
+<br/>
+<p align="center">
+<img height=450 width=370 src="estadisticaBasica_files/glm.jpg"> </a>
+</p>
+<font size="3">
+<br/>
 
 # **Ejercicios**
 
