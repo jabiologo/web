@@ -254,7 +254,7 @@ Quizás la lección más importante es que normalmente ningún usuario habitual 
 
 <br/><br/>
 
-# **Prácticas**
+# **Caso práctico 1**
 
 Los [fungicidas triazoles](https://www.irec.es/publicaciones-destacadas/metodo-no-invasivo-exposicion-aves-fungicidas-triazoles/) son compuestos químicos que se aplican habitualmente en semillas de cultivos para prevenir el crecimiento de hongos patógenos de plantas. Sin embargo, cuando las semillas son consumidas por la fauna silvestre, estos compuestos pueden producir efectos crónicos perjudiciales en su sauld y desarrollo. Queremos estudiar el efecto de los fungicidas triazoles sobre la condición corporal (peso) en perdices rojas (_Alectoris rufa_). Para ello se han capturado un total de 300 perdices en tres hábitats diferentes (semiurbano, agrícola y monte matorralizado) a las que se les ha sexado y extraido muestras de heces para obtener la concentración de fungicidas triazoles (ngramos de compuesto/gramo de heces). La base de datos obtenida está almacenada en [este enlace](https://raw.githubusercontent.com/jabiologo/web/master/tutorials/estadisticaBasica_files/datosPracticas.csv). A continuación iremos realizando algunos test estadísticos vistos en teoría para responder a nuestra pregunta.
 
@@ -285,6 +285,155 @@ str(datos)
 * ¿Qué tamaño muestral (_n_) tengo?
 * ¿Están mis datos balanceados?
 * ¿Qué distribución sigue mi variable respuesta? ¿y las variables predictoras?
+
+
+# **Resolución del caso práctico 1**
+
+```{r ch12, message=T, cache = T, eval = T}
+
+# Primeros elementos de la base de datos
+head(datos)
+
+# Histograma de nuestra variable dependiente (peso)
+hist(datos$peso)
+
+# Comprobamos la normalidad de nuestra variable
+shapiro.test(datos$peso)  
+
+# ¿Qué significa aquí un p-valor > 0.05?
+# ¿Cuáles son aquí nuestras hipótesis nula y alternativa?
+# Cómo trabaja la función shapiro.test()?
+help("shapiro.test")
+
+```
+<br/>
+Recordamos que en el test de Shapiro-Wilk la hipótesis nula es que no existen diferencias entre la distribución de nuestros datos y una distribución normal teórica. Por tanto, si obtuviéramos un P-valor en este test menor de 0.05, indicaría que nuestros datos **no** siguen una distribución normal. Combiene estar alerta en este test, pues siempre estamos acostumbrados a _"buscar P-valores menores de  0.05"_... pero en este caso, lo que _"nos gustaría"_ es que el P-valor fuese alto: esto significaría que no hay diferencias entre la distribución de nuestros datos y una distribución Normal teórica.
+<br/><br/>
+A continuación realizaremos una comparación entre las medias del peso de los macho y de las hembras. Utilizaremos primero el test paramétrico y posteriormente el no paramétrico.
+
+```{r ch13, message=T, cache = T, eval = T}
+# Diferencia entre medias
+# ¿Quién pesa más, los machos o las hembras? Filtramos los datos usando tidyverse
+datosHe <- datos %>% filter(sex == "Hembra")
+datosMa <- datos %>% filter(sex == "Macho")
+
+# Recordamos: 
+# H0 (hipótesis nula): no hay diferencias significativas entre gurpos
+# H1 (hipótesis alternativa): hay diferencias significativas entre gurpos
+
+# Paramétrico: T-Student
+t.test(datosHe$peso, y = datosMa$peso) 
+
+# No paramétrico: U de Mann-Whitney
+wilcox.test(datosHe$peso, y = datosMa$peso)
+```
+<br/>
+En este caso vemos que sí que existen diferencias significativas entre el peso de los machos y de las hembras, puesto que en el T-test obtenemos un P-valor muy bajo, `6.974e-13`. Además, el estdístico `t` nos da algo de información adicional... ¿Quién pesa más, los machos o las hembras? ¿Qué le ocurre al estadístico `t` si cambiamos el orden de esta forma: `t.test(datosMa$peso, y = datosHe$peso)`?
+<br/><br/>
+A continuación realizaremos una comparación entre las medias del peso de de todos los individuos entre los diferentes hábitats. Al igual que en la ocasión anterior, utilizaremos primero el test paramétrico y posteriormente el no paramétrico.
+
+```{r ch14, message=T, cache = T, eval = T}
+# Diferencia entre medias
+# ¿Dónde pesan más? Hábitats urbanos, agrícolas o matorral
+
+# Paramétrico: ANOVA
+anova <- aov(peso ~ hab, data = datos)
+summary(anova)
+
+# Tukey PostHoc
+TukeyHSD(anova, conf.level=.95)
+
+# Plots (gráficos)
+library(effects)
+plot(allEffects(anova))
+boxplot(peso ~ hab, data = datos)
+
+# No paramétrico: Kruskal-Wallis
+kruskal.test(peso ~ hab, data = datos)
+```
+<br/>
+Merece la pena recordar que en un test ANOVA, el P-valor tan solo nos indica que "existen diferencias significativas entre al menos dos de nuestros grupos", pero no nos informa entre qué grupos están exactamente esas diferencias. Para ello, necesitamos realizar el `TukeyHSD` test _post hoc_. ¿Conoces algún otro tipo de test _post hoc_ que nos de la misma información?
+<br/><br/>
+Finalmente vamos a explorar como varía el peso de nuestros individuos en función de la concentración de triazoles. Para ello utilizaremos primero unas correlaciones (paramétrica primero y no paramétrica después) y posteriormente una regresión lineal.
+
+```{r ch15, message=T, cache = T, eval = T}
+# ¿Cómo afecta la concentración de fungidida al peso?
+# Correlación entre dos variables continuas
+
+# Paramétrico: Correlación de Pearson
+cor.test(datos$tri, datos$peso, method = "pearson")
+
+# No paramétrico: Correlación de Spearman
+cor.test(datos$tri, datos$peso, method = "spearman")
+
+# Regresión
+regresion <- lm(peso ~ tri, data = datos)
+summary(regresion)
+
+# Gráfico de dispersión (scatter-plot)
+plot(datos$tri, datos$peso)
+```
+<br/>
+¿Qué significa que el coeficiente de correlación de Pearson sea negativo `(-0.8026473)`? ¿Qué relación existe entre este coeficiente y el `Multiple R-squared` obtenido a en la regresión? 
+<br/>
+Es importante recordar que esta regresión nos permite construir la fórmula de la recta con la cual podríamos teóricamente predecir los valores de nuestra variable respuesta en función de nuestra variale predictora. De forma general, esta fórmula se podría escribir de la siguiente manera:
+
+\begin{equation}
+\text{Variable respuesta = Intercepto + Coeficiente(Variable_predictora)}
+\end{equation}
+
+Al _coeficiente_ también lo podemos llamar _"estimador"_ y a todos los elementos de esa fórmula se suelen sustitur por diferetes caracteres, aunque suelen significar lo mismo. Aquí tienes algunos ejemplos:
+\begin{equation}
+Y = a + bX
+\end{equation}
+\begin{equation}
+Y = \alpha + \beta X
+\end{equation}
+\begin{equation}
+Y = \beta_0 + \beta_1 X
+\end{equation}
+
+Así, teniendo en cuenta los resultados de `summary(regresion)`, podríamos escribir la siguiente fórmula:
+\begin{equation}
+\text{Peso} = 526.1267 - 2.837 * (\text{concentración de triazoles})
+\end{equation}
+
+De esta forma, podríamos predecir el peso de una hipotética perdiz a partir de una concentración de triazol dada.
+<br/><br/>
+
+Finalmente, como se ha comentado en clase, es importante que sepamos que existe un modelo lineal subyacente a cada uno de estos test. Para más información, se recomienda la lectura de [este fantástico post de Jonas Kristoffer Lindeløv](https://lindeloev.github.io/tests-as-linear/) que queda resumido en la siguiete imagen:
+
+<br/>
+<p align="center">
+<img height=550 width=850 src="estadisticaBasica_files/linear_tests_cheat_sheet.png"> </a>
+</p>
+<font size="3">
+<br/><br/>
+
+A modo de ejemplo, repetiremos los análisis anteriores utilizando el _framework_ de los modelos lineales:
+
+```{r ch16, message=T, cache = T, eval = T}
+# Test paramétricos como modelos lineales
+
+# ¿Quién pesa más, los machos o las hembras?
+m1 <- lm(peso ~ sex, data = datos)
+summary(m1)
+
+# ¿Dónde pesan más? Ambientes urbanos, agrícolas o matorral
+m2 <- lm(peso ~ hab, data = datos)
+summary(m2)
+
+# ¿Cómo afecta la concentración de fungidida al peso?
+m3 <- lm(peso ~ tri, data = datos)
+summary(m3)
+
+# ¿Cómo afectan la concentración de fungicida, el sexo y el habitat al peso?
+m4 <- lm(peso ~ tri + sex + hab, data = datos)
+summary(m4)
+
+plot(allEffects(m4))
+
+```
 
 <br/>
 <p align="center">
