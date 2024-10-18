@@ -30,6 +30,7 @@ text-align: justify}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+Para una mejor visualización de este documento se puede visitar [https://jabiologo.github.io/web/tutorials/estadisticaBasica.html](https://jabiologo.github.io/web/tutorials/estadisticaBasica.html)
  
 # **Presentación**
 
