@@ -416,3 +416,247 @@ plot(allEffects(m4))
 </p>
 <font size="3">
 <br/>
+
+
+# **Caso práctico 2**
+
+Para alcanzar un correcto desarrollo y crecimiento durante las primeras etapas de la vida, los organismos están sujetos a multitud de factores externos que pueden afectarles negativamente. Uno de ellos son las enfermedades transmitidas por patógenos. Queremos estudiar el efecto que las enfermedades producen sobre el crecimiento de pollos de estornino negro (_Sturnus unicolor_) en condiciones naturales. Para ello, se han creado dos grupos experimentales sometidos a un tratamiento: pollos “enfermos”, a los cuales se le ha inyectado un antígeno (LPS) y pollos “sanos” (sustancia control, PBS). A estos pollos se les ha medido su masa antes y después del tratamiento para ver el efecto de este sobre su crecimiento. A continuación, procederemos a realizar un análisis detallado con diferentes test estadísticos para responder a nuestra pregunta.
+
+<br/>
+<p align="center">
+<img height=200 width=350 src="estadisticaBasica_files/pollos.png"> </a>
+</p>
+<font size="3">
+<br/>
+
+# **Resolución del caso práctico 2**
+
+Los datos para realizar este caso se pueden encontrar en el [Campus Virtual de la asignatura](https://campusvirtual.uclm.es).
+
+```{r ch17, message=T, cache = T, eval = F}
+##Procesamiento de datos ####
+#Cargamos nuestra base de datos
+install.packages("readxl")
+library(readxl)
+LPS<-read_excel("C:/PONGO_AQUÍ_MI_RUTA/crecimiento_practico.xlsx")
+
+#Miramos que nuestras variables estén en la clase que deben
+str(LPS)
+
+#Aquellas con clase numéricas o de caracter, las convertimos a factor
+LPS$Time<-as.factor(LPS$Time)
+LPS$Treatment<-as.factor(LPS$Treatment)
+LPS$ID<-as.factor(LPS$ID)
+LPS$Sex<-as.factor(LPS$Sex)
+
+#Miro por encima un resumen de nuestras variables (para las continuas te da meadia, etc)
+summary(LPS)  #hay NAs (celdas sin datos)
+
+#Si queremos ver un resumen (media, desviación estandar, mediana, máximos, etc) de una variable por grupos (e.g. tratamiento)
+install.packages("psych")
+library(psych)
+describeBy(LPS$mass, LPS$Treatment) 
+
+#ojo que en este resumen tenemos datos de masa incluyendo el momento de medición previo y posterior al tratamiento
+#si quisieramos un resumen numerico de la masa, por grupos de tratamiento en el momento post
+install.packages("dplyr")
+library(dplyr)
+LPSPOST<-filter(LPS, Time=="Pre-treatment") #creamos una base de datos filtrando solo para medidas post
+describeBy(LPSPOST$mass, LPSPOST$Treatment) 
+
+
+
+#cambio el orden del factor Time para que el pre sea sobre el que me compara
+LPS$Time <- factor(LPS$Time,
+                    levels = c("Pre-treatment", "Post-treatment"))
+
+#cambio el orden del factor Treatment para que el control(PBS) sea sobre el que me compara
+LPS$Treatment <- factor(LPS$Treatment,
+                   levels = c("PBS", "LPS"))
+
+
+
+LPS2<-na.omit(LPS)  #eliminamos aquellos pollos para los que no hay medidas en alguno de los momentos
+
+
+##Exploramos nuestra variable a analizar (masa) ####
+
+#normalidad
+shapiro.test(LPS2$mass) #si vemos el test de shapiro, dice que estamos ante una variable NO normal (p no significativo)
+
+hist(LPS2$mass) #Sin embargo al graficarlo tampoco vemos una distribución tan rara
+
+
+#homogeneidad de varianza
+install.packages("car")
+library(car)
+leveneTest(y=LPS2$mass, group=LPS2$Treatment, center="median") #las varianzas no son iguales
+#OJO! no son iguales seguramente porque en nuestra variable masa tenemos medidas pre y post y cada una
+#tiene una varianza determinada
+
+install.packages("ggplot2")
+library(ggplot2)
+ggplot(data = LPS2) +
+  geom_point(aes(x = Treatment, y = mass, colour = Treatment), position=position_jitterdodge()) + 
+  theme_classic() + theme(legend.position = "none")
+
+
+
+#Vemos la normalidad de nuestros datos antes y despues del tratamiento
+#Masa antes del tratamiento
+LPS2PRE<-filter(LPS2, Time=="Pre-treatment") #filtramos datos pre
+
+shapiro.test(LPS2PRE$mass) #si vemos el test de shapiro, dice que estamos ante una variable normal (p no significativo)
+
+hist(LPS2PRE$mass) #en efecto vemos al graficarlo que el peso sigue una distribución normal
+
+
+leveneTest(y=LPS2PRE$mass, group=LPS2PRE$Treatment, center="median") #las varianzas son iguales
+
+ggplot(data = LPS2PRE) +
+  geom_point(aes(x = Treatment, y = mass, colour = Treatment), position=position_jitterdodge()) + 
+  theme_classic() + theme(legend.position = "none")
+
+#Masa Tras el tratamiento
+LPS2POST<-filter(LPS2, Time=="Post-treatment")
+
+shapiro.test(LPS2POST$mass) #si vemos el test de shapiro, dice que estamos ante una variable normal (p no significativo)
+
+hist(LPS2POST$mass) #en efecto vemos al graficarlo que el peso sigue una distribución normal
+
+
+
+leveneTest(y=LPS2POST$mass, group=LPS2POST$Treatment, center="median") #las varianzas son iguales
+
+ggplot(data = LPS2POST) +
+  geom_point(aes(x = Treatment, y = mass, colour = Treatment), position=position_jitterdodge()) + 
+  theme_classic() + theme(legend.position = "none")
+
+##Análisis ####
+#Recordamos
+# H0 (hipótesis nula): no hay diferencias significativas entre gurpos
+# H1 (hipótesis alternativa): hay diferencias significativas entre gurpos
+
+###Diferencias iniciales de masa ####
+
+#Hemos cometido algún sesgo en la asignación de tratamientos? Hay diferencias iniciales que puedan determinarme o 
+#afectarme a mis resultados tras el tratamiento?
+
+#La masa antes del tratamiento es una variable normal con varianzas iguales --> TEST PARAMÉTRICO
+#Como quiero comparar medias de una variable cuantitativa (masa) de dos grupos categóricos (LPS Y Controles) --> t de student
+
+#Test paramétrico t de student
+t.test(mass ~ Treatment, data = LPS2PRE, alternative="two.sided",   #esta función es diferente a la del ejemplo de Javi, pero es el mismo test
+       var.equal=TRUE, conf.level=0.95)                             
+#No existen diferencias iniciales de masa
+
+#Vamos a nuestra pregunta principal
+###Existen diferencias entre LPS (enfermos) y controles (sanos) tras el desafío inmune? ####
+
+#Al igual que la masa pre tratamiento, la masa en el post es una variable normal
+#Test paraétrico. t de student
+t.test(mass ~ Treatment, data = LPS2POST, alternative="two.sided",
+       var.equal=TRUE, conf.level=0.95)
+
+#No hay diferencias en masa entre controles y experimentales tras el tratamiento
+
+#Pero demosle la vuelta a la pregunta
+
+###Existen diferencias en el crecimiento de los pollos acorde al tratamiento? ####
+#es decir, queremos ver si, en lugar de diferencias antes y después, hay diferencias en el crecimiento, osea
+#el cambio de peso entre ambas edades?
+#Para ello echamos mano de la variable Time, que agrupa medidas hechas antes y después del tratamiento
+
+install.packages("tidyverse")
+library(tidyverse)
+install.packages("ggpubr")
+library(ggpubr)
+install.packages("rstatix")
+library(rstatix)
+
+#Vamos a buscar en este caso una interacción entre tratamiento y tiempo de la medida (pre, post)
+#Por tanto, si la masa es una variable normal y queremos ver si se predice por la interacción de 
+#dos variables categóricas (Treatment y Time) --> ANOVA de dos vias
+
+#ANOVA DE DOS VIAS
+anova<-aov(mass ~ Treatment * Time, data=LPS2)
+summary(anova)
+
+#Nos fijamos en el P valor de la interacción únicamente
+#No sale significativo
+
+#OJO! En realidad hemos cometido un ERROR!
+#No le hemos dicho al modelo que un mismo individuo se ha medido antes y después del tratamiento
+#Osea, que las medidas de masa no son independientes, sino que dependen una de otra porque son del mismo individuo
+
+#ANOVA DE DOS VIAS CON MEDIDAS REPETIDAS
+anovarep<-aov(mass ~ Treatment*Time + Error(ID/Time), data=LPS2) #introducimos el argumento Error diciendo que un mismo ID (individuo) tiene dos medidas de Time
+summary(anovarep)
+#La interacción ahora SI es significativa
+
+#Graficamos la interacción
+ggplot(data = LPS2, aes(x = Time, y = mass, colour = Treatment,
+                         group = Treatment)) +
+  stat_summary(fun = mean, geom = "point", size=3) +
+  stat_summary(fun = mean, geom = "line", size=1) +
+  labs(y  =  'Mass', x="") +
+  #geom_point(mapping = aes(x = Time, y = mass, color=Treatment), size=2, alpha=0.2, stroke=1, 
+   #          position=position_jitterdodge()) + 
+  theme_classic() + 
+  theme(plot.margin = margin(b= 25, l=25), 
+        axis.title.x = element_text(vjust = -1, colour="black", family="sans", size = 22),
+        axis.title.y = element_text(vjust = 4, size = 22, family="sans"), 
+        axis.text.y = element_text(size = 20, family="sans"), 
+        axis.text.x = element_text(size = 20, family="sans"), 
+        legend.text = element_text(colour="black", family="sans", size = 20), 
+        #legend.justification=c(0.95,0.1), legend.position=c(0.95,0.1), 
+        legend.background = element_rect(fill = "white", colour=1), 
+        legend.position = "top",
+        legend.title = element_blank())
+
+#Mientras qu elos LPS crecen poquito o nada, los PBS crecen mucho más
+
+#CONCLUSIÓN: Estar enfermos te hace crecer menos
+
+###OTRA APROXIMACIÓN: MODELOS LINEALES MIXTOS permiten la incorporación de diferentes variables independientes####
+#regresiones multiples y de incorporar efectos aleatorios (muestras dependientes como un anova de medidas repetidas)
+
+install.packages("lmerTest")
+library(lmerTest)
+install.packages("lme4")
+library(lme4)
+install.packages("Matrix")
+library(Matrix)
+
+m1<-lmer(mass ~ Treatment*Time + (1|ID), data=LPS2)  #para decir al modelo que son muestras dependientes (1|ID) que significa que el individuo (pollo) se repite en las medidas
+
+#Exploramos la normalidad de los residuos del modelo
+plot(m1) #buscamos una nube homogenea
+
+
+#sacamos los resultados
+summary(m1)
+
+#ploteamos los efectos
+install.packages("effects")
+library(effects)
+plot(allEffects(m1))
+
+
+
+
+#Podemos incluir diferentes covariables u otros factores que consideremos que ayudan a explicar la variabilidad
+#de la masa de los pollos
+
+m1<-lmer(mass ~ Treatment*Time + Date + Sex + (1|ID), data=LPS2)
+
+#Exploramos la normalidad de los residuos del modelo
+plot(m1)
+
+
+#sacamos los resultados
+summary(m1)
+
+plot(allEffects(m1))
+
+```
