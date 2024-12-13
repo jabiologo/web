@@ -1,0 +1,37 @@
+---
+title: "Adecuación de hábitat del oso y el urogallo en la Sierra de Gistredo (León)"
+csl: nature.csl
+output:
+  html_document:
+    toc: yes
+    toc_float: yes
+    collapsed: no
+    number_sections: no
+    toc_depth: 1
+  pdf_document:
+    toc: yes
+    toc_depth: '1'
+---
+
+<style>
+body {
+text-align: justify}
+</style>
+
+<br/>
+<br/>
+<p align="center">
+<img height=631 width=940 src="gistredo_files/uroVal_web.png"> </a>
+</p>
+<font size="3">
+<br/>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r klippy, echo=FALSE, include=TRUE, eval=T}
+klippy::klippy(tooltip_message = 'Click para copiar', tooltip_success = 'Hecho!',position = c('top', 'right'))
+```
+
+ 
+# **Presentación**
