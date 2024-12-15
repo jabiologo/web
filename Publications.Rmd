@@ -8,6 +8,7 @@ output:
     fig_width: 20
     fig_height: 6
 nocite: |
+  @Fernández-López_2024
   @Fernández-López_2023
   @Gochanour_2023
   @Fernández-López_2022
@@ -16,7 +17,6 @@ nocite: |
   @Garrote_2020
   @Fernández-López_2019
   @Garrote_2018
-  @Tellería_2016
   @Fernández-López_2014
 ---
 ```{=html}
