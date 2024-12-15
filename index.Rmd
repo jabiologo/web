@@ -39,8 +39,8 @@ text-align: justify
 ## **About my research...**
 
 I'm broadly interested in statistical/spatial ecology and wildlife conservation. I'm currently working on mammal abundance and distribution modeling focusing on game species. I combine different data sources such as camera-trap data, distance sampling or hunting statistics by using integrated distribution models in a hierarchical framework. I use Bayesian inference and cartography tools to help for evidence-based decision making in wildlife management and in the design of monitoring programs.
-
 <br/>
+
 
 ## **About me...**
 

@@ -1656,6 +1656,150 @@ text-align: justify}
 </script>
 <div id="presentación" class="section level1">
 <h1><strong>Presentación</strong></h1>
+<p>En el siguiente script se evalúa la potencialidad del hábitat de oso
+pardo y urogallo en la Sierra de Gistredo, norte de León (España). Para
+ello, se utiliza el paquete <code>rgibif</code> para descargar registros
+de presencia de ambas especies, y posteriormente se combinan con una
+serie de predictores ambientales mediante diferentes técnicas de
+modelado (Lasso and Elastic-Net Regularized Generalized Linear Models,
+<code>glmnet</code>, <em>Tay et al. 2023</em>).</p>
+<p>Para la ejecución del script deben descargarse diferentes ficheros
+(covariables predictoras, grid de predicción, etc.) que pueden
+encontrarse en este <a href="https://drive.google.com/file/d/1lBfaR1ZkEQKnDbKMWS6YtZnW_vNkS4OW/view?usp=drive_link">link</a>.
+Todos los archivos deben descomprimirse en la misma carpeta y debemos
+situar nuestro directorio de trabajo en esa carpeta usando
+<code>setwd(&quot;ruta/a/mi/carpeta&quot;)</code>.</p>
+<ul>
+<li>Tay JK, Narasimhan B, Hastie T (2023). “Elastic Net Regularization
+Paths for All Generalized Linear Models.” <em>Journal of Statistical
+Software</em>, <em>106</em>(1), 1-31. <a href="doi:10.18637/jss.v106.i01" class="uri">doi:10.18637/jss.v106.i01</a> <a href="https://doi.org/10.18637/jss.v106.i01" class="uri">https://doi.org/10.18637/jss.v106.i01</a> <br /><br /></li>
+</ul>
+</div>
+<div id="análisis" class="section level1">
+<h1><strong>Análisis</strong></h1>
+<pre class="r"><code># Cargamos los paquetes necesarios
+library(rgbif)
+library(terra)
+library(sf)
+library(maxnet)
+
+################################################################################
+# Descarga de presencias de GBIF
+
+# Almacenamos los nombres de las especies de estudio
+species &lt;- c(&quot;Tetrao urogallus&quot;, &quot;Ursus arctos&quot;)
+
+# Creamos una lista para almacenar las presencias de ambas especies
+
+presencias &lt;- list()
+
+# Bucle para la descarga de presencias (posible almacenamiento en CSV)
+for (i in 1:length(species)){
+  print(species[i])
+  
+  # Con este sub-bucle comprobamos si el nombre científico suministrado es el 
+  # nombre aceptado en el Backbone de GBIF
+  nBb &lt;- name_backbone(name=species[i], rank=&quot;species&quot;)
+  if (nBb$status != &quot;ACCEPTED&quot;){
+    key &lt;- nBb$acceptedUsageKey
+  } else { key &lt;- nBb$usageKey }
+  
+  # Seleccionamos los campos que queremos
+  selFields &lt;- c(&quot;key&quot;,&quot;scientificName&quot;, &quot;decimalLatitude&quot;,&quot;decimalLongitude&quot;,
+                 &quot;issues&quot;, &quot;country&quot;, &quot;basisOfRecord&quot;,&quot;year&quot;)
+  
+  # Descargamos los datos
+  occ &lt;- occ_search(taxonKey = key, fields = selFields, limit = 100000, 
+                    country = c(&quot;ES&quot;,&quot;PT&quot;), hasCoordinate = TRUE)
+  
+  # Unimos los datos para España y Portugal
+  occ &lt;- rbind(occ$ES$data, occ$PT$data)
+  
+  # Preparamos el data.frame y escribimos el CSV
+  pres &lt;- data.frame(sp=rep(species[i],nrow(occ)),
+                     lon=occ$decimalLongitude,
+                     lat=occ$decimalLatitude)
+  # Limpiamos los registros con latitudes inferiores a 41º (evitar registros históricos)
+  pres &lt;- pres[pres$lat &gt; 41,]
+  
+  # Almacenamos los registros en nuestra lista de presencias
+  presencias[[i]] &lt;- pres
+  names(presencias)[i] &lt;- species[i]
+  # write.csv(pres, paste(species[i],&quot;.csv&quot;, sep = &quot;&quot;), row.names = F)
+}
+
+################################################################################
+# Modelización con Maxent y &quot;downscaling&quot;
+
+# Seleccionamos la carpeta donde hemos descomprimido y guardado todos los 
+# ficheros descargados
+varlist &lt;- list.files(pattern=&#39;*.asc&#39;, full.names=TRUE)
+
+# Preparamos las variables
+predictors &lt;- rast(varlist)
+#predictorstabla&lt;-as.data.frame(predictors)
+#predictorstabla$ID &lt;- 1:nrow(predictorstabla)
+#predna &lt;- na.omit(predictorstabla)
+
+# Creamos y preparamos los puntos de background
+lon &lt;- runif(10000,ext(predictors)[1], ext(predictors)[2])
+lat &lt;- runif(10000,ext(predictors)[3], ext(predictors)[4])
+bg &lt;- data.frame(lon=lon, lat=lat)
+
+# Preparamos el downscaling para el área de la Sierra de Gistredo
+samp &lt;- read_sf(&quot;sampWGS84.shp&quot;)
+samp$habitat &lt;- as.factor(samp$habitat)
+samp$alt2 &lt;- samp$alt^2
+
+# Preparamos el grid de predicción del &quot;downscaling&quot; para la Sierra de Gistredo
+gridpred &lt;- read_sf(&quot;gridPred.shp&quot;)
+gridpred$alt2 &lt;- gridpred$alt^2
+gridpred$habitat &lt;- as.factor(gridpred$habitat)
+
+# Con este bucle realizamos primero el modelo a nivel peninsular con Maxent para
+# luego realizar el downscaling a cada una de las áreas de estudio.
+
+# Lista para almacenar los modelos de Maxent
+predMaxent &lt;- list()
+
+# Lista para almacenar los modelos reescalados a Gistredo
+predGlm &lt;- list()
+
+for (j in 1:length(presencias)){
+  # Vamos pasando por todas las especies
+  occ &lt;- presencias[[j]]
+  print(occ[1,1])
+  
+  # Preparamos los datos
+  resp &lt;- c(rep(1,nrow(occ)),rep(0,10000))
+  pp &lt;- rbind(occ[,2:3], bg)
+  dd &lt;- na.omit(cbind(resp,extract(predictors,pp)))
+  dat &lt;- data.frame(dd[,3:8])
+  
+  # Corremos Maxent
+  print(&quot;Running Maxent&quot;)
+  mm &lt;- maxnet(dd[,1], dat, maxnet.formula(dd[,1], dat, classes=&quot;lqpht&quot;))
+  # Realizamos las predicciones
+  predna &lt;- predict(mm, newdata = as.data.frame(predictors), clamp=T, type=c(&quot;cloglog&quot;))
+  
+  # Limpiamos el raster de salida
+  white &lt;- predictors$bare
+  white[as.numeric(rownames(predna))] &lt;- predna[,1]
+  predMaxent[[j]] &lt;- white
+  names(predMaxent[[j]]) &lt;- occ[1,1]
+  # Guardamos el raster del output del modelo Maxent
+  # writeRaster(white, paste(occ[1,1],&quot;.asc&quot;,sep = &quot;&quot;), overwrite=TRUE)
+  
+  # Downscaling para el área de la Sierra de Gistredo
+  print(&quot;Running GLM (downscaling)&quot;)
+  suit &lt;- extract(predMaxent[[j]], samp)
+  samp$suit &lt;- suit[,2]
+  m1 &lt;- glm(suit ~ habitat * alt * alt2, data = samp)
+  gridpred$pred &lt;- predict(m1, gridpred, type = &quot;response&quot;)
+  predGlm[[j]] &lt;- gridpred
+  names(predGlm)[[j]] &lt;- occ[1,1]
+  #write_sf(gridpred, paste(occ[1,1],&quot;_glm.shp&quot;, sep = &quot;&quot;))
+}</code></pre>
 </div>
 
 
