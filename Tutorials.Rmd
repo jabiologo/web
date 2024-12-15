@@ -58,3 +58,7 @@ text-align: justify
 # Estadística básica en ciencias experimentales (Spanish)
 
 [Estadística básica en ciencias experimentales](https://jabiologo.github.io/web/tutorials/estadisticaBasica.html)
+
+# Idoneidad de hábitat para oso y urogallo en la Sierra de Gistredo
+
+[Idoneidad de hábitat para oso y urogallo en la Sierra de Gistredo](https://jabiologo.github.io/web/tutorials/gistredo.html)

@@ -1,5 +1,5 @@
 ---
-title: "Adecuación de hábitat del oso y el urogallo en la Sierra de Gistredo (León)"
+title: "Idoneidad de hábitat de oso y urogallo en la Sierra de Gistredo (León)"
 csl: nature.csl
 output:
   html_document:
