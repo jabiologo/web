@@ -37,7 +37,7 @@ klippy::klippy(tooltip_message = 'Click para copiar', tooltip_success = 'Hecho!'
 
 En el siguiente script se evalúa la potencialidad del hábitat de oso pardo y urogallo en la Sierra de Gistredo, norte de León (España). Para ello, se utiliza el paquete `rgibif` para descargar registros de presencia de ambas especies, y posteriormente se combinan con una serie de predictores ambientales mediante diferentes técnicas de modelado (Lasso and Elastic-Net Regularized Generalized Linear Models, `glmnet`, _Tay et al. 2023_).
 
-Para la ejecución del script deben descargarse diferentes ficheros (covariables predictoras, grid de predicción, etc.) que pueden encontrarse en este [link](https://drive.google.com/file/d/1lBfaR1ZkEQKnDbKMWS6YtZnW_vNkS4OW/view?usp=drive_link). Todos los archivos deben descomprimirse en la misma carpeta y debemos situar nuestro directorio de trabajo en esa carpeta usando `setwd("ruta/a/mi/carpeta")`.
+Para la ejecución del script deben descargarse diferentes ficheros (covariables predictoras, grid de predicción, etc.) que pueden encontrarse en este [link](https://drive.google.com/file/d/1lBfaR1ZkEQKnDbKMWS6YtZnW_vNkS4OW/view?usp=drive_link). Todos los archivos deben descomprimirse en la misma carpeta y debemos situar nuestro directorio de trabajo en esa carpeta usando `setwd("ruta/a/mi/carpeta")`. Las predicciones de los modelos proyectadas a escala de Península Ibérica y de la Sierra de Gistredo así como un informe técnico, pueden descargar[se en este repositorio](https://zenodo.org/records/14576547).
 
 - Tay JK, Narasimhan B, Hastie T (2023). “Elastic Net Regularization Paths for All
   Generalized Linear Models.” _Journal of Statistical Software_, *106*(1), 1-31.
