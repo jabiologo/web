@@ -1,0 +1,64 @@
+---
+title: "Curso de Estadística ENZOEM 2025"
+csl: nature.csl
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    collapsed: false
+    number_sections: false
+    toc_depth: 1
+---
+
+<style>
+body {
+text-align: justify}
+</style>
+
+<br/>
+<br/>
+<p align="center">
+<img height=150 width=850 src="ENZOEM25.png"> </a>
+</p>
+<font size="3">
+<br/>
+
+ 
+# **Presentación**
+
+ En este espacio se encuentran los contenidospara del **Curso de Estadística ENZOEM 2025** que se impartirá en la Universidad de Córdoba (Campus de Rabanales) entre mayo y septiembre de 2025. El curso está estructurado en tres módulos independientes que combinarán teoría y práctica con una metodología aplicada al contexto de las ciencias experimentales y los estudios observacionales.
+ 
+# **Programa**
+
+### Módulo 1 - Introducción a R y estadística básica (6 y 8 de mayo)
+
+  1. [El lenguaje R y el entorno R-Studio: funciones y objetos]()
+  2. [Flujo de trabajo en R: directorio de trabajo, lectura y escritura de datos]()
+  3. [Visualización de datos en R]()
+  4. [Distribuciones de probabilidad y estadística básica]()
+  
+### Módulo 2 - Test estadísticos en ciencias experimentales (11, 13 y 16 de junio)
+
+  1. [Distribuciones de probabilidad y estadística básica]()
+  2. [Principales test paramétricos y no paramétricos]()
+  3. [El modelo lineal generalizado]()
+  4. [Diseños avanzados: medidas repetidas]()
+  
+### Módulo 3 - Modelos avanzados en estudios observacionales (2 y 4 de septiembre)
+
+  1. [Modelos mixtos: efectos fijos y efectos aleatorios]()
+  2. [Relaciones no lineales]()
+  3. [Modelización espacio-temporal]()
+  4. [Análisis multivariantes]()
+
+
+#  **Requerimientos**
+
+  * Es necesario instalar [R](https://cloud.r-project.org/) (y  [RStudio](https://posit.co/download/rstudio-desktop/#download) para mayor comodidad).
+
+  
+  * Instalar los siguientes paquetes de R: `tidyverse`. Puedes instalarlos todos ejecutando el siguiente código en R:
+
+```
+install.packages(c("tidyverse"))
+```

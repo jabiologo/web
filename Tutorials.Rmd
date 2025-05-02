@@ -62,3 +62,7 @@ text-align: justify
 # Idoneidad de hábitat para oso y urogallo en la Sierra de Gistredo
 
 [Idoneidad de hábitat para oso y urogallo en la Sierra de Gistredo](https://jabiologo.github.io/web/tutorials/gistredo.html)
+
+# Curso Estadística ENZOEM25
+
+[Curso de Estadística ENZOEM 2025](https://jabiologo.github.io/web/tutorials/ENZOEM25.html)
