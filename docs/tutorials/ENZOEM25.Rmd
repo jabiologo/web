@@ -30,26 +30,26 @@ text-align: justify}
  
 # **Programa**
 
-### Módulo 1 - Introducción a R y estadística básica (6 y 8 de mayo)
+### [Módulo 1 - Introducción a R y estadística básica (6 y 8 de mayo)](https://jabiologo.github.io/web/tutorials/enzoem_1_1.html)
 
-  1. [El lenguaje R y el entorno R-Studio: funciones y objetos]()
-  2. [Flujo de trabajo en R: directorio de trabajo, lectura y escritura de datos]()
-  3. [Visualización de datos en R]()
-  4. [Distribuciones de probabilidad y estadística básica]()
+  1. El lenguaje R y el entorno R-Studio: funciones y objetos
+  2. Flujo de trabajo en R: directorio de trabajo, lectura y escritura de datos
+  3. Visualización de datos en R
+  4. Distribuciones de probabilidad y estadística básica
   
-### Módulo 2 - Test estadísticos en ciencias experimentales (11, 13 y 16 de junio)
+### [Módulo 2 - Test estadísticos en ciencias experimentales (11, 13 y 16 de junio)]()
 
-  1. [Distribuciones de probabilidad y estadística básica]()
-  2. [Principales test paramétricos y no paramétricos]()
-  3. [El modelo lineal generalizado]()
-  4. [Diseños avanzados: medidas repetidas]()
+  1. Distribuciones de probabilidad y estadística básica
+  2. Principales test paramétricos y no paramétricos
+  3. El modelo lineal generalizado
+  4. Diseños avanzados: medidas repetidas
   
-### Módulo 3 - Modelos avanzados en estudios observacionales (2 y 4 de septiembre)
+### [Módulo 3 - Modelos avanzados en estudios observacionales (2 y 4 de septiembre)]()
 
-  1. [Modelos mixtos: efectos fijos y efectos aleatorios]()
-  2. [Relaciones no lineales]()
-  3. [Modelización espacio-temporal]()
-  4. [Análisis multivariantes]()
+  1. Modelos mixtos: efectos fijos y efectos aleatorios
+  2. Relaciones no lineales
+  3. Modelización espacio-temporal
+  4. Análisis multivariantes
 
 
 #  **Requerimientos**
