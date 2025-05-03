@@ -252,11 +252,26 @@ help(mean)
 
 Quizás la lección más importante es que normalmente ningún usuario habitual ha asistido a ningún curso especializado de R: la mayoría aprende a base de prueba/error y muchas horas delante del ordendaor con `ERROR` o `WARNINGS` en nuestra pantalla. Por eso es esencial no perder la paciencia y preguntar siempre a Google antes de preguntar al compañero que sabe (siemrpe hay alguien que ha tenido la misma duda antes que nosotros y ha dejado un comentario en un foro o blog). De esta forma interiorizaremos mucho mejor el funcionamiento de este lenguaje y aprenderemos mucho más rápido!
 
-<br/><br/>
+Merece la pena echarle un vistazo (o incluso imprimir si lo creemos conveniente) a esta [cheatsheet](https://iqss.github.io/dss-workshops/R/Rintro/base-r-cheat-sheet.pdf) sobre el uso básico de R.
+
+<br/>
 
 ## **Prácticas 1.1 y 1.2: Flujo de trabajo en R y RStudio**
 
-# **3. Visualización de datos en R**
+<br/>
+
+# **3. Visualización de datos en R y `ggplot2`**
+
+#### **Conceptos básicos de ggplot2**
+
+`ggplot2` es un paquete de R para crear gráficos de alta calidad. Se basa en una gramática que permite describir y construir gráficos, incorporando capas de información complementarias de una forma coherente.
+
+
+
+
+
+
+<br/>
 
 # **4. Distribuciones de probabilidad y estadística básica**
 
