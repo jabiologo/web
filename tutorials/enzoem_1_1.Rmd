@@ -38,8 +38,8 @@ klippy::klippy(tooltip_message = 'Click para copiar', tooltip_success = 'Hecho!'
 
 En este espacio se encuentran los contenidos para el Módulo 1 - Introducción a R y estadística básica del Curso de Estadística ENZOEM, que tiene la siguiente estructura:
 
-  1. El lenguaje R y el entorno R-Studio: funciones y objetos
-  2. Flujo de trabajo en R: directorio de trabajo, lectura y escritura de datos
+  1. El lenguaje R y el entorno R-Studio: funciones y objetos. [Materiales](https://jabiologo.github.io/web/tutorials/enzoem_1_1_files/enzoem1_1-2.zip)
+  2. Flujo de trabajo en R: directorio de trabajo, lectura y escritura de datos. [Materiales](https://jabiologo.github.io/web/tutorials/enzoem_1_1_files/enzoem1_1-2.zip)
   3. Visualización de datos en R
   4. Distribuciones de probabilidad y estadística básica
 
@@ -257,6 +257,10 @@ Merece la pena echarle un vistazo (o incluso imprimir si lo creemos conveniente)
 <br/>
 
 ## **Prácticas 1.1 y 1.2: Flujo de trabajo en R y RStudio**
+
+Los fungicidas triazoles son compuestos químicos que se aplican habitualmente en semillas de cultivos para prevenir el crecimiento de hongos patógenos de plantas. Sin embargo, cuando las semillas son consumidas por la fauna silvestre, estos compuestos pueden producir efectos crónicos perjudiciales en su sauld y desarrollo. Queremos estudiar el efecto de los fungicidas triazoles sobre la condición corporal (peso) en perdices rojas _Alectoris rufa_. Para ello se han capturado un total de 300 perdices en tres hábitats diferentes (semiurbano, agrícola y monte matorralizado) a las que se les ha sexado y extraido muestras de heces para obtener la concentración de fungicidas triazoles (ngramos de compuesto/gramo de heces).
+<br/>
+En el los [materiales de este modulo](https://jabiologo.github.io/web/tutorials/enzoem_1_1_files/enzoem1_1-2.zip) se puede encontrar el archivo `enzoem1_1-2_datos.xlsx`. Este archivo pretende reflejar los típicos problemas a los que nos solemos enfrentar cuando empezamos a analizar nuestros propios datos con R. El objetivo de esta práctica es sencillo: realizar un histograma de los pesos de los animales capturados con la función `hist()`y un gráfico de cajas que compare el peso entre machos y hembras con la función `boxplot()`.
 
 <br/>
 
