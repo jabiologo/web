@@ -270,7 +270,12 @@ En el los [materiales de este modulo](https://jabiologo.github.io/web/tutorials/
 
 **ggplot2** es un paquete de R para crear gráficos de alta calidad. Se basa en una gramática que permite describir y construir gráficos, incorporando capas de información complementarias de una forma coherente.
 
-![](images/Capas_ggplot.jpg)
+<br/>
+<p align="center">
+<img height=350 width=600 src="Capas_ggplot.png"> </a>
+</p>
+<font size="3">
+<br/><br/>
 
 La gramática de los gráficos se basa en la idea de que cualquier gráfico se puede construir a partir de los siguientes componentes:
 
@@ -300,7 +305,12 @@ A partir de estos componentes es posible generar una gran variedad de tipos y fo
 
 Empecemos creando un gráfico de dispersión básico a partir de los dato***s [palmerpenguins](https://allisonhorst.github.io/palmerpenguins/)***. Los datos fueron recogidos y puestos a disposición por la Dra. Kristen Gorman y la Estación LTER Palmer, en la Antártida.
 
-![](images/96124penguins-1967635931.png)
+<br/>
+<p align="center">
+<img height=350 width=600 src="palmer.png"> </a>
+</p>
+<font size="3">
+<br/><br/>
 
 Artwork by \@allison_horst
 

@@ -268,12 +268,389 @@ En el los [materiales de este modulo](https://jabiologo.github.io/web/tutorials/
 
 #### **Conceptos básicos de ggplot2**
 
-`ggplot2` es un paquete de R para crear gráficos de alta calidad. Se basa en una gramática que permite describir y construir gráficos, incorporando capas de información complementarias de una forma coherente.
+**ggplot2** es un paquete de R para crear gráficos de alta calidad. Se basa en una gramática que permite describir y construir gráficos, incorporando capas de información complementarias de una forma coherente.
 
+<br/>
+<p align="center">
+<img height=350 width=600 src="Capas_ggplot.png"> </a>
+</p>
+<font size="3">
+<br/><br/>
 
+La gramática de los gráficos se basa en la idea de que cualquier gráfico se puede construir a partir de los siguientes componentes:
 
+-   **Datos (Data)**: El conjunto de datos que se va a visualizar.
 
+-   **Mapeo**: El mapeo define cómo se asignan las partes de los datos a los atributos estéticos de los objetos geométricos. Esto se hace usando la función `aes()`
 
+-   **Capas (Layers)**: Las capas son el corazón de cualquier gráfico. Cada capa consiste en:
+
+    -   **Geometría (Geometries)**: Determina cómo se muestran los datos (puntos, líneas, rectángulos, etc.).
+
+    -   **Transformación estadística (Statistics)**: Puede calcular nuevas variables a partir de los datos.
+
+    -   **Ajuste de posición**: Determina dónde se muestra cada pieza de datos. Las capas se construyen usando funciones `geom_*()` y `stat_*()`.
+
+-   **Facetas (Facets)**: Permiten dividir los datos en múltiples paneles basados en una o más variables. Esto se hace usando funciones como `facet_wrap()` y `facet_grid()`.
+
+-   **Coordenadas (Coordinates)**: Definen el sistema de coordenadas del gráfico. Por ejemplo, `coord_flip()` invierte los ejes x e y.
+
+-   **Temas Visuales (Themes)**: Personalización de la apariencia del gráfico. theme( )
+
+A partir de estos componentes es posible generar una gran variedad de tipos y formatos de gráficos de una forma flexible.
+
+[CheatSheet (chuleta código)](https://github.com/rstudio/cheatsheets/blob/main/data-visualization.pdf)
+
+### **Como crear un gráfico básico**
+
+Empecemos creando un gráfico de dispersión básico a partir de los dato***s [palmerpenguins](https://allisonhorst.github.io/palmerpenguins/)***. Los datos fueron recogidos y puestos a disposición por la Dra. Kristen Gorman y la Estación LTER Palmer, en la Antártida.
+
+<br/>
+<p align="center">
+<img height=350 width=600 src="palmer.png"> </a>
+</p>
+<font size="3">
+<br/><br/>
+
+Artwork by \@allison_horst
+
+-   **Instalamos y/o cargamos los datos**
+
+    ```{r}
+    library (palmerpenguins)
+    data("penguins")
+    ```
+
+    Valoramos la calidad de los datos de forma gráfica, identificando la distribución de los NA en la matriz de datos.
+
+    ```{r}
+    #install.packages("visdat")
+    library ("visdat")
+    visdat::vis_dat(penguins)
+    ```
+
+    Listado y descripción de las variables pertenecientes a la BD de PalmerPenguins
+
+    -   *species*: Especie de pingüino: Adélie (Adelia), Chinstrap (Barbijo), Gentoo (Papúa).
+
+    -   *island*: Isla donde se encontró el pingüino (Biscoe, Dream, Torgersen).
+
+    -   *bill_length_mm*: Longitud del pico en milímetros.
+
+    -   *bill_depth_mm*: Profundidad del pico en milímetros.
+
+    -   *flipper_length_mm*: Longitud de la aleta en milímetros.
+
+    -   *body_mass_g*: Masa corporal en gramos.
+
+    -   *sex*: Sexo del pingüino (macho, hembra).
+
+        Para simplificar los análisis y reducir los potenciales errores o warnings se eliminan los NA
+
+```{r}
+library(tidyr)
+penguins1 <- penguins %>% drop_na()
+names (penguins1)
+visdat::vis_dat(penguins1)
+```
+
+-   **Generamos la gráfica base**
+
+Representamos la longitud del pico frente a la anchura del pico
+
+```{r}
+#| echo: false  #no imprime el código solo el output
+library(ggplot2)
+ggplot(data = penguins1, aes(x = bill_length_mm, y = bill_depth_mm)) + 
+      geom_point(size = 4)
+
+#generamos un objeto a partir de la gráfica generada
+p1<-ggplot(data = penguins1, aes(x = bill_length_mm, y = bill_depth_mm)) + 
+      geom_point(size = 4)
+
+```
+
+```         
+-   "ggplot (data = penguins1, aes(x = bill_length_mm, y = bill_depth_mm))": Especifica el conjunto de datos y el mapeo estético.
+
+-   "geom_point()": Añade puntos al gráfico.
+```
+
+ggplot2 permite guardar esta figura como un objeto en una variable. Luego puedes usar este objeto añadiéndole nuevas capas de información, por ejemplo uniendo los puntos con una línea.
+
+```{r}
+p1 + geom_line(color = "firebrick")
+```
+
+### **Personalización del Gráfico**
+
+Se puede personalizar el gráfico añadiendo más capas y modificando la estética.
+
+1.  **Añadir Título y Etiquetas de los ejes**:
+
+    ```{r}
+
+    ggplot(data = penguins1, 
+           aes(x = bill_length_mm, y = bill_depth_mm))+
+     geom_point() +
+     labs(title = "Relación entre la longitud y anchura del pico",
+           x = "Longitud del pico (mm)",
+           y = "Anchura del pico (mm)")
+
+    ```
+
+2.  **Cambiar Colores y Tamaños**:
+
+    Modificamos la estética, incorporando un color para cada isla, además el tamaño del punto estará condicionado por el peso del animal. También podríamos usar una forma diferente dependiendo de la especies.
+
+    ```{r}
+
+    ggplot(data = penguins1,
+           aes(x = bill_length_mm, y = bill_depth_mm, color = island, size = body_mass_g, shape = species ))+
+      geom_point() +
+      labs(title="Relación entre la longitud y anchura del pico",
+           x = "Longitud del pico (mm)",
+           y = "Anchura del pico (mm)")
+
+    ```
+
+    -   "*color = island*": Colorea los puntos según la isla de origen.
+
+    -   "*size*" = body_mass_g: Ajusta el tamaño de los puntos según el peso de los animales.
+
+    -   "shape" = permite ajustar la forma de los puntos en base a una variable
+
+### **Facetado**
+
+El facetado permite crear múltiples gráficos basados en subgrupos de datos. Por ejemplo representando por separado la relación para cada especie.
+
+```{r}
+
+ggplot(data = penguins1,
+       aes(x = bill_length_mm, y = bill_depth_mm))+
+ geom_point() +
+ geom_line(color = "blue", linewidth = 0.2)+ 
+ facet_wrap(~ species) +
+ labs(title="Relación entre la longitud y anchura del pico",
+       x = "Longitud del pico (mm)",
+       y = "Anchura del pico (mm)")
+
+```
+
+### **Temas**
+
+Los temas permiten personalizar la apariencia del gráfico. En esta gráfica se han incorporado diferentes aproximaciones (lm y loess) para valorar visualmente el ajuste de la asociación para cada especie.
+
+```{r}
+ggplot(data = penguins1,
+       aes(x = bill_length_mm, y = bill_depth_mm))+
+ geom_point(color = "#8B8878", size = 2) +
+ theme_minimal() +
+ facet_wrap(~ species) +
+ geom_smooth(aes(colour = "loess"), method = "loess", se = F) +  geom_smooth(aes(colour = "lm"), method = "lm", se = FALSE) +  
+ labs(title="Relación entre la longitud y anchura del pico",
+       x = "Longitud del pico (mm)",
+       y = "Anchura del pico (mm)")
+```
+
+Cambio del color de los puntos en base a una variable (los colores se generan automáticamente). Usando diferentes colores, se muestran los individuos capturados en cada isla. También se modifica el color del texto de los ejes
+
+```{r}
+ggplot(data = penguins1,
+       aes(x= bill_length_mm, y= bill_depth_mm, color=island))+
+ geom_point(size = 2) +
+ theme_minimal() +
+ facet_wrap(~ species) +
+ geom_smooth(aes(colour = "loess"), method = "loess", se = F) +  geom_smooth(aes(colour = "lm"), method = "lm", se = FALSE) +  
+ labs(title="Relación entre la longitud y anchura del pico",
+       x = "Longitud del pico (mm)",
+       y = "Anchura del pico (mm)")+
+ theme(axis.text = element_text(color = "blue", size = 12),
+        axis.text.x = element_text(face = "italic"))
+
+```
+
+Se puede seleccionar manualmente los diferentes colores a utilizar para los puntos y las 2 líneas de tendencia generadas en el gráfico.
+
+```{r}
+
+ggplot(data = penguins1,
+       aes(x= bill_length_mm, y= bill_depth_mm, color=island))+
+ geom_point(size = 2) +
+ scale_color_manual(values = c("darkorange", "darkorchid", "cyan4","red","black"))+
+ theme_minimal() +
+ facet_wrap(~ species) +
+ geom_smooth(aes(colour = "loess"), method = "loess", se = F) +  geom_smooth(aes(colour = "lm"), method = "lm", se = FALSE) +  
+ labs(title="Relación entre la longitud y anchura del pico",
+       x = "Longitud del pico (mm)",
+       y = "Anchura del pico (mm)")+
+ theme(axis.text = element_text(color = "blue", size = 12),
+        axis.text.x = element_text(face = "italic"))
+
+```
+
+Representación de la longitud de las aletas frente al peso de los animales diferenciando las especies por color y forma. También se activa el intervalo de confianza alrededor de la línea de suavizado.
+
+```{r}
+
+ggplot(data=penguins1,aes(x= flipper_length_mm, y= body_mass_g))+
+  geom_point(aes(color = species, 
+                 shape = species,
+                 size = 1))+
+  geom_smooth(aes(group = species,color = ""), method = "lm", se = T) +
+  scale_color_manual(values = c("orange","purple","cyan4", "black"))+
+  theme_minimal()
+```
+
+### Colores
+
+Hay diferentes opciones para poder incorporar diferentes colores en glos gráficos
+
+el uso de los colores estándares que tiene R. ([leer mas](https://elartedeldato.com/blog/7-librerias-colores-r/))
+
+-   Se puede consultar el nombre y la codificación HEX de los colores en [Color-Chart](https://r-charts.com/es/colores/) eg: "#8B8878" =cornskill4
+
+-   Alternativamente se pueden utilizar paletas específicas Paletas de colores
+
+    -   [Viridis](https://r-graph-gallery.com/package/viridis.html)
+
+    -   [ColorBrewer](https://r-graph-gallery.com/38-rcolorbrewers-palettes.html)
+
+    -   [Peletteer](https://r-graph-gallery.com/package/paletteer.html)
+
+Uso de una librería para ajustar una paleta de colores prefijada
+
+```{r}
+library(RColorBrewer)
+
+ggplot(data = penguins1, aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +
+ geom_point(size=3) +
+ scale_color_brewer(palette = "Set2") +
+ theme_minimal()
+```
+
+### Explorando otras geometrías
+
+Necesitaremos crear diferentes geometrías (formas) a partir de nuestros datos (por ejemplo, diagramas de barras, histogramas, diagramas de dispersión, diagramas de caja).
+
+Esto se hace añadiendo capas "geoms" al comando inicial ggplot(). Hay muchas funciones ggplot. Cada una de estas funciones empieza por "geom\_", por lo que nos referiremos a ellas genéricamente como geom_XXXX(). Algunas de los geoms más comunes son:
+
+-   **Puntos** (e.g. scatter plots) - `geom_point()`
+
+-   **Gráficos de líneas** - `geom_line()` or `geom_path()`
+
+-   **Líneas de tendencias** - `geom_smooth()`
+
+-   **Histogramas** - `geom_histogram()`
+
+-   **Gráficos de barras** - `geom_bar()` or `geom_col()`
+
+-   **Gráficos de caja** - `geom_boxplot()`
+
+### Histograma
+
+Histograma representando la longitud del pico por especies, se le otorga cierta transparencia (alpha = 0.4), los colores se establecen de forma manual (scale_fill_manual)
+
+```{r}
+ggplot(data = penguins1, mapping = aes(x=bill_length_mm))+
+  geom_histogram (aes(fill = species), alpha = 0.4, position = "identity") + 
+  scale_fill_manual(values = c("orange","orchid","cyan2"))
+
+```
+
+Variaciones del argumento position:
+
+-   **"stack"**: Apila los elementos uno sobre otro. Es útil para gráficos de barras apiladas.
+
+-   **"dodge"**: Coloca los elementos uno al lado del otro. Es útil para comparar diferentes grupos en gráficos de barras.
+
+-   **"fill"**: Similar a stack, pero ajusta las alturas de las barras para que sumen 1. Es útil para mostrar proporciones.
+
+-   **"jitter"**: Añade un pequeño desplazamiento aleatorio a los puntos para evitar la superposición. Es útil para gráficos de dispersión con muchos puntos.
+
+Histográma de densidades para las tres especies
+
+```{r}
+ggplot(data = penguins1, mapping = aes(x = bill_length_mm)) +
+ geom_density(aes(fill = species), alpha = 0.4, position = "identity") +
+ scale_fill_manual(values = c("orange", "orchid", "cyan2")) +
+ labs(title = "Proportional density")
+```
+
+### **Gráfico de barra**
+
+```{r}
+
+ggplot(data = penguins1, aes(x = factor(species))) +
+ geom_bar(fill = "skyblue", color = "black") +
+ labs(title = "Número de pinguinos por espcie ",
+      x = "Especies de pinguinos",
+      y = "Frecuencia") +
+ theme_minimal()
+
+```
+
+Contando número de individuos por especie e isla
+
+```{r}
+ggplot(penguins1, aes(x = island, fill = species)) +
+  geom_bar(alpha = 0.8) +
+  scale_fill_manual(values = c("orange","orchid","cyan4"), 
+                    guide = "none") +
+  theme_minimal() +
+  facet_wrap(~species, ncol = 1) +
+  coord_flip()
+```
+
+Contando número de individuos por especie e isla, y diferenciando por sexo
+
+```{r}
+
+ggplot(penguins1, aes(x = island, fill = interaction(species, sex))) +
+ geom_bar(alpha = 0.8) +
+ scale_fill_manual(values = c("orange", "orchid", "cyan4", "lightblue", "plum", "darkgreen"), 
+         guide = guide_legend(title = "Species and Sex")) +
+ theme_minimal() +
+ facet_wrap(~species, ncol = 1) +
+ coord_flip ()
+
+```
+
+### Gráfico de caja
+
+```{r}
+
+ggplot(data = penguins1, aes(x = species, y= body_mass_g)) +
+ geom_boxplot(fill = "skyblue", color = "black") +
+ labs(title = "Peso de los animales por espcie ",
+      x = "Especies de pinguinos",
+      y = "Peso") +
+ theme_minimal()
+
+```
+
+```{r}
+
+pb<-ggplot(data = penguins1, aes(x = species, y= body_mass_g)) +
+ geom_boxplot(fill = "indianred", color = "black") +
+ labs(title = "Peso de los animales por espcie ",
+      x = "Especies de pinguinos",
+      y = "Peso") +
+ theme_minimal()
+
+ pb+ coord_flip()
+
+```
+
+Combinando diferentes gráficos (Grafíco de Violín y distribución de los puntos)
+
+```{r}
+pb+ coord_flip()+ 
+    geom_violin(alpha=0.5)+ 
+    geom_jitter(aes(color=species),
+              alpha=0.5, 
+              position = position_jitter(width = .2))
+```
 
 <br/>
 
