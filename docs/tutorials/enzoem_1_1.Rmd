@@ -40,7 +40,7 @@ En este espacio se encuentran los contenidos para el Módulo 1 - Introducción a
 
   1. El lenguaje R y el entorno R-Studio: funciones y objetos. [Materiales](https://jabiologo.github.io/web/tutorials/enzoem_1_1_files/enzoem1_1-2.zip)
   2. Flujo de trabajo en R: directorio de trabajo, lectura y escritura de datos. [Materiales](https://jabiologo.github.io/web/tutorials/enzoem_1_1_files/enzoem1_1-2.zip)
-  3. Visualización de datos en R
+  3. Visualización de datos en R y ggplot2. [Materiales](https://jabiologo.github.io/web/tutorials/enzoem_1_1_files/enzoem1_3.zip)
   4. Distribuciones de probabilidad y estadística básica
 
 # **1. El lenguaje R y el entorno R-Studio: funciones y objetos**
