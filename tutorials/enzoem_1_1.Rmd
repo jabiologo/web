@@ -316,14 +316,14 @@ Artwork by \@allison_horst
 
 -   **Instalamos y/o cargamos los datos**
 
-    ```{r}
+    ```{r, cache = T}
     library (palmerpenguins)
     data("penguins")
     ```
 
     Valoramos la calidad de los datos de forma gráfica, identificando la distribución de los NA en la matriz de datos.
 
-    ```{r}
+    ```{r, cache = T}
     #install.packages("visdat")
     library ("visdat")
     visdat::vis_dat(penguins)
@@ -347,7 +347,7 @@ Artwork by \@allison_horst
 
         Para simplificar los análisis y reducir los potenciales errores o warnings se eliminan los NA
 
-```{r}
+```{r, cache = T}
 library(tidyr)
 penguins1 <- penguins %>% drop_na()
 names (penguins1)
@@ -358,7 +358,7 @@ visdat::vis_dat(penguins1)
 
 Representamos la longitud del pico frente a la anchura del pico
 
-```{r}
+```{r, cache = T}
 #| echo: false  #no imprime el código solo el output
 library(ggplot2)
 ggplot(data = penguins1, aes(x = bill_length_mm, y = bill_depth_mm)) + 
@@ -378,7 +378,7 @@ p1<-ggplot(data = penguins1, aes(x = bill_length_mm, y = bill_depth_mm)) +
 
 ggplot2 permite guardar esta figura como un objeto en una variable. Luego puedes usar este objeto añadiéndole nuevas capas de información, por ejemplo uniendo los puntos con una línea.
 
-```{r}
+```{r, cache = T}
 p1 + geom_line(color = "firebrick")
 ```
 
@@ -388,7 +388,7 @@ Se puede personalizar el gráfico añadiendo más capas y modificando la estéti
 
 1.  **Añadir Título y Etiquetas de los ejes**:
 
-    ```{r}
+    ```{r, cache = T}
 
     ggplot(data = penguins1, 
            aes(x = bill_length_mm, y = bill_depth_mm))+
@@ -403,7 +403,7 @@ Se puede personalizar el gráfico añadiendo más capas y modificando la estéti
 
     Modificamos la estética, incorporando un color para cada isla, además el tamaño del punto estará condicionado por el peso del animal. También podríamos usar una forma diferente dependiendo de la especies.
 
-    ```{r}
+    ```{r, cache = T}
 
     ggplot(data = penguins1,
            aes(x = bill_length_mm, y = bill_depth_mm, color = island, size = body_mass_g, shape = species ))+
@@ -424,7 +424,7 @@ Se puede personalizar el gráfico añadiendo más capas y modificando la estéti
 
 El facetado permite crear múltiples gráficos basados en subgrupos de datos. Por ejemplo representando por separado la relación para cada especie.
 
-```{r}
+```{r, cache = T}
 
 ggplot(data = penguins1,
        aes(x = bill_length_mm, y = bill_depth_mm))+
@@ -441,7 +441,7 @@ ggplot(data = penguins1,
 
 Los temas permiten personalizar la apariencia del gráfico. En esta gráfica se han incorporado diferentes aproximaciones (lm y loess) para valorar visualmente el ajuste de la asociación para cada especie.
 
-```{r}
+```{r, cache = T}
 ggplot(data = penguins1,
        aes(x = bill_length_mm, y = bill_depth_mm))+
  geom_point(color = "#8B8878", size = 2) +
@@ -455,7 +455,7 @@ ggplot(data = penguins1,
 
 Cambio del color de los puntos en base a una variable (los colores se generan automáticamente). Usando diferentes colores, se muestran los individuos capturados en cada isla. También se modifica el color del texto de los ejes
 
-```{r}
+```{r, cache = T}
 ggplot(data = penguins1,
        aes(x= bill_length_mm, y= bill_depth_mm, color=island))+
  geom_point(size = 2) +
@@ -472,7 +472,7 @@ ggplot(data = penguins1,
 
 Se puede seleccionar manualmente los diferentes colores a utilizar para los puntos y las 2 líneas de tendencia generadas en el gráfico.
 
-```{r}
+```{r, cache = T}
 
 ggplot(data = penguins1,
        aes(x= bill_length_mm, y= bill_depth_mm, color=island))+
@@ -491,7 +491,7 @@ ggplot(data = penguins1,
 
 Representación de la longitud de las aletas frente al peso de los animales diferenciando las especies por color y forma. También se activa el intervalo de confianza alrededor de la línea de suavizado.
 
-```{r}
+```{r, cache = T}
 
 ggplot(data=penguins1,aes(x= flipper_length_mm, y= body_mass_g))+
   geom_point(aes(color = species, 
@@ -520,7 +520,7 @@ el uso de los colores estándares que tiene R. ([leer mas](https://elartedeldato
 
 Uso de una librería para ajustar una paleta de colores prefijada
 
-```{r}
+```{r, cache = T}
 library(RColorBrewer)
 
 ggplot(data = penguins1, aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +
@@ -551,7 +551,7 @@ Esto se hace añadiendo capas "geoms" al comando inicial ggplot(). Hay muchas fu
 
 Histograma representando la longitud del pico por especies, se le otorga cierta transparencia (alpha = 0.4), los colores se establecen de forma manual (scale_fill_manual)
 
-```{r}
+```{r, cache = T}
 ggplot(data = penguins1, mapping = aes(x=bill_length_mm))+
   geom_histogram (aes(fill = species), alpha = 0.4, position = "identity") + 
   scale_fill_manual(values = c("orange","orchid","cyan2"))
@@ -570,7 +570,7 @@ Variaciones del argumento position:
 
 Histográma de densidades para las tres especies
 
-```{r}
+```{r, cache = T}
 ggplot(data = penguins1, mapping = aes(x = bill_length_mm)) +
  geom_density(aes(fill = species), alpha = 0.4, position = "identity") +
  scale_fill_manual(values = c("orange", "orchid", "cyan2")) +
@@ -579,7 +579,7 @@ ggplot(data = penguins1, mapping = aes(x = bill_length_mm)) +
 
 ### **Gráfico de barra**
 
-```{r}
+```{r, cache = T}
 
 ggplot(data = penguins1, aes(x = factor(species))) +
  geom_bar(fill = "skyblue", color = "black") +
@@ -592,7 +592,7 @@ ggplot(data = penguins1, aes(x = factor(species))) +
 
 Contando número de individuos por especie e isla
 
-```{r}
+```{r, cache = T}
 ggplot(penguins1, aes(x = island, fill = species)) +
   geom_bar(alpha = 0.8) +
   scale_fill_manual(values = c("orange","orchid","cyan4"), 
@@ -604,7 +604,7 @@ ggplot(penguins1, aes(x = island, fill = species)) +
 
 Contando número de individuos por especie e isla, y diferenciando por sexo
 
-```{r}
+```{r, cache = T}
 
 ggplot(penguins1, aes(x = island, fill = interaction(species, sex))) +
  geom_bar(alpha = 0.8) +
@@ -618,7 +618,7 @@ ggplot(penguins1, aes(x = island, fill = interaction(species, sex))) +
 
 ### Gráfico de caja
 
-```{r}
+```{r, cache = T}
 
 ggplot(data = penguins1, aes(x = species, y= body_mass_g)) +
  geom_boxplot(fill = "skyblue", color = "black") +
@@ -629,7 +629,7 @@ ggplot(data = penguins1, aes(x = species, y= body_mass_g)) +
 
 ```
 
-```{r}
+```{r, cache = T}
 
 pb<-ggplot(data = penguins1, aes(x = species, y= body_mass_g)) +
  geom_boxplot(fill = "indianred", color = "black") +
@@ -644,7 +644,7 @@ pb<-ggplot(data = penguins1, aes(x = species, y= body_mass_g)) +
 
 Combinando diferentes gráficos (Grafíco de Violín y distribución de los puntos)
 
-```{r}
+```{r, cache = T}
 pb+ coord_flip()+ 
     geom_violin(alpha=0.5)+ 
     geom_jitter(aes(color=species),
@@ -655,6 +655,171 @@ pb+ coord_flip()+
 <br/>
 
 # **4. Distribuciones de probabilidad y estadística básica**
+<br/><br/>
 
+#### **Tipos de variables**
+
+1. Cuantitativas
+    * Continuas
+    * Discretas
+2. Semicuantitativas u ordinales
+3. Cualitativas o nominales
+<br/><br/>
+
+#### **Distribuciones de probabilidad: la Normal o Gaussiana**
+
+Las distribuciones de probabilidad son funciones matemáticas que definen el comportamiento de una variable. Pueden entenderse como modelos teóricos que podemos utilizar para describir las mediciones que tomamos durante nuestros experimientos. Las distribuciones se definen mediante un **nombre** y unos **parámetros**, que manejan y describen su comportamiento.
+<br/><br/>
+Una de las distribuciones de probabilidad más conocida es la distribución Normal o Gaussianas. Esta distribución describe **variables continuas** que pueden ir desde **menos infinito hasta más infinito** (rango). Tiene dos parámetros: la **media** ($\mu$) y la **varianza** ($\sigma$). Variando los valores que toman esos dos parámetros podemos obtener diferentes formas para esa distribución. 
+
+<br/>
+<p align="center">
+<img height=350 width=650 src="normal.png"> </a>
+</p>
+<font size="3">
+<br/><br/>
+
+* ¿Se te ocurre alguna variable que no pueda ser descrita por una normal?
+* ¿Conoces el nombre de alguna otra distribución de probabilidad?
+<br/><br/>
+
+Para saber si una determinada variable sigue una distribución normal podemos utilizar varios test estadísticos. Entre los más utilizados se encuentra el test de Shapiro-Wilk. Lo que hace este test es comparar nuestra variable con una distribución normal teórica, asumiendo que ambas son iguales (nuestra _hipótesis nula_ $H_0$). Si rechazamos la hipótesis nula ($p-valor < 0.05$), querrá decir que las dos distribuciones difieren, por lo que no podremos decir que nuestra variable se comporta como una distribución normal. Veamos un ejemplo:
+
+```{r, message=T, cache = T, eval = T}
+# Guardamos el archivo en un obejto que denominaremos "datos"
+datos <- read.csv("https://raw.githubusercontent.com/jabiologo/web/master/tutorials/estadisticaBasica_files/datosPracticas.csv")
+
+# Podemos utilizar la función str() para ver la estructura interna del data.frame
+str(datos)
+
+```
+
+```{r ch12, message=T, cache = T, eval = T}
+
+# Primeros elementos de la base de datos
+head(datos)
+
+# Histograma de nuestra variable dependiente (peso)
+hist(datos$peso)
+
+# Comprobamos la normalidad de nuestra variable
+shapiro.test(datos$peso)  
+
+# ¿Qué significa aquí un p-valor > 0.05?
+# ¿Cuáles son aquí nuestras hipótesis nula y alternativa?
+# Cómo trabaja la función shapiro.test()?
+help("shapiro.test")
+
+```
+
+#### **Comparación entre medias**
+
+Uno de los análisis estadísticos más comunes es la comparación de medias entre diferentes grupos: diferencias de talla entre machos y hembras, diferencias en la respuesta de un marcador molecular entre tratamiento y control, etc. Cuando sólo tenemos dos grupos podemos utilizar un T-test (o su "versión" no paramétrica U de Mann-Whitney). Veamos un ejemplo.
+
+```{r ch13, message=T, cache = T, eval = T}
+# Diferencia entre medias
+# ¿Quién pesa más, los machos o las hembras? Filtramos los datos usando tidyverse
+datosHe <- datos %>% filter(sex == "Hembra")
+datosMa <- datos %>% filter(sex == "Macho")
+
+# Recordamos: 
+# H0 (hipótesis nula): no hay diferencias significativas entre gurpos
+# H1 (hipótesis alternativa): hay diferencias significativas entre gurpos
+
+# Paramétrico: T-Student
+t.test(datosHe$peso, y = datosMa$peso) 
+
+# No paramétrico: U de Mann-Whitney
+wilcox.test(datosHe$peso, y = datosMa$peso)
+```
+<br/>
+En este caso vemos que sí que existen diferencias significativas entre el peso de los machos y de las hembras, puesto que en el T-test obtenemos un P-valor muy bajo, `6.974e-13`. Además, el estdístico `t` nos da algo de información adicional... ¿Quién pesa más, los machos o las hembras? ¿Qué le ocurre al estadístico `t` si cambiamos el orden de esta forma: `t.test(datosMa$peso, y = datosHe$peso)`?
+<br/><br/>
+
+  * ¿Cuál es mi variable dependiente o respuesta? ¿Cuál es mi variable independiente o predictor? ¿De qué tipo es cada una de nuestras variables?
+  * ¿Podrias realizar un gráfico para representar estas diferencias en el peso?  
+<br/><br/>
+
+#### **Comparación entre dos variables cuantitativas continuas**
+
+Otro de los análisis estadísticos más comunes es la comparación de dos variables cuantitativas continuas: peso y talla, cantidad de un marcador molecular con un índice de condición física, etc. Para realizar esta comparación podemos utiilizar las correlaciones. Veamos un ejemplo.
+
+```{r ch15, message=T, cache = T, eval = T}
+# ¿Cómo afecta la concentración de fungidida al peso?
+# Correlación entre dos variables continuas
+
+# Paramétrico: Correlación de Pearson
+cor.test(datos$tri, datos$peso, method = "pearson")
+
+# No paramétrico: Correlación de Spearman
+cor.test(datos$tri, datos$peso, method = "spearman")
+
+# Regresión
+regresion <- lm(peso ~ tri, data = datos)
+summary(regresion)
+
+# Gráfico de dispersión (scatter-plot)
+plot(datos$tri, datos$peso)
+```
+<br/>
+¿Qué significa que el coeficiente de correlación de Pearson sea negativo `(-0.8026473)`? ¿Qué relación existe entre este coeficiente y el `Multiple R-squared` obtenido a en la regresión? 
+<br/>
+Es importante recordar que esta regresión nos permite construir la fórmula de la recta con la cual podríamos teóricamente predecir los valores de nuestra variable respuesta en función de nuestra variale predictora. De forma general, esta fórmula se podría escribir de la siguiente manera:
+
+\begin{equation}
+\text{Variable respuesta = Intercepto + Coeficiente(Variable_predictora)}
+\end{equation}
+
+Al _coeficiente_ también lo podemos llamar _"estimador"_ y a todos los elementos de esa fórmula se suelen sustitur por diferetes caracteres, aunque suelen significar lo mismo. Aquí tienes algunos ejemplos:
+\begin{equation}
+Y = a + bX
+\end{equation}
+\begin{equation}
+Y = \alpha + \beta X
+\end{equation}
+\begin{equation}
+Y = \beta_0 + \beta_1 X
+\end{equation}
+
+Así, teniendo en cuenta los resultados de `summary(regresion)`, podríamos escribir la siguiente fórmula:
+\begin{equation}
+\text{Peso} = 526.1267 - 2.837 * (\text{concentración de triazoles})
+\end{equation}
+
+De esta forma, podríamos predecir el peso de una hipotética perdiz a partir de una concentración de triazol dada.
+<br/><br/>
+
+#### **El concepto de residuo**
+  
+  En el contexto de los modelos lineales, el concepto de residuo hace referencia a "aquella información que no somos capaces de explicar en función de nuestros predictores". Es la distancia que existe entre el valor observado y el valor predicho. Para poder utilizar los test paramétricos, estos residuos deberían seguir una distribución normal.
+  
+```{r ch155, message=T, cache = T, eval = T}
+
+summary(regresion)
+
+# Calculamos los residuos
+datos$residuos <- residuals(regresion)
+
+# Histograma de los residuos
+hist(datos$residuos)
+
+# Comprobamos la normalidad de los residuos
+shapiro.test(datos$residuos)  
+
+```
+  
+<br/>
+<p align="center">
+<img height=350 width=650 src="residuos.png"> </a>
+</p>
+<font size="3">
+<br/><br/>
+
+
+
+
+1. A continuación realizaremos una comparación entre las medias del peso de de todos los individuos entre los diferentes hábitats. ¿Hay diferencias significativas? ¿Entre qué hábitats?
+
+2. ¿Se te ocurre cómo podríamos analizar a la vez el efecto de los fungicidas, el sexo y el hábitat sobre el peso de las perdidces?
 
 
