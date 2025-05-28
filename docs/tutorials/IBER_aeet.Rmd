@@ -1,0 +1,83 @@
+---
+title: "Introduction to Bayesian Inference in Ecology"
+csl: nature.csl
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    collapsed: false
+    number_sections: false
+    toc_depth: 1
+---
+
+<style>
+body {
+text-align: justify}
+</style>
+
+<br/>
+<br/>
+<p align="center">
+<img height=150 width=950 src="banner_aeet.png"> </a>
+</p>
+<font size="3">
+<br/>
+
+ 
+# **Intro**
+
+ In this dedicated site you can find the contents for the workshop **Introduction to Bayesian Inference in Ecology**. It will be held at the III meeting of the Iberian Ecological Society (SIBECOL) / XVII National Conference of the Spanish Association of Terrestrial Ecology (AEET) in June 2025. Check the following links for the workshop materials:
+ 
+* Slides with theoretical contents (see **Syllabus** below).
+* Scripts and data sets for the practical sessions (see **Syllabus** below).
+* [_Cheatsheet_](https://jabiologo.github.io/web/tutorials/prob_dist_links_merged.pdf) about probability distributions.
+
+This is a reduced version of the [IBER](https://jabiologo.github.io/web/tutorials/IBER24.html) (Inferencia Bayesiana para Ecólogos en R) workshop, from Valentin Lauret and Javier Fernández-López. Many of the materials and ideas have been sourced from [Olivier Gimenez](https://oliviergimenez.github.io/) (thanks Olivier!).
+
+# **General info**
+
+**What:** This is an introductory workshop on Bayesian Inference. The basic concepts of probability and generalized linear models will be explained, in order to later fit this type of model using Bayesian Inference in R and [NIMBLE](https://r-nimble.org/). Finally, there will be a brief discussion about more complex models for studying species distribution and abundance and how Bayesian Inference can help us to fit this kind of models.
+
+**For whom:** This is a workshop for ecologists in a broad sense. A laptop with R, RStudio, and Nimble installed is required (see below); basic knowledge of R and GLMs is also recommended.
+
+**From:**  By [Sonia Illanas (IREC, CSIC-UCLM-JCCM)](https://scholar.google.com/citations?hl=es&user=ew25H7QAAAAJ&view_op=list_works&sortby=pubdate) & [Javier Fernández-López (IREC, CSIC-UCLM-JCCM)](https://scholar.google.com/citations?hl=es&user=v3biyuIAAAAJ&view_op=list_works&sortby=pubdate))
+
+**When:** Monday, June 2, 10:00-14:00
+
+**Where:**  Palacio de Congresos de Pontevedra (Pazo da Cultura de Pontevedra), Room: Seminario 3
+
+# **Syllabus**
+
+### Día 1 - Introducción al modelado con R y NIMBLE
+
+  1. **Modelos lineales generalizados con R**: distribuciones de probabilidad, programación, simulaciones y modelos básicos. [Presentaciones](https://jabiologo.quarto.pub/bloque_1_1_teoria/#/) y [Script](https://raw.githubusercontent.com/jabiologo/web/master/script_bloque_1_1.R)
+  2. **Introducción al análisis Bayesiano en NIMBLE**: Qué es Bayesiano, qué es NIMBLE, aplicaciones en ecología. [Presentaciones](https://vlauret.quarto.pub/diberticurso_2_introbayesian/#/title-slide) y [Script](https://raw.githubusercontent.com/valentinlauret/diberticurso/main/codes/2_introBayesian.R)
+  
+# Data sets
+
+-   [Datos](https://raw.githubusercontent.com/jabiologo/web/master/script_bloque_2_2.R) para ajustar modelos a partir de conteos repetidos (N-mixture).
+-   [Datos](https://raw.githubusercontent.com/jabiologo/nimble/main/GLMM_simu.R) para ajustar modelos con factores aleatorios (modelos mixtos o GLMM)
+-   [Datos](https://github.com/valentinlauret/diberticurso/blob/main/codes/lagartos.zip) para ajustar mdelos a partir de conteos repetidos con lagartos (N-mixture)
+-   [Datos](https://raw.githubusercontent.com/valentinlauret/diberticurso/main/codes/simuSCR.R) para simular y ajustar modelos de captura-recaptura espacialmente explícitos (SCR)
+-   [Datos](https://github.com/valentinlauret/diberticurso/blob/main/codes/womad.zip) para saber si hay más Marios o Albertos en el WOMAD24
+
+#  **Requirements**
+
+  * You need to install [R](https://cloud.r-project.org/) (and [RStudio](https://posit.co/download/rstudio-desktop/#download) for convenience).
+
+  * You also need to install `Nimble` by following [these guidelines](https://r-nimble.org/download). Note that Windows users might need to install [RTools](https://cran.r-project.org/bin/windows/Rtools/) if it hasn’t been installed already. Once everything is installed, run the following code in R. If it runs without errors, everything is set up correctly. Otherwise, get in touch with us!
+
+```
+library(nimble)
+  code <- nimbleCode({
+  y ~ dnorm(0,1)
+  })
+  model <- nimbleModel(code)
+  cModel <- compileNimble(model)
+```
+
+  * Install the R packages: `tidyverse`, `mcmcplots`, `coda`. To do that, you can run the following code:
+
+```
+install.packages(c("tidyverse", "mcmcplots", "coda"))
+```
