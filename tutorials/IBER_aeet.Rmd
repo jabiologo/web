@@ -30,13 +30,13 @@ text-align: justify}
  
 * Slides with theoretical contents (see **Syllabus** below).
 * Scripts and data sets for the practical sessions (see **Syllabus** below).
-* [_Cheatsheet_](https://jabiologo.github.io/web/tutorials/prob_dist_links_merged.pdf) about probability distributions.
+* [_Cheatsheet_](https://jabiologo.github.io/web/tutorials/prob_dist_links_merged.pdf) about probability distributions and link functions.
 
 This is a reduced version of the [IBER](https://jabiologo.github.io/web/tutorials/IBER24.html) (Inferencia Bayesiana para Ecólogos en R) workshop, from Valentin Lauret and Javier Fernández-López. Many of the materials and ideas have been sourced from [Olivier Gimenez](https://oliviergimenez.github.io/) (thanks Olivier!).
 
 # **General info**
 
-**What:** This is an introductory workshop on Bayesian Inference. The basic concepts of probability and generalized linear models will be explained, in order to later fit this type of model using Bayesian Inference in R and [NIMBLE](https://r-nimble.org/). Finally, there will be a brief discussion about more complex models for studying species distribution and abundance and how Bayesian Inference can help us to fit this kind of models.
+**What:** This is an introductory workshop on Bayesian Inference. The basic concepts of probability and generalized linear models will be explained, in order to later fit such models using Bayesian Inference in R and [NIMBLE](https://r-nimble.org/). Finally, there will be a brief discussion of more complex models in ecology and how Bayesian Inference can help us fit them.
 
 **For whom:** This is a workshop for ecologists in a broad sense. A laptop with R, RStudio, and Nimble installed is required (see below); basic knowledge of R and GLMs is also recommended.
 
@@ -48,12 +48,12 @@ This is a reduced version of the [IBER](https://jabiologo.github.io/web/tutorial
 
 # **Syllabus**
 
-  1. **Intro**: . [Presentaciones]()
-  2. **Probability distributions**: . [Presentaciones]() and [Script]()
-  3. **GLM's basics**: . [Presentaciones]() and [Script]()
-  4. **Bayesian Inference and NIMBLE**: . [Presentaciones]() and [Script]()
-  5. **Fitting a GLM in NIMBLE**: . [Presentaciones]() and [Script]()
-  6. **Complex models**: . [Presentaciones]() and [Script]()
+  1. **Intro**: . [Slides]()
+  2. **Probability distributions**: . [Slides]() and [Script]()
+  3. **GLM's basics**: . [Slides]() and [Script]()
+  4. **Bayesian Inference and NIMBLE**: . [Slides]() and [Script]()
+  5. **Fitting a GLM in NIMBLE**: . [Slides]() and [Script]()
+  6. **Complex models**: . [Slides]() and [Script]()
   
 # **Data sets**
 
