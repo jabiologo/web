@@ -51,7 +51,7 @@ This is a reduced version of the [IBER](https://jabiologo.github.io/web/tutorial
   1. **Intro**: . [Slides]()
   2. **Probability distributions**: . [Slides]() and [Script]()
   3. **GLM's basics**: . [Slides]() and [Script]()
-  4. **Bayesian Inference and NIMBLE**: . [Slides]() and [Script]()
+  4. **Bayesian Inference**: . [Slides]() and [Script]()
   5. **Fitting a GLM in NIMBLE**: . [Slides]() and [Script]()
   6. **Complex models**: . [Slides]() and [Script]()
   
