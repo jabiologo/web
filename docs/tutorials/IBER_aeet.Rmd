@@ -44,22 +44,22 @@ This is a reduced version of the [IBER](https://jabiologo.github.io/web/tutorial
 
 **When:** Monday, June 2, 10:00-14:00
 
-**Where:**  Palacio de Congresos de Pontevedra (Pazo da Cultura de Pontevedra), Room: Seminario 3
+**Where:**  Palacio de Congresos de Pontevedra (Pazo da Cultura de Pontevedra), Spain, Room: Seminario 3
 
 # **Syllabus**
 
-### Día 1 - Introducción al modelado con R y NIMBLE
-
-  1. **Modelos lineales generalizados con R**: distribuciones de probabilidad, programación, simulaciones y modelos básicos. [Presentaciones](https://jabiologo.quarto.pub/bloque_1_1_teoria/#/) y [Script](https://raw.githubusercontent.com/jabiologo/web/master/script_bloque_1_1.R)
-  2. **Introducción al análisis Bayesiano en NIMBLE**: Qué es Bayesiano, qué es NIMBLE, aplicaciones en ecología. [Presentaciones](https://vlauret.quarto.pub/diberticurso_2_introbayesian/#/title-slide) y [Script](https://raw.githubusercontent.com/valentinlauret/diberticurso/main/codes/2_introBayesian.R)
+  1. **Intro**: . [Presentaciones]()
+  2. **Probability distributions**: . [Presentaciones]() and [Script]()
+  3. **GLM's basics**: . [Presentaciones]() and [Script]()
+  4. **Bayesian Inference and NIMBLE**: . [Presentaciones]() and [Script]()
+  5. **Fitting a GLM in NIMBLE**: . [Presentaciones]() and [Script]()
+  6. **Complex models**: . [Presentaciones]() and [Script]()
   
-# Data sets
+# **Data sets**
 
--   [Datos](https://raw.githubusercontent.com/jabiologo/web/master/script_bloque_2_2.R) para ajustar modelos a partir de conteos repetidos (N-mixture).
--   [Datos](https://raw.githubusercontent.com/jabiologo/nimble/main/GLMM_simu.R) para ajustar modelos con factores aleatorios (modelos mixtos o GLMM)
--   [Datos](https://github.com/valentinlauret/diberticurso/blob/main/codes/lagartos.zip) para ajustar mdelos a partir de conteos repetidos con lagartos (N-mixture)
--   [Datos](https://raw.githubusercontent.com/valentinlauret/diberticurso/main/codes/simuSCR.R) para simular y ajustar modelos de captura-recaptura espacialmente explícitos (SCR)
--   [Datos](https://github.com/valentinlauret/diberticurso/blob/main/codes/womad.zip) para saber si hay más Marios o Albertos en el WOMAD24
+-   [Data set 1]().
+-   [Data set 2]()
+-   [Data set 3]()
 
 #  **Requirements**
 
