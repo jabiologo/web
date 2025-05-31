@@ -1,0 +1,1129 @@
+---
+title: |
+ <center> <font color="#e09f3e">  Bloque 1</font> Modelos con R y Nimble \
+ <font size=14> <font color="#e09f3e"> Part 2 </font> Introduccion al Bayesiano y Nimble</font>  \
+ ![](img/iberlogo2.png){width=430}</center>
+ 
+subtitle: |
+ **IREC, 13/05/2024**\
+ Valentin Lauret, Javi Fernandez-Lopez\
+ $$~$$
+  $$~$$
+   $$~$$
+    $$~$$
+ $$~$$
+ $$~$$
+
+title-slide-attributes: 
+  data-background-color: "white"
+  data-background-size: contains
+  data-background-opacity: "0.9"
+format: 
+ revealjs:
+   code-block-bg: true
+   code-block-border-left: "#31BAE9"
+   theme: default
+   footer: "IBER - Bayesian and Nimble"
+   logo: img/irec.png
+   slide-number: c/t
+   pdf-separate-fragments: true
+   width: 1600
+   height: 900
+   embed-resources: true
+editor: source
+css: style.css
+date: "last updated: `r Sys.Date()`"
+from: markdown+emoji
+fig-cap-location: bottom
+---
+
+## Que hacemos hoy?
+
+$$~~$$
+
+::: {.incremental}
+  1. **The theory:** Bayes formula about conditional probability, a rapid overview. 
+  2. **In practice:** Bayesian statistics and MCMC toolkit for ecologists.
+  3. **Nimble:** a flexible package to fit all the models you want.
+  4. Wild boar poop GLM example with NIMBLE
+  
+:::  
+  
+## The Theory 
+
+$$~~$$ 
+
+
+<center><font family="Comic Sans MS" size=25>
+**Bayes' formula about conditionnal probability**
+$$\Pr(B \mid A) = \displaystyle{\frac{ \Pr(A \mid B) \; \Pr(B)}{\Pr(A)}}$$
+</font>
+</center>
+
+
+## What is the Bayesian approach?	
+
+::: {.incremental}
+
+  *  The approach is based upon the idea that the experimenter begins with some **prior** beliefs about the system.
+  
+  * You never start from scratch. 
+  * And then **iteratively** updates these beliefs on the basis of observed data.
+  * This updating procedure is based upon the Bayes' Theorem.
+  * Over multiple iterations your **a priori** beliefs converge to an **a posteriori** estimation.  
+  
+:::
+
+## What is the Bayesian approach?	
+
+
+  *  The approach is based upon the idea that the experimenter begins with some **prior** beliefs about the system.
+  
+  * You never start from scratch. 
+  * And then **iteratively** updates these beliefs on the basis of observed data.
+  * This updating procedure is based upon the Bayes' Theorem.
+  * Over multiple iterations your **a priori** beliefs converge to an **a posteriori** estimation.  
+  
+<center>
+  ![](img/mc1.gif)
+</center>
+
+## Frequentist and Bayesian 
+
+<font color="red">**Both are strategy to fit models. They are not statistical models**</font>
+
+::: {.incremental}
+ *  Typical stats problems involve **estimating parameter $\theta$ with available data**.
+ * The frequentist approach (maximum likelihood estimation – MLE) assumes that the parameters are fixed, but have unknown values to be estimated.
+ * Classical estimates are generally **point estimates** of the parameters of interest.
+ * The Bayesian approach assumes that the parameters are not fixed but have some fixed unknown **distribution**.
+ 
+:::
+
+## The Theory {.smaller}
+
+**Bayes' formula** $\Pr(B \mid A) = \displaystyle{\frac{ \Pr(A \mid B) \; \Pr(B)}{\Pr(A)}}$
+
+
+::: {.fragment fragment-index=1}
+
+$${\color{red}{\Pr(\text{Hypothesis} \mid \text{data})}} = \frac{\color{blue}{\Pr(\text{data} \mid \text{Hypothesis})} \; \color{green}{\Pr(\text{Hypothesis})}}{\color{orange}{\Pr(\text{data})}}$$
+
+For regression models, the "hypothesis" is a **parameter (intercept, slopes or error terms)**.
+::: 
+
+::: {.fragment fragment-index=2}
+$\color{red}{\text{Posterior distribution}}$: Represents what you know after having seen the data. The basis for inference, a distribution, possibly multivariate if more than one parameter. 
+:::
+
+::: {.fragment fragment-index=3}
+$\color{blue}{\text{Likelihood}}$: This quantity is the same as in the frequentist approach.
+:::
+
+::: {.fragment fragment-index=4}
+$\color{green}{\text{Prior distribution}}$: Represents what you know before seeing the data. The source of much discussion about the Bayesian approach.
+:::
+
+::: {.fragment fragment-index=5}
+$\color{orange}{\Pr(\text{data}) = \int{L(\text{data} \mid \theta)\Pr(\theta) d\theta}}$ is a $N$-dimensional integral if $\theta = \theta_1, \ldots, \theta_N$. 
+:::
+
+::: {.fragment fragment-index=6}
+Difficult if not impossible to calculate. This is one of the reasons why we need simulation (MCMC) methods.
+:::
+
+## Bayesian Computation
+
+Use stochastic simulations to avoid the calculation of multidimensional integrals.
+
+### Markov Chain Monte Carlo (MCMC) methods. 
+
+  * A Markov chain is a discrete sequence of states, in which the probability of an event depends only on the state in the previous event. 
+  * A Markov chain has an equilibrium (aka stationary) distribution that is the desired posterior distribution!
+
+Several ways of constructing these chains: e.g., Metropolis-Hastings, Gibbs sampler.
+
+<center>
+  ![](img/mc1.gif)
+</center>
+
+## Where everything begins: the prior distribution {.smaller}
+
+  * For $\theta$, the parameter you want to estimate, you must define an <font color="#840032">**a priori distribution**</font> (see cheatsheet).
+  * The prior distribution will define the possible values of $\theta$ the model will explore.
+  
+```{r}
+#| eval: true
+#| echo: false
+#| cache: true
+library(tidyverse)
+uni <- tibble(pred = seq(0,1, length=200),
+              y = dunif(pred,0,1))
+
+puni <- uni %>% ggplot() + geom_line(aes(x= pred, y=y), lwd = 2) +
+  theme_minimal() + 
+  labs(title = "Uniform distribution between 0 and 1",
+       x = "Possible range of value for the parameter",
+       y= "Probability")+
+  theme(text = element_text(face= "bold", size = 14, color = "black"),
+        axis.text.y = element_blank() )
+
+nor <- tibble(pred = seq(-3000,3000, length=200),
+              y = dnorm(pred,0,1000))
+
+pnor <- nor %>% ggplot() + geom_line(aes(x= pred, y=y), lwd = 1.3) + 
+  theme_minimal() + 
+  labs(title = "Normal distribution centered on 0 with sd = 1000",
+       x = "Possible range of value for the parameter",
+       y= "Probability")+
+  theme(text = element_text(face= "bold", size = 14, color = "black"),
+        axis.text.y = element_blank() )
+```
+
+:::: columns
+:::{.column width="50%"}
+
+:::{.fragment fragment-index=1}
+For example if you write $\theta \sim \mbox{Uniform}(0,1)$, the model will only consider values between 0 and 1 for $\theta$. 
+  
+```{r}
+#| eval: true
+#| echo: false
+#| cache: true
+puni
+```
+:::
+:::
+:::{.column width="50%"}
+
+:::{.fragment fragment-index=2}
+If you write $\theta \sim \mbox{Normal}(0,1000)$, the model will explore a high range of value without limits with a higher probability around 0.
+  
+```{r}
+#| eval: true
+#| echo: false
+#| cache: true
+pnor
+```
+:::
+
+:::
+::::
+
+## Where everything begins: the prior distribution {.smaller}
+
+Over this example we define the prior distribution as $\mbox{Normal}(0,1)$.
+  
+```{r}
+#| eval: true
+#| echo: false
+#| cache: true
+
+nor2 <- tibble(pred = seq(-5,5, length=200),
+              y = dnorm(pred,0,1))
+
+pprior <- nor2 %>% ggplot() + geom_line(aes(x= pred, y=y), lwd = 1.3, color ="#65B891") + 
+  theme_minimal() + 
+  labs(title = "A priori distribution for our parameter",
+       subtitle = "Normal distribution centered on 0 with sd = 5",
+       x = "Possible range of value for the parameter",
+       y= "Probability")+
+  theme(text = element_text(face= "bold", size = 14, color = "black"),
+        axis.text.y = element_blank() )
+
+pprior
+```
+
+
+## Then we start: MCMC functioning
+
+:::: columns  
+::: {.column width="55%"}  
+::: {.fragment fragment-index=1}  
+
+1. Within the **prior distribution**, we define any possible **initial value** of the parameter to be estimated.
+
+:::
+
+::: {.fragment fragment-index=2}
+
+2. To decide where to visit next, the algorithm (called a **sampler**) propose to move away from the current value of the parameter to a **candidate** value. 
+
+:::
+
+::: {.fragment fragment-index=3}
+3. We compute the ratio of the probabilities at the candidate and current locations $R$. This is where $\Pr(\text{data})$, the denominator of the Bayes theorem, cancels out. 
+:::
+:::
+
+::: {.column width="30%"}
+::: {.r-stack}
+![](img/mcmc1.png){.fragment fragment-index=1 width=600 .absolute right=0 top=100}
+
+![](img/mcmc1bis.png){.fragment fragment-index=2 width="600"  .absolute right=0 top=100}
+
+![](img/mcmc1bis3.png){.fragment fragment-index=3 width="600"  .absolute right=0 top=100}
+:::
+:::
+::::
+
+## MCMC functioning
+
+:::: columns  
+::: {.column width="50%"}  
+
+4. If the candidate value improves the likelihood we accept it, otherwise we remain at the current location.
+
+::: {.fragment fragment-index=1}
+5. We repeat steps 2-4 a number of times or steps, **iterations**.
+:::
+
+$$~~$$
+
+::: {.fragment fragment-index=2}
+Then, the chains of values explore the space of possibilities and converge to a stationary distribution, i.e: **the posterior distribution**.
+:::
+:::
+
+::: {.column width="30%"}
+
+![](img/mcmc1bis3.png){width="800"  .absolute right=0 top=0}
+
+![](img/mcmc8it.png){.fragment fragment-index=1 width="800"  .absolute right=0 top=0}
+
+:::
+::::
+
+## MCMC functioning 
+
+Then, the chains of values explore the space of possibilities and converge to a stationary distribution, i.e: **the posterior distribution**.
+
+<center>
+![](img/mc1.gif)
+</center>
+
+## Parametrize MCMC
+
+:::: columns
+::: {.column width="30%"}
+  * 3 chains starting from different initial values
+
+::: {.fragment fragment-index=2}
+  * Now with 3000 iterations.
+
+:::
+:::
+::::
+
+::: {.r-stack}
+![](img/mc3ch10it.png){.fragment fragment-index=1 width="1000" .absolute right=0 top=0}
+
+
+![](img/mc3ch.png){.fragment fragment-index=3 width="1000" .absolute right=0 top=0}
+:::
+
+## MCMC functionning 
+
+
+![](img/mc3hist.gif){width="2000"  .absolute right=0}
+
+## Assessing convergence
+
+![](img/mc3chCombi.png){width="1500" .absolute left=0 top=150}
+
+
+
+
+## Assessing convergence
+
+![](img/mc3chCombi.png){width="1000" .absolute right=300 bottom=0}
+
+::: {.incremental}
+  * The chains should **converge to same target distribution**.
+  * We discard the MCMC iterations before convergence is achieved, i.e. **burnin**, and just use observations from the chain once it has converged.
+  * Once discarded, explore efficiently: The post-convergence sample size required for suitable numerical summaries, named **ESS** or Effective Sample Size.
+
+  * **Simplest method to determine length of burn-in period is to look at trace plots.**
+:::
+
+## Burnin
+
+:::: columns
+
+::: {.column width="40%"}
+::: {.fragment fragment-index=1}
+We discard the MCMC iterations before convergence is achieved, i.e. **burnin**
+:::
+
+$$~~$$
+
+
+::: {.fragment fragment-index=3}
+and just use observations from the chain once it has converged.
+:::
+:::
+::::
+
+::: {.r-stack}
+![](img/mc3ch.png){.fragment fragment-index=1 width="1000"  .absolute right=0 top=0}
+
+![](img/mc3chBurnin.png){.fragment fragment-index=2 width="1000"  .absolute right=0 top=0}
+
+:::
+
+## Efficient sample size and convergence
+
+  * **Efficient sample size (ESS)**. MCMC chains are autocorrelated, successive steps are near each other, and are not independant. ESS reflects the number of independant iterations, *i.e.* chain length while taking into account the autocorrelation. Check the ESS of any parameter of interest. 
+  * We need $ess > 100$ independant steps.
+  
+```{r}
+#| eval: false
+#| echo: true
+coda::effectiveSize() 
+```
+
+  * **Gelman-Rubin test ** $\hat{R}$ or `Rhat` to assess the mixing of chains. Values near $1$ indicates likely convergence, a value of $≤1.1$ is considered acceptable. 
+  
+```{r}
+#| eval: false
+#| echo: true
+coda::gelman.diag()
+```
+  
+## What if we have issues of convergence ? 
+
+:::{.incremental}
+  * Increase burnin.
+  * Sample more.
+  * Consider informative priors.
+  * Change initial values (e.g. estimates from simpler models).
+  * Change the sampler.
+  * Go for a simpler model.
+  
+:::
+
+## Plot posterior distribution
+
+$$~$$
+
+Named a **density plot**.  
+
+
+![](img/mc3chDen.png){width="800" .absolute right=0 top=100}
+![](img/mc3chPost.png){width="800" .fragment fragment-index=1 .absolute right=0 top=100}
+
+
+## Plot posterior distribution
+
+$$~~$$
+
+:::: columns
+
+:::{.column width="50%"}
+
+### Prior distribution 
+
+$$~~$$
+
+```{r}
+#| cache: true
+#| eval: true
+#| echo: false
+
+pprior
+```
+
+:::
+:::{.column width="50%"}
+### Posterior distribution
+
+
+![](img/mc3chPost.png){width="600" .absolute right=0 top=300}
+:::
+::::
+
+## Plot prior and posterior distribution
+
+![](img/mc3chPrioPost.png){width="700" .absolute right=500 top=100}
+
+
+## Plot posterior distribution
+
+$$~$$
+
+
+Named a **density plot**.  
+
+:::: columns
+
+::: {.column width='35%'}
+
+::: {.fragment fragment-index=1}
+You can extract the parameter value: **mean, median**
+:::
+
+::: {.fragment fragment-index=2}
+the precision associated: **standard deviation, credible interval**
+:::
+:::
+::::
+
+![](img/mc3chPost.png){width="800" .absolute right=0 top=100}
+![](img/mc3chDenMean.png){width="800" .fragment fragment-index=1 .absolute right=0 top=100}
+
+![](img/mc3chDenCI.png){width="800" .fragment fragment-index=2 .absolute right=0 top=100}
+
+
+
+## To sum up with Bayesian statistics and MCMC
+
+**The Bayesian pipeline**
+
+:::{.incremental}
+
+  * **Priors:** define a prior distribution.
+  * **Initial values:** pick starting values for the chain.
+  * **MCMC parameters:** define nb of chains, nb of iterations, burnin, (thinning).
+  * **Check convergence:** trace and density plots, Rhat, effective size.
+  * **Interpret the results:** work with posterior distribution.
+  
+:::
+
+## To sum up with Bayesian statistics and MCMC
+
+**The Bayesian pipeline**
+
+  * **Priors:** define a prior distribution.
+  * **Initial values:** pick starting values for the chain.
+  * **MCMC parameters:** define nb of chains, nb of iterations, burnin, (thinning).
+  * **Check convergence:** trace and density plots, Rhat, effective size.
+  * **Interpret the results:** work with posterior distribution.
+
+  $$~~$$
+  
+  Oh yes, we also need to **write a model!** :innocent:
+
+## NIMBLE 
+
+![](img/nimble-icon.png){width="500"  .absolute right=0 bottom=0}
+
+::: {.incremental}
+  * **N**umerical **I**nference for statistical **M**odels using **B**ayesian and **L**ikelihood **E**stimation.
+
+  *  Uses almost the same model code as BUGS and JAGS. Belongs to a library of other Bayesian methods (Stan), and Laplace approximation (TMB).
+
+$$~~$$
+
+  * A **flexible programming** system to write new analysis methods.
+  
+:::
+
+## Load `nimble` package
+
+**Install NIMBLE package.** 
+
+![](img/babyscared.gif){width="500"  .absolute right=0 top=0}
+
+:::: columns
+
+::: {.column width='60%'}
+
+> Download `Xcode` for MacOs or `Rtools` for Windows.  
+> Visit [https://r-nimble.org/download](https://r-nimble.org/download)  
+> and good luck ! :grimacing:
+
+$$~~$$
+
+::: {.fragment fragment-index=1}
+
+Then **load NIMBLE**
+
+```{r}
+#| eval: FALSE
+#| echo: true
+
+library(nimble)
+```
+
+:::
+
+:::
+
+::::
+
+## The fictive wild boar poop example 
+
+We will use the GLM example of part 1.
+
+### Wild boar counts
+
+  * In frequentist with `glm()`
+
+```{r}
+#| eval: true
+#| echo: false
+
+set.seed(1)
+temp <- round(runif(100,-2,10),1)
+lam <- exp(1 + 0.5*temp)
+conteo <- rpois(100, lam)
+datos <- data.frame(conteo = conteo, temp = temp)
+```
+
+
+```{r}
+#| eval: true
+#| echo: true
+#| cache: true
+
+mod <- glm(conteo ~ temp, data = datos, family = poisson(link = "log"))
+
+```
+
+
+```{r}
+#| eval: true
+#| echo: false
+
+datos
+```
+
+## Step 1: write a model
+
+It's the key step of Bayesian statistics. With `nimble` the sky is the limit!
+A model is made of likelihood and priors.   
+
+You can **modify, adapt** every model (we will see that tomorrow).  
+
+:::: columns
+
+:::{.column width="50%"}
+
+  * In Bayesian with `nimble`.
+
+$$N_i \sim \mbox{Poisson}(\lambda_i)$$
+
+$$\mbox{log}(\lambda_i) = \beta_0 + \beta_1 \mbox{Temperature}_i$$
+for every site $i$ in `nsites`.
+
+:::
+
+:::{.column width="50%"}
+
+### Code
+
+```{r}
+#| eval: FALSE
+#| echo: true
+
+glm.wb <- nimbleCode({
+  
+  # priors
+  b0 ~ dnorm(0, 1)
+  b1 ~ dnorm(0, 1)
+  
+  # likelihood
+  for(i in 1:nsites){
+    
+    log(lambda[i]) <- b0 + b1 * temp[i]
+    
+    conteo[i] ~ dpois(lambda[i])
+  }
+  
+})
+```
+
+:::
+::::
+
+## Step 2: Read in data
+
+To Nimble, not all "data" is data...
+
+:::: columns
+:::{.column width="50%"}
+
+**Constants**:
+
+  * Do never change
+  * E.g. vector of known index values, variables used to define for-loops, etc. 
+  
+**Data**:
+
+  * Can be (re-)simulated within a model
+  * E.g. stuff that *only* appears to the left of a "~" 
+  
+::: 
+:::{.column width="50%"}
+
+### Code 
+
+```{r}
+#| eval: FALSE
+#| echo: true
+#| code-line-numbers: 17-19
+#| 
+glm.wb <- nimbleCode({
+  
+  # priors
+  b0 ~ dnorm(0, 1)
+  b1 ~ dnorm(0, 1)
+  
+  # likelihood
+  for(i in 1:nsites){
+    
+    log(lambda[i]) <- b0 + b1 * temp[i]
+    
+    conteo[i] ~ dpois(lambda[i])
+  }
+  
+})
+
+my.data <- list(conteo = datos$conteo)
+my.constants <- list(temp = datos$temp,
+                     nsites = nrow(datos))
+```
+:::
+::::
+
+## Step 3: Initials values and parameters to save.
+
+:::: columns
+:::{.column width="50%"}
+
+
+### Specify initial values
+
+  * Initial values can be fixed, then it will the same start for every MCMC chain
+  * or Initial values can be obtain from a draw in a probability distribution.
+  * It must be in the **prior distribution**
+
+### Which parameters to save?
+
+  * Indicate all the parameter you want to save. Here, we are only interested in $\beta_0$ and $\beta_1$.
+  
+:::
+
+::: {.column width="50%"}
+
+### Code
+
+$$~~$$
+
+```{r}
+#| eval: FALSE
+#| echo: true
+
+initial.values <- list(b0 = rnorm(1,0,1),
+                       b1 = rnorm(1, 0, 1))
+
+parameters.to.save <- c("b0", "b1")
+```
+
+:::
+::::
+
+
+## Step 4: MCMC details
+
+:::: columns
+:::{.column width="50%"}
+
+$$~$$
+
+  * Number of iterations
+  * Length of burnin
+  * Number of chains
+  * Ration of thinning
+:::
+
+:::{.column width="50%"}
+
+### Code 
+
+$$~~$$
+
+```{r}
+#| eval: FALSE
+#| echo: true
+
+n.iter <- 3000
+n.burnin <- 200
+n.chains <- 3
+n.thin <- 1
+```
+
+:::
+::::
+
+## Sum up
+
+:::: columns
+:::{.column width="50%"}
+  * Write a model
+  * Read in data
+  * Pick initial values
+  * Specify parameters to save
+  * Parametrize MCMC
+  
+:::{.fragment fragment-index=1}
+  Now, you're ready to run! :tada: :muscle:
+:::
+
+:::
+
+:::{.column width="50%"}
+
+### Code
+
+```{r}
+#| eval: FALSE
+#| echo: true
+#| code-line-numbers: "|6|9"
+
+glm.wb <- nimbleCode({
+  
+  # priors
+  b0 ~ dnorm(0, 1)
+  b1 ~ dnorm(0, 1)
+  
+  # likelihood
+  for(i in 1:nsites){
+    
+    log(lambda[i]) <- b0 + b1 * temp[i]
+    
+    conteo[i] ~ dpois(lambda[i])
+  }
+  
+})
+
+my.data <- list(conteo = datos$conteo)
+my.constants <- list(temp = datos$temp,
+                     nsites = nrow(datos))
+
+initial.values <- list(b0 = rnorm(1,0,1),
+                       b1 = rnorm(1, 0, 1))
+
+parameters.to.save <- c("b0", "b1")
+
+n.iter <- 5000
+n.burnin <- 1000
+n.chains <- 2
+n.thin <- 1
+```
+:::
+::::
+
+## Run model!
+
+```{r}
+#| eval: FALSE
+#| echo: true
+
+mcmc.output <- nimbleMCMC(code = glm.wb,     
+                          data = my.data,  
+                          constants = my.constants,
+                          inits = initial.values,
+                          monitors = parameters.to.save,
+                          thin = n.thin,
+                          niter = n.iter, 
+                          nburnin = n.burnin, 
+                          nchains = n.chains)
+```
+
+
+## Explore MCMC outputs
+
+```{r}
+#| eval: true
+#| echo: false
+getwd()
+library(tidyverse)
+load("wildboar.mcmc.rdata")
+
+```
+
+```{r}
+#| eval: true
+#| echo: true
+#| cache: true
+
+str(mcmc.output)
+
+```
+
+## Explore MCMC outputs
+
+```{r}
+#| eval: true
+#| echo: true
+
+head(mcmc.output$chain1)
+
+```
+
+## Numerical summaries
+
+  * Bayesian with Nimble
+  
+```{r}
+#| eval: true
+#| echo: true
+
+library(MCMCvis)
+MCMCsummary(mcmc.output, round = 2)
+
+```
+
+  * Frequentist with `glm()`
+  
+```{r}
+#| eval: true
+#| echo: true
+
+summary(mod)
+
+```
+
+## Trace and posterior density
+
+
+```{r}
+#| eval: true
+#| echo: true
+
+MCMCtrace(mcmc.output,  pdf = F) 
+
+```
+
+## Predictions
+
+Here, we want to **predict the relation between $\lambda$, the number of wild boar poop, and the temperature.**
+
+## Predictions
+
+Here, we want to **predict the relation between $\lambda$, the number of wild boar poop, and the temperature.**
+
+  * One key point of Bayesian statistics is that you obtain **posterior distribution** of the parameter, not a point estimate.
+  
+:::: columns
+:::{.column width="50%"}
+
+```{r}
+#| eval: true
+#| echo: true
+#| cache: true
+
+mcmc.bind <- rbind(mcmc.output$chain1, mcmc.output$chain2)
+
+mcmc.bind
+```
+
+::: 
+:::{.column width="50%"}
+```{r}
+#| eval: true
+#| echo: false
+#| cache: true
+
+mcmc.bind %>%
+  as_tibble() %>% 
+  mutate(chain = c(rep("chain1",nrow(mcmc.output$chain1)),
+                   rep("chain2",nrow(mcmc.output$chain1)))) %>%  
+  ggplot() + 
+  geom_density(aes(x = b1, fill=chain), alpha = 0.3) +
+  labs(title = "Posterior distribution of parameter b1") +
+   theme_minimal() +
+  xlim(0.47,0.54)+
+  scale_fill_manual(values = c(chain1 = "#840032", chain2 = "#000A39"))+
+  theme(axis.text = element_text(color= "black", face= "bold", size=16),
+        text = element_text(color= "black", face= "bold", size = 16),
+        plot.title.position = "plot")
+```
+::: 
+::::
+
+<center>
+We make a prediction **for each iteration**!
+</center>
+
+## Predictions {.smaller}
+
+```{r}
+#| eval: true
+#| echo: false
+#| cache: true
+
+# the gradient of temperature we want to predict on
+pred.temp <- seq(from = -5, to = 9, by = 0.1)
+
+pred.lambda <- matrix(NA, nrow = nrow(mcmc.bind), ncol = length(pred.temp))
+
+for(i in 1:nrow(pred.lambda)){
+  pred.lambda[i,] <- exp(mcmc.bind[i,"b0"] + mcmc.bind[i,"b1"] * pred.temp)
+}
+
+
+mean.lambda <- apply(pred.lambda, 2, mean)
+sd.lambda <- apply(pred.lambda, 2, sd)
+ci <- apply(pred.lambda, 2, quantile, c(0.1, 0.9))
+
+pred.results <- tibble(temp = pred.temp, 
+                       mean = mean.lambda,
+                       sd = sd.lambda,
+                       cinf = ci[1,],
+                       csup = ci[2,])
+```
+
+:::: columns
+:::{.column width="50%"}
+
+:::{.fragment fragment-index=1}
+  1. We define a range of temperature in which we want to predict `lambda`
+ 
+:::
+
+:::{.fragment fragment-index=2}
+  
+  2. For **each iteration** (each line of `mcmc.bind`), we calculate `lambda` with the `b0`
+ and `b1` estimated, as $\lambda = \mbox{exp}( \beta_0 + \beta1 \mbox{Temperature})$
+ 
+ 
+:::
+
+$$~~$$
+
+:::{.fragment fragment-index=3} 
+
+ 3. We have the predicted distribution of `lambda` for each temperature and we can extract mean, median, standard deviation, credible interval, etc.
+:::
+:::
+
+:::{.column width="49%"}
+
+:::{.fragment fragment-index=1} 
+  
+```{r}
+#| eval: FALSE
+#| echo: true
+pred.temp <- seq(from = -5, to = 9, by = 0.1)
+```
+:::
+
+$$~~$$
+
+:::{.fragment fragment-index=2} 
+
+```{r}
+#| eval: FALSE
+#| echo: true
+
+# create a matrix niteration x ntemp
+pred.lambda <- matrix(NA, nrow = nrow(mcmc.bind), ncol = length(pred.temp))
+
+for(i in 1:nrow(pred.lambda)){
+  pred.lambda[i,] <- exp(mcmc.bind[i,"b0"] + mcmc.bind[i,"b1"] * pred.temp)
+}
+```
+
+:::
+$$~~$$
+
+:::{.fragment fragment-index=3} 
+```{r}
+#| eval: true
+#| echo: true
+
+mean.lambda <- apply(pred.lambda, 2, mean) # extract mean
+sd.lambda <- apply(pred.lambda, 2, sd) # extract sd
+ci <- apply(pred.lambda, 2, quantile, c(0.1, 0.9)) # 80% CI
+
+pred.results <- tibble(temp = pred.temp, 
+                       mean = mean.lambda,
+                       sd = sd.lambda,
+                       cinf = ci[1,],
+                       csup = ci[2,])
+```
+:::
+
+:::{.fragment fragment-index=3} 
+```{r}
+#| eval: true
+#| echo: false
+pred.results
+```
+
+::: 
+:::
+::::
+
+## Predictions
+
+We can plot the prediction.
+
+```{r}
+#| eval: true
+#| echo: false
+
+pred.results %>% 
+  ggplot(aes(x = temp, y = mean), color = "#000A39") +
+  geom_line() + 
+  geom_line(aes(x = temp, y= cinf), linetype = 2, color = "#D2A34E" )+
+  geom_line(aes(x = temp, y= csup), linetype = 2, color = "#D2A34E" )+
+  labs(title = "Number of wild boar poop (WBP) as a function of temperature",
+       subtitle = paste0("b0 = ", round(mean(mcmc.bind[,"b0"]),2),
+                         " & b1 = ",  round(mean(mcmc.bind[,"b1"]),2)),
+       x = "Temperature",
+       y = "Nb of WBP") + 
+  theme_minimal()+
+  theme(text = element_text(face = "bold", family = "Comic Sans MS", color ="#840032"),
+        plot.subtitle =  element_text(family = "Times"))
+```
+
+## Conclusions
+
+  * Bayesian statistics are **tools** to fit ecological models.
+  
+## Conclusions
+
+  * Bayesian statistics are **tools** to fit ecological models.
+  
+### Why I like Bayesian?
+    
+  * Because it helps me to understand the models.
+  
+  * Using `nimble` allow to formally write the statistical model you want.
+  * It is **useful to adapt** existing models to fancy (or shitty) datasets.
+  * Or to integrate multiple datasets, although alternative exist `{spAbundance}`, `{spOccupancy}`, `{pointedSDM}`.
+ 
+ 
+## Useful resources
+
+  * Olivier Gimenez's [online classes](https://oliviergimenez.github.io/bayesian-hmm-cr-workshop-valencia/)
+  
+  * Official website [https://r-nimble.org](https://r-nimble.org)
+
+  * User Manual [https://r-nimble.org/html_manual/cha-welcome-nimble.html](https://r-nimble.org/html_manual/cha-welcome-nimble.html) and [cheatsheet](https://r-nimble.org/cheatsheets/NimbleCheatSheet.pdf).
+
+  * Users mailing list [https://groups.google.com/forum/#!forum/nimble-users](https://groups.google.com/forum/#!forum/nimble-users)
+
+  * Training material [https://github.com/nimble-training](https://github.com/nimble-training)
+
+  * Reference to cite when using nimble in a publication:
+
+> de Valpine, P., D. Turek, C. J. Paciorek, C. Anderson-Bergman, D. Temple Lang, and R. Bodik (2017). [Programming With Models: Writing Statistical Algorithms for General Model Structures With NIMBLE](https://arxiv.org/pdf/1505.05093.pdf). *Journal of Computational and Graphical Statistics* **26** (2): 403–13.
+
+## Mañana 
+
+We will see how to fit widely used ecological models with `nimble`.
+
+  * **Occupancy models**
+  * **N-mixture**
+  * **Spatial Capture-Recapture**
+  
+<center>  
+![](img/dibertilogo.png){width=400}
+</center>
+
+
+
