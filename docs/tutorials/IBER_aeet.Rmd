@@ -40,7 +40,7 @@ This is a reduced version of the [IBER](https://jabiologo.github.io/web/tutorial
 
 **For whom:** This is a workshop for ecologists in a broad sense. A laptop with R, RStudio, and Nimble installed is required (see below); basic knowledge of R and GLMs is also recommended.
 
-**From:**  By [Sonia Illanas (IREC, CSIC-UCLM-JCCM)](https://scholar.google.com/citations?hl=es&user=ew25H7QAAAAJ&view_op=list_works&sortby=pubdate) & [Javier Fernández-López (IREC, CSIC-UCLM-JCCM)](https://scholar.google.com/citations?hl=es&user=v3biyuIAAAAJ&view_op=list_works&sortby=pubdate))
+**By:** [Sonia Illanas (IREC, CSIC-UCLM-JCCM)](https://scholar.google.com/citations?hl=es&user=ew25H7QAAAAJ&view_op=list_works&sortby=pubdate) & [Javier Fernández-López (IREC, CSIC-UCLM-JCCM)](https://scholar.google.com/citations?hl=es&user=v3biyuIAAAAJ&view_op=list_works&sortby=pubdate))
 
 **When:** Monday, June 2, 10:00-14:00
 
