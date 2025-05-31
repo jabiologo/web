@@ -54,7 +54,7 @@ This is a reduced version of the [IBER](https://jabiologo.github.io/web/tutorial
   4. **Fitting a GLM in NIMBLE**
   5. **A look at more complex models**
   
-You can find all the materials here: [slides]() and a [full script]() with the code we will use.
+You can find all the materials here: [slides](https://jabiologo.quarto.pub/iber_aeet) and a [full script](https://raw.githubusercontent.com/jabiologo/web/tutorials/iber_aeet.R) with the code we will use.
 
 #  **Requirements**
 
