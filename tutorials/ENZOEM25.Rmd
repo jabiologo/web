@@ -37,7 +37,7 @@ text-align: justify}
   3. Visualización de datos en R
   4. Distribuciones de probabilidad y estadística básica
   
-### [Módulo 2 - Test estadísticos en ciencias experimentales (11, 13 y 16 de junio)]()
+### [Módulo 2 - Test estadísticos en ciencias experimentales (11, 13 y 16 de junio)](https://jabiologo.github.io/web/tutorials/enzoem_2.html)
 
   1. Distribuciones de probabilidad y estadística básica
   2. Principales test paramétricos y no paramétricos
