@@ -39,10 +39,10 @@ text-align: justify}
   
 ### [Módulo 2 - Test estadísticos en ciencias experimentales (11, 13 y 16 de junio)](https://jabiologo.github.io/web/tutorials/enzoem_2.html)
 
-  1. Distribuciones de probabilidad y estadística básica
+  1. Generalidades
   2. Principales test paramétricos y no paramétricos
   3. El modelo lineal generalizado
-  4. Diseños avanzados: medidas repetidas
+  4. Diseños avanzados: GLS y GLMM
   
 ### [Módulo 3 - Modelos avanzados en estudios observacionales (2 y 4 de septiembre)]()
 
