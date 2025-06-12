@@ -31,4 +31,20 @@ colnames(tabla_listeria) <- c("mercadona", "aldi", "coviran")
 tabla_listeria
 chisq.test(tabla_listeria)
 
+##################
+# T-test y ANOVA #
+##################
 
+
+
+
+###################################
+# U-Mann Whitney y Kruskal-Wallis #
+###################################
+
+
+
+
+####################
+# Modelos lineales #
+####################
