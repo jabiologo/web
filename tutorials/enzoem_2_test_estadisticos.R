@@ -45,6 +45,6 @@ chisq.test(tabla_listeria)
 
 
 
-####################
-# Modelos lineales #
-####################
+##########################################
+# Correlación, regresión y modelo lineal #
+##########################################
