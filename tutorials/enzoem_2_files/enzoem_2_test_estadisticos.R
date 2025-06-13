@@ -35,16 +35,37 @@ chisq.test(tabla_listeria)
 # T-test y ANOVA #
 ##################
 
+# ¿Varía la densidad de la cerveza Guinnes dependiendo del lote?
+# Piensa sobre el tipo de variables, explora los datos, haz gráficos, etc.
+guinnes <- 
 
+
+# ¿Varía el peso de las perdices en función del hábitat?
+# Piensa sobre el tipo de variables, explora los datos, haz gráficos, etc.
+triazol <- 
 
 
 ###################################
 # U-Mann Whitney y Kruskal-Wallis #
 ###################################
 
+# ¿Varía la cantidad de garrapatas dependiendo de la edad?
+# Piensa sobre el tipo de variables, explora los datos, haz gráficos, etc.
+conservante <- 
 
+# ¿Varía la calidad de la carne en función del conservante?
+# Piensa sobre el tipo de variables, explora los datos, haz gráficos, etc.
+garrapatas <- 
 
 
 ##########################################
 # Correlación, regresión y modelo lineal #
 ##########################################
+
+# ¿Cómo se relaciona el nivel de fungicidas triazoles en sangre con respecto al
+# peso en individuos de perdices?
+# Piensa sobre el tipo de variables, explora los datos, haz gráficos, etc.
+triazol <- 
+
+
+# ¿Podrías plantear todos los test estadísticos anteriores en la forma de modelos lineales?
