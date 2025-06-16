@@ -178,7 +178,21 @@ El contraste de hipótesis es un procedimiento estadístico que se utiliza para 
 
 ### Errores y valores anómalos
 
+* **Errores:** fallos no intencionados durante el proceso de recolección, medición o registro de los datos. Pueden deberse a equivocaciones humanas, mal funcionamiento de instrumentos, o fallos en la transcripción.
+
+* **Valores anómalos:** observaciones individuales en un conjunto de datos que se desvían significativamente de la mayoría de los demás valores. Pueden ser el resultado de errores en los datos o representar fenómenos inusuales pero genuinos.
+
 ### Transformaciones: estandarización y logaritmo
+
+* **Estandarización:** transformar nuestra variable para que su media sea cero y su desviación estándar sea uno.
+
+$\frac{(x_i - \bar{x})}{\sigma}$
+
+* **Logaritmo:** comprimir valores grandes, estirar valores pequeños
+1) Linealizar relaciones no lineales.
+2) Estabilizar la varianza (homocedasticidad).
+3) Reducir la asimetría (lo que a menudo lleva a una distribución normal).
+4) Reflejar la naturaleza multiplicativa o proporcional de muchos fenómenos del mundo real.
 
 # **2. Principales test paramétricos y no paramétricos**
 
