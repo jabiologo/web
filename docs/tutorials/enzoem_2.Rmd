@@ -38,10 +38,9 @@ klippy::klippy(tooltip_message = 'Click para copiar', tooltip_success = 'Hecho!'
 
 En este espacio se encuentran los contenidos para el Módulo 2 - Test estadísticos en ciencias experimentales del Curso de Estadística ENZOEM, que tiene la siguiente estructura:
 
-  1. Generalidades. [Materiales](https://jabiologo.github.io/web/tutorials/enzoem_2_files/enzoem2_1.zip) y [presentaciones](https://jabiologo.github.io/web/tutorials/enzoem_2_files/modulo2_1_compressed.pdf)
-  2. Principales test paramétricos y no paramétricos. [Materiales](https://jabiologo.github.io/web/tutorials/enzoem_2_files/enzoem2_2.zip)
-  3. El modelo lineal general (GLM).
-  4. Diseños avanzados: GLS y GLMM.
+  1. Generalidades. [Materiales prácticos](https://jabiologo.github.io/web/tutorials/enzoem_2_files/enzoem2_1.zip) y [presentaciones](https://jabiologo.github.io/web/tutorials/enzoem_2_files/modulo2_1_compressed.pdf)
+  2. Principales test paramétricos y no paramétricos. [Materiales prácticos](https://jabiologo.github.io/web/tutorials/enzoem_2_files/enzoem2_2.zip) y [presentaciones](https://jabiologo.github.io/web/tutorials/enzoem_2_files/modulo2_1_2_compressed.pdf).
+  3. El modelo lineal general (GLM) y diseños avanzados. [Presentaciones sobre diseños experimentales](https://jabiologo.github.io/web/tutorials/enzoem_2_files/enzoem3.pdf), [materiales prácticos](https://jabiologo.github.io/web/tutorials/enzoem_2_files/enzoem2_3.zip).
 
 # **1. Generalidades**
 
