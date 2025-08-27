@@ -44,7 +44,7 @@ text-align: justify}
   3. El modelo lineal general (GLM)
   4. Diseños avanzados: GLS y GLMM
   
-### [Módulo 3 - Modelos avanzados en estudios observacionales (2 y 4 de septiembre)]()
+### [Módulo 3 - Modelos avanzados en estudios observacionales (2 y 4 de septiembre)](https://jabiologo.github.io/web/tutorials/enzoem_3.html)
 
   1. Modelos mixtos: efectos fijos y efectos aleatorios
   2. Relaciones no lineales
