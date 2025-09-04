@@ -39,5 +39,5 @@ klippy::klippy(tooltip_message = 'Click para copiar', tooltip_success = 'Hecho!'
 En este espacio se encuentran los contenidos para el Módulo 3 - Modelos avanzados en estudios observacionales, del Curso de Estadística ENZOEM, que tiene la siguiente estructura:
 
   1. Modelos mixtos: efectos fijos y efectos aleatorios. [Materiales prácticos](https://jabiologo.github.io/web/tutorials/modulo3.zip) y [presentaciones](https://jabiologo.github.io/web/tutorials/modulo3_compressed.pdf)
-  2. Técnicas multivariantes. [Materiales prácticos](https://jabiologo.github.io/web/tutorials/enzoem3_jota.zip) y [presentaciones]()
+  2. Técnicas multivariantes. [Materiales prácticos](https://jabiologo.github.io/web/tutorials/Enzoem3_jota_v2.zip) y [presentaciones]()
 
