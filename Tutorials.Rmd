@@ -66,3 +66,7 @@ text-align: justify
 # Curso Estadística ENZOEM25
 
 [Curso de Estadística ENZOEM 2025](https://jabiologo.github.io/web/tutorials/ENZOEM25.html)
+
+# Modelos demográficos franja de Gaza (Biomatemáticas 25/26)
+
+[Modelos demográficos franja de Gaza](https://jabiologo.github.io/web/tutorials/modelos_gaza_html.html)

@@ -1,0 +1,369 @@
+---
+title: "Modelos poblacionales para la franja de Gaza"
+author: "Javier Fernández-López"
+date: "03-10-2025"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    collapsed: false
+    number_sections: false
+    toc_depth: 1
+    #code_folding: hide
+---
+
+<style>
+body {
+text-align: justify}
+</style>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+ 
+# Introducción
+
+Con motivo de las movilizaciones de octubre de 2025 demandando el fin del conflicto en Gaza, se ha desarrollado una clase práctica en el marco de la asignatura de Biomatemáticas aplicando los conceptos estudiados hasta la fecha a la situación demográfica de Gaza. El objetivo ha sido doble: visibilizar la dimensión de la masacre y demostrar la utilidad de los modelos demográficos estudiados en la asignatura. Durante la sesión, se ha realizado una pequeña introducción al contexto histórico de la región de Palestina. Dado que profundizar en tal contexto excede a las capacidades del docente y quedan fuera de los objetivos de la asignatura, se han proporcionado fuentes adicionales para que el alumnado se docuementen por su cuenta. En concreto, se ha mencionado el Episodio 2 de la serie documental [**Cuando el mundo se tambalea: La creación del Estado de Israel**](https://www.youtube.com/watch?v=iw2qx7LJiW0), una producción francesa que trata sobre los acontecimientos históricos más trascendentes desde los años 40 hasta la actualidad.
+  
+Dado que la cantidad y complejidad de modelos estudiados durante el curso es muy limitado, el ejemplo es puramente demostrativo y los modelos aplicados muy (demasiado) sencillos. Aún así, y entendiendo que _**todo modelo es una simplificación de la realidad que debe servir para comprender y/o predecir parte de la misma**_, la actividad planteada encaja con las Competencias a adquirir en la asignatura de Biomatemáticas del Grado de Ciencias Biológicas de la Universidad Complutense de Madrid.
+
+
+# Enunciado del ejercicio
+
+Hasta octubre de 2023, la población de la franja de Gaza tenía un crecimiento leve que podría seguir un modelo de Malthus con parámetro $a=0.0005$. Según el Palestinian Central Bureau of Statistics, en el momento de los atentados de Hamás el tamaño poblacional de la franja [**se estimaba en aproximadamente 2.226.000 personas**](https://www.pcbs.gov.ps/site/lang__en/881/default.aspx) ($y_0 = 2.226$ millones). Según las Autoridades Palestinas, la población de Gaza a enero de 2025 se había [**reducido aproximadamente un 6%**](https://www.euronews.com/2025/01/02/palestinian-statistics-bureau-projects-gaza-population-down-by-6-since-start-of-war) desde el inicio de los bombardeos por parte del ejército israelí ($y_{15} = 2.1$ millones). A partir de estos datos, se busca:
+
+  1. Asumiendo un modelo de Malthus sencillo, ¿qué población tenía la franja en enero de 2023 ($t=-9$)?
+  2. Construir un modelo poblacional que refleje la situación desde octubre del 2023 hasta la actualidad y calcular la población en octubre de 2025 ($t=24$) según ese modelo.
+  3. Calcular la población en enero de 2026 ($t=27$) bajo dos escenarios:
+  
+   * A) Alto el fuego inmediato
+   * B) Continuación con la matanza actual
+    
+  4. Calcular el cambio demográfico total en octubre de 2025 ($t=24$) en la franja si no se hubiera producido el conflicto.
+
+# Apartado 1)
+
+El modelo de Malthus estudiado en clase establece que el crecimiento poblacional $y'(t)$ está relacionado con el propio tamaño poblacional $y(t)$, y puede expresarse mediante la siguiente ecuación diferencial:
+
+\begin{equation*}
+y'(t) = ay(t)
+\end{equation*}
+donde  $a$ es la tasa de crecimiento _per capita_. Al resolver esta ecuación diferencial e imponer condiciones iniciales, obtenemos la solución particular del modelo de Malthus que hemos estudiado:
+
+\begin{equation*}
+y(t) = y_0 e^{at}
+\end{equation*}
+
+Como sabemos que en el modelo de Malthus la tasa $a$ permanece constante y en nuestro caso $a=0.0005$, sabiendo que la población en octubre del 2023 era $y_0 = 2.226$ millones, podemos sustituir para obtener la población en enero de 2023 ($t = -9$):
+
+\begin{equation*}
+y(-9) = 2.226 e^{-0.0005*9} = 2.216
+\end{equation*}
+
+En el lenguaje R simplemente escribiríamos en la consola ``2.226*exp(-0.0005*9)`` y obtendríamos que la población en enero de 2023 rondaría los 2.216 millones según nuestro modelo.
+
+# Apartado 2)
+
+A partir de los atentados de Hamás en octubre de 2023 comienza el asedio de la franja por parte del ejército israelí, lo que conlleva una pérdida de población a causa tanto de la emigración como de un aumento de la mortalidad. A esta pérdida de población la denominaremos $P(t)$ y la interpretaremos como interpretamos como un factor que empeora la tasa de crecimiento neto. Por tanto, el ritmo de crecimiento del modelo de Malthus se verá ahora también afectado por esta pérdida de población. De esta forma tendríamos:
+
+\begin{equation*}
+y'(t) = (a-P(t))y(t)
+\end{equation*}
+
+Podríamos añadir un poco más de control sobre el efecto de conflicto añadiendo un parámetro $b$ que multiplicase a $P(t)$. Imaginemos, por ejemplo, que el conflicto se termina de golpe. Simplmente haciendo que $b=0$ podríamos "apagar" el efecto negativo de $P(t)$ sobre $a$, volviendo al modelo de Malthus inicial. De la misma forma, subiendo o bajando el valor de $b$ podríamos "modular" el efecto de $P(t)$, funcionaría como un "ecualizador" o un "dial" que ajusta el efecto de $P(t)$. Esto hace también que nuestro modelo sea más flexible.
+
+\begin{equation*}
+y'(t) = (a-bP(t))y(t)
+\end{equation*}
+
+Pensemos ahora en el comportamiento de la pérdida de población. Podríamos pensar que esa pérdida de población permanece constante en el tiempo:
+
+```{r, echo=TRUE}
+plot(x = 0:5, y = rep(5000, 6), type = "l", lwd = 2,
+     xlab = "tiempo (en meses)",
+     ylab = "P(t) (perdida de población)")
+```
+
+Esta situación indicaría que en cada mes se pierden por ejemplo 5000 personas, y que este número es constante y no varía a lo largo del tiempo.
+
+Sin embargo, podemos pensar que la pérdida de población puede ir creciendo debido al empeoramiento de las condiciones de vida. Esta pérdida de población (tanto por emigración como por mortalidad) crecería desde $0$ en el instante $t=0$ (no hay pérdida de población al principio), a un ritmo constante $r$. Esta situación podría modelizarse mediante una simple ecuación de una recta con pendiente $r$ e intercepto 0 (punto de corte de la recta con el eje Y):
+
+\begin{equation*}
+P'(t) = r
+\end{equation*}
+\begin{equation*}
+P(t) = rt
+\end{equation*}
+
+```{r, echo=TRUE}
+# Por ejemplo, para una r1=300 o r2=500
+t <- 0:6
+Pt_r1 <- 300*t
+Pt_r2 <- 500*t
+
+plot(x = t, y = Pt_r2, type = "l", col = "darkred",
+     xlab = "tiempo (en meses)",
+     ylab = "P(t) (pérdida de población)", lwd = 2)
+lines(x = t, y = Pt_r1, col = "darkblue", lwd = 2)
+legend("topleft", legend=c("r1=300", "r2=500"),
+       col=c("darkblue", "darkred"), lty=1, lwd = 2)
+```
+
+De esta forma tendríamos que al inicio del conflicto no hay pérdida de población, pero a medida que pasa el tiempo esa pérdida va aumentando, y ese aumento depende de los valores que tome $r$. Este modelo probablemente refleje mejor la situación real que una pérdida constante de población, así que es el que utilizaremos.
+
+Ahora que sabemos cómo evoluciona $P(t)$ a lo largo del tiempo, podemos sustituirlo en nuestro modelo de población:
+
+\begin{equation*}
+y'(t) = (a-bP(t))y(t)
+\end{equation*}
+\begin{equation*}
+P(t) = rt
+\end{equation*}
+
+\begin{equation*}
+y'(t) = (a-brt)y(t)
+\end{equation*}
+
+Antes de seguir, echemos un vistazo a la ecuación $y'(t) = (a-brt)y(t)$, donde $y'(t)$ es la variación en el tamaño poblacional en el tiempo $t$, $y(t)$ es el tamaño poblacional en el tiempo $t$, $t$ es el tiempo y el resto son constantes. En la parte de la pérdida de población $-brt$ hemos acabado teniendo dos constantes que se multiplican ($b$, que la habíamos incluido al principio para, por ejemplo "apagar" el efecto de la pérdida de población, y $r$, que representa la tasa a la que la pérdida de población aumenta con el tiempo). Estas dos constantes que se multiplican pueden ser sustituidas por una nueva constante que representará el producto $k = b*r$. Esto facilitará los cálculos posteriores, ya que en lugar de tener dos incógnitas (que no podríamos diferenciar entre una y otra), tendremos sólo una. De esta forma, nuestro modelo quedaría con la siguiente ecuación diferencial:
+
+\begin{equation*}
+y'(t) = (a-kt)y(t)
+\end{equation*}
+
+donde $y'(t)$ es la variación en el tamaño poblacional en el tiempo $t$, $a$ es la tasa de crecimiento poblacional en ausencia de conflicto, $k$ es una constante que modula la pérdida de población, $t$ es el tiempo e $y(t)$ es el tamaño poblaciónal en el tiempo $t$.
+
+Ahora debemos resolver esta ecuación diferencial e imponer condiciones iniciales para obtener la ecuación de función de efectivos de nuestro modelo:
+
+\begin{equation*}
+\frac{dy}{dt} = (a-kt)y
+\end{equation*}
+
+\begin{equation*}
+\frac{dy}{y} = (a-kt)dt
+\end{equation*}
+
+\begin{equation*}
+\int \frac{1}{y}dy = \int(a-kt)dt
+\end{equation*}
+
+\begin{equation*}
+\ln(y) + c_1 = \int a dt - \int kt dt
+\end{equation*}
+
+\begin{equation*}
+ln(y) + c_1 = at + c_2 - k\int t dt
+\end{equation*}
+
+\begin{equation*}
+ln(y) + c_1 = at + c_2 - k \frac{t^2}{2} + c_3
+\end{equation*}
+
+\begin{equation*}
+ln(y) = at - k \frac{t^2}{2} + c_4
+\end{equation*}
+
+\begin{equation*}
+y(t) = e^{at - k \frac{t^2}{2} + c_4}
+\end{equation*}
+
+\begin{equation*}
+y(t) = e^{at - k \frac{t^2}{2}} * e^{c_4}
+\end{equation*}
+
+\begin{equation*}
+y(t) = e^{at - k \frac{t^2}{2}} * C
+\end{equation*}
+
+Que como hemos visto en clase, tras imponer condiciones iniciales obtenemos que $C=y_0$, por lo que reordenando obtenemos la siguiente solución particular de nuestro modelo:
+
+\begin{equation*}
+y(t) = y_0 e^{at - \frac{1}{2} k t^2}
+\end{equation*}
+
+Este sería nuestro nuevo modelo que reflejaría la nueva situación de la demografía de la franja a partir de octubre de 2023. Únicmente nos queda conocer el valor del parámetro $k$, que podemos obtener despejándolo de la ecuación, y utilizando los datos que nos proporciona el enunciado $y_0 = 2.226$ millones e $y_{15} = 2.1$ millones:
+
+\begin{equation*}
+k = \frac{2}{t^{2}}\left(a t - ln\frac{y(t)}{y_{0}}\right)
+\end{equation*}
+
+\begin{equation*}
+k = \frac{2}{15^{2}}\left(0.0005*15 - ln\frac{2.1}{2.226}\right)
+\end{equation*}
+
+\begin{equation*}
+k = 0.000584
+\end{equation*}
+
+Para resolverlo, en la consola de R escribiríamos ``(2 / (15^2)) * (0.0005 * 15 - log(2.1 / 2.226))`` Una vez conocemos el valor de $k$, ya estaríamos en condiciones de calcular la población de la franja en octubre de 2025 ($t=24$) utilizando la solución particular de nuestro modelo:
+
+\begin{equation*}
+y(t) = y_0 e^{at - \frac{1}{2} k t^2}
+\end{equation*}
+
+\begin{equation*}
+y(t=24) = 2.226 e^{(0.0005*24) - \frac{1}{2} 0.000584 * 24^2}
+\end{equation*}
+
+\begin{equation*}
+y(t=24) \approx 1.905
+\end{equation*}
+
+Para resolverlo, en la consola de R escribiríamos ``2.226 * exp((0.0005 * 24) - 0.5 * 0.000584 * 24^2)``. Por lo tanto, según nuestro modelo, la población de la franja en octubre de 2025 sería de aproximadamente 1.905 millones de personas.
+
+# Apartado 3)
+
+En el apartado 3 nos piden que hagamos una predicción del tamaño poblacional en el futuro (enero del 2026, $t=27$) según nuestro modelo bajo dos escenarios.
+
+En el escenario **A** se contempla un alto al fuego inmediato a partir de octubre de 2025, es decir, a partir de $t=24$. Una forma de simular este escenario es asumir que nuestra constante que modulaba el efecto de la pérdida demográfica $k$ se hace 0 a partir de $t=24$, por lo que el modelo vuelve a comportarse como el Malthus inicial. Hay que tener en cuenta que para hacer estos los cálculos, el nuevo $y_0$ debe ser ahora la población que había en $t=24$, que es el momento a partir del cual el parámetro $k$ se hace cero, y el tiempo para el que querríamos predecir la población sería $t=3$, esto es, 3 meses después de octubre de 2025. De este modo tendríamos que:
+
+\begin{equation*}
+y(t) = y_0 e^{at - \frac{1}{2} k t^2}
+\end{equation*}
+
+\begin{equation*}
+y(t=3) = 1.905 e^{(0.0005*3) - \frac{1}{2} 0 * 3^2}
+\end{equation*}
+
+\begin{equation*}
+y(t=3) \approx 1.908
+\end{equation*}
+
+En la consola de R, introduciríamos la expresión ``1.905 * exp((0.0005 * 3) - 0.5 * 0 * 3^2)``. Nuestro modelo, si cesase por completo esa pérdida de población y manteniendo la tasa de crecimiento anterior al conflicto, predice que en enero de 2026 la población de la franja sería $1.908$ millones de personas.
+
+En el escenario **B** seguiría como hasta ahora. Por lo tanto, como el modelo no cambia por no haber ningún alto el fuego, podemos seguir utilizando la población al inicio del conflicto como $y_0$ y calcular la población para 27 meses después ($t=27$), esto es, en enero de 2026:
+
+\begin{equation*}
+y(t) = y_0 e^{at - \frac{1}{2} k t^2}
+\end{equation*}
+
+\begin{equation*}
+y(t=27) = 2.226 e^{(0.0005*27) - \frac{1}{2} 0.000584 * 27^2}
+\end{equation*}
+
+\begin{equation*}
+y(t=27) \approx 1.83
+\end{equation*}
+
+De no cesar el conflicto, nuestro modelo predice una población en enero de 2026 de aproximadamente $1.83$ millones de personas.
+
+# Apartado 4)
+
+Por último el enunciado nos pide calcular el cambio demográfico total a fecha de octubre de 2025 ($t=24$) en la franja si no se hubiera producido el conflicto. Aunque puede parecer que simplemente podemos restar la población que había en octubre del 2023 y la población que hemos calculado en 2025, debemos tener en cuenta que la población que tendríamos en la franja en la actualidad no se habría mantenido constante, sino que venía creciendo ligeramente, por lo que debemos proyectar nuestro primer modelo de Malthus desde octubre del 2023 hasta octubre del 2025, y después restarle la estima teniendo en cuenta el conflicto:
+
+\begin{equation*}
+y(t) = y_0 e^{at}
+\end{equation*}
+
+\begin{equation*}
+y_{sinconflicto}(24) = 2.226 e^{0.0005*24} \approx 2.25
+\end{equation*}
+
+Por tanto, tenemos que la población en la franja habría sido a fecha de octubre de 2025 de aproximadamente 2.25 millones de personas. A esta cifra le podemos restar lo estimado teniendo en cuenta el conflicto, que es 1.905 millones:
+\begin{equation*}
+y_{sinconflicto}(24) - y(24)
+\end{equation*}
+\begin{equation*}
+2.25 - 1.905 = 0.345
+\end{equation*}
+
+El resultado arroja una pérdida de población de 345,000 personas, en el que está contemplado los desplazamientos, los fallecimientos y el no crecimiento de la población durante el conflicto.
+
+# Comentarios y conclusiones
+
+Es obvio que estos modelos tan sencillos no reflejan al completo la realidad de la demografía de la franja. Sin embargo, se demuestra la utilidad de los modelos para hacer estimas, predicciones y evaluaciones de diferentes escenarios. Se insta al lector a reflexionar sobre otros procesos que podrían estar afectando, así como su inclusión en los modelos.
+
+Según nuestras estimas aproximadamente 300,000 personas han sido desplazadas o asesinadas desde el inicio del conflicto. Esto es el equivalente a la totalidad de la población de ciudades como Alicante o Córdoba, en España.
+
+```{r, echo=FALSE, warning= FALSE, message=FALSE}
+# --- Librerías ---
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(scales)
+
+# --- Parámetros ---
+y0 <- 2.226       # millones (oct-2023)
+a  <- 0.0005      # tasa mensual natural
+k  <- 0.000584    # intensidad del conflicto (kappa)
+t_cut <- 24       # oct-2025 -> 24 meses desde oct-2023
+
+# --- Fechas clave ---
+date_start <- as.Date("2023-01-01")
+date_y0    <- as.Date("2023-10-01")
+date_cut   <- as.Date("2025-10-01")
+date_end   <- as.Date("2026-01-01")
+
+# Conversión de fechas a meses desde y0
+month_len <- 365.2425 / 12
+mfrom_y0 <- function(d) as.numeric(d - date_y0) / month_len
+
+# --- Modelos ---
+# Malthus simple (sin conflicto)
+y_malthus <- function(t) y0 * exp(a * t)
+
+# Malthus modificado (con k > 0)
+y_conflict <- function(t) {
+  ifelse(t < 0, y_malthus(t),
+         y0 * exp(a * t - 0.5 * k * t^2))
+}
+
+# Escenario B: alto el fuego (k=0 desde t_cut)
+y_k0_after <- function(t, t_cut = 24) {
+  y_24 <- y0 * exp(a * t_cut - 0.5 * k * t_cut^2)
+  ifelse(t <= t_cut,
+         y_conflict(t),
+         y_24 * exp(a * (t - t_cut)))
+}
+
+# --- Serie temporal ---
+dates <- seq(date_start, date_end, by = "1 day")
+t <- mfrom_y0(dates)
+
+# --- Trayectorias ---
+df <- tibble(
+  date = dates,
+  t = t,
+  `Malthus (enero-2023 → oct-2023)` = ifelse(t <= 0, y_malthus(t), NA),
+  `Modelo con conflicto (oct-2023 → oct-2025)` = ifelse(t >= 0 & t <= 24, y_conflict(t), NA),
+  `Escenario A: continúa igual` = ifelse(t >= 24, y_conflict(t), NA),
+  `Escenario B: alto el fuego` = ifelse(t >= 24, y_k0_after(t), NA),
+  `Contrafactual: sin conflicto` = ifelse(t >= 0 & t <= 24, y_malthus(t), NA)
+) %>%
+  pivot_longer(-c(date, t), names_to = "Modelo", values_to = "y")
+
+# --- Gráfico ---
+ggplot(df, aes(x = date, y = y, color = Modelo, linetype = Modelo)) +
+  geom_line(size = 1) +
+  geom_vline(xintercept = as.numeric(date_y0), linetype = "dashed", color = "black") +
+  geom_vline(xintercept = as.numeric(date_cut), linetype = "dotted", color = "black") +
+  annotate("text", x = date_y0, y = 2.27, label = "Oct-2023 (y0)", hjust = -0.1, angle = 90, size = 3) +
+  annotate("text", x = date_cut, y = 2.27, label = "Oct-2025", hjust = -0.1, angle = 90, size = 3) +
+  scale_x_date(date_breaks = "3 months", date_labels = "%b-%Y") +
+  scale_y_continuous(labels = label_number(big.mark = ".", decimal.mark = ",")) +
+  labs(
+    title = "Evolución de la población en Gaza (ene-2023 a ene-2026)",
+    subtitle = "Modelos: Malthus, conflicto y escenarios tras oct-2025",
+    x = "Fecha", y = "Población (millones)",
+    color = NULL, linetype = NULL
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    legend.position = "top",
+    legend.text = element_text(size = 7),     # 🔹 hace más pequeña la leyenda
+    legend.key.width = unit(1.5, "lines"),    # 🔹 acorta las líneas de la leyenda
+    legend.key.height = unit(0.5, "lines"),   # 🔹 reduce altura de las filas
+    legend.spacing.x = unit(0.2, "cm"),       # 🔹 reduce espacio horizontal
+    legend.box = "horizontal",                # 🔹 las leyendas se colocan en fila
+    legend.box.just = "center",               # 🔹 centradas
+    plot.title = element_text(hjust = 0.5, size = 13),
+    plot.subtitle = element_text(hjust = 0.5, size = 10)
+  ) +
+  guides(
+    color = guide_legend(nrow = 2, byrow = TRUE),
+    linetype = guide_legend(nrow = 2, byrow = TRUE)
+  )
+
+
+```
+
