@@ -18,7 +18,7 @@ text-align: justify}
 <br/>
 <br/>
 <p align="center">
-<img height=150 width=850 src="tutorials/UPV.png"> </a>
+<img height=150 width=850 src="UPV.png"> </a>
 </p>
 <font size="3">
 <br/>

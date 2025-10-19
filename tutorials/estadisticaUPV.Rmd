@@ -18,7 +18,7 @@ text-align: justify}
 <br/>
 <br/>
 <p align="center">
-<img height=120 width=850 src="tutorials/UPV.png"> </a>
+<img height=120 width=850 src="UPV.png"> </a>
 </p>
 <font size="3">
 <br/>
@@ -30,7 +30,7 @@ Las técnicas de regresión y sus extensiones forman parte de la gran mayoría d
  
 # **Programa**
 
-### [Módulo 1 - Introducción a la modelización (5 horas)](https://jabiologo.github.io/web/docs/upv_modulo1.html)
+### [Módulo 1 - Introducción a la modelización (5 horas)](https://jabiologo.github.io/web/tutorials/upv_modulo1.html)
 
   1. Variables y distribuciones de probabilidad
   2. Las simulaciones en el proceso de aprendizaje
