@@ -1,0 +1,61 @@
+---
+title: "Introducción a los Modelos Lineales: fundamentos teóricos y prácticos"
+csl: nature.csl
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    collapsed: false
+    number_sections: false
+    toc_depth: 1
+---
+
+<style>
+body {
+text-align: justify}
+</style>
+
+<br/>
+<br/>
+<p align="center">
+<img height=120 width=850 src="tutorials/UPV.png"> </a>
+</p>
+<font size="3">
+<br/>
+
+ 
+# **Presentación**
+
+Las técnicas de regresión y sus extensiones forman parte de la gran mayoría de las técnicas analíticas utilizadas hoy en día. Por ello, conocer sus fundamentos y su buena praxis es clave en muchas disciplinas científicas. En este espacio se encuentran los contenidospara del curso **Introducción a los Modelos Lineales: fundamentos teóricos y prácticos** que se impartirá online en el marco de los programas de doctorado de Agrobiología ambiental, Calidad y seguridad alimentaria y Biodiversidad, funcionamiento y gestión de ecosistemas de la Universidad del Pais Vasco entre octubre y noviembre de 2025. El curso está estructurado en tres módulos que combinarán teoría y práctica con una metodología aplicada al contexto de las ciencias experimentales y los estudios observacionales.
+ 
+# **Programa**
+
+### [Módulo 1 - Introducción a la modelización (5 horas)](https://jabiologo.github.io/web/tutorials/upv_modulo1.html)
+
+  1. Variables y distribuciones de probabilidad
+  2. Las simulaciones en el proceso de aprendizaje
+  3. El modelo lineal
+  
+### [Módulo 2 - Modelos lineales generalizados (5 horas)]()
+
+  1. Funciones vínculo: más allá de la distribución normal
+  2. Evaluación y selección de modelos
+  3. Predicciones
+  
+### [Módulo 3 - Modelos mixtos y otras extensiones (5 horas)]()
+
+  1. Efectos fijos VS efectos aleatorios
+  2. Relaciones no lineales
+  3. Modelos avanzados (inferencia Bayesiana, autocorrelación y más)
+
+
+#  **Requerimientos**
+
+  * Es necesario instalar [R](https://cloud.r-project.org/) (y  [RStudio](https://posit.co/download/rstudio-desktop/#download) para mayor comodidad).
+
+  
+  * Instalar los siguientes paquetes de R: `tidyverse`. Puedes instalarlos todos ejecutando el siguiente código en R:
+
+```
+install.packages(c("tidyverse"))
+```

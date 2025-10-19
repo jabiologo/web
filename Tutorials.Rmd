@@ -70,3 +70,7 @@ text-align: justify
 # Modelos demográficos franja de Gaza (Biomatemáticas 25/26)
 
 [Modelos demográficos franja de Gaza](https://jabiologo.github.io/web/tutorials/modelos_gaza_html.html)
+
+# Introducción a los Modelos Lineales (UPV)
+
+[Introducción a los Modelos Lineales: fundamentos teóricos y prácticos (UPV)](https://jabiologo.github.io/web/tutorials/estadisticaUPV.html)
