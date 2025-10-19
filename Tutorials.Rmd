@@ -73,4 +73,4 @@ text-align: justify
 
 # Introducción a los Modelos Lineales (UPV)
 
-[Introducción a los Modelos Lineales: fundamentos teóricos y prácticos (UPV)](https://jabiologo.github.io/web/tutorials/estadisticaUPV.html)
+[Introducción a los Modelos Lineales: fundamentos teóricos y prácticos (UPV)](https://jabiologo.github.io/web/docs/estadisticaUPV.html)
