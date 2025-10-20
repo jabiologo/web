@@ -35,8 +35,8 @@ klippy::klippy(tooltip_message = 'Click para copiar', tooltip_success = 'Hecho!'
 
 En este espacio se encuentran los materiales para el Módulo 1 - Introducción a la modelización, del curso Introducción a los Modelos Lineales: fundamentos teóricos y prácticos para la Universidad del Pais Vasco.
 
-  * En este [enlace]() se irán actualizando las presentaciones del módulo.
-  * En este [enlace]() se encontrarán las plantillas de los scripts que iremos montando durante el curso.
+  * En este [enlace](https://jabiologo.github.io/web/tutorials/upv_modulo1.pdf) se irán actualizando las presentaciones del módulo.
+  * En este [enlace](https://jabiologo.github.io/web/tutorials/upv_practicas1.R) se encontrarán las plantillas de los scripts que iremos montando durante el curso.
 
 # **El lenguaje R**
 
@@ -70,7 +70,7 @@ Es imporante familiarizarse con RStudio, ya que utilizaremos R a través de él.
 
 <br/>
 <p align="center">
-<img height=350 width=600 src="tutorials/estadisticaBasica_files/rstudio.png"> </a>
+<img height=350 width=600 src="estadisticaBasica_files/rstudio.png"> </a>
 </p>
 <font size="3">
 <br/><br/>
