@@ -36,11 +36,12 @@ Las técnicas de regresión y sus extensiones forman parte de la gran mayoría d
   2. Las simulaciones en el proceso de aprendizaje
   3. El modelo lineal
   
-### [Módulo 2 - Modelos lineales generalizados (5 horas)]()
+### [Módulo 2 - Modelos lineales generalizados (5 horas)](https://jabiologo.github.io/web/tutorials/upv_modulo1.html)
 
-  1. Funciones vínculo: más allá de la distribución normal
-  2. Evaluación y selección de modelos
-  3. Predicciones
+  1. Extendiendo el modelo lineal: factores categóricos
+  2. Funciones vínculo: más allá de la distribución normal
+  3. Evaluación y selección de modelos
+  4. Predicciones
   
 ### [Módulo 3 - Modelos mixtos y otras extensiones (5 horas)]()
 
