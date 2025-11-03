@@ -38,12 +38,11 @@ library(effects)
 # 2.2) Funciones vínculo: más allá de la distribución normal.
 temp <- runif(n=500, min=7, max=35)
 temp_s <- scale(temp)
-b0 <- 1.8
-b1 <- -1.2
+b0 <- 1
+b1 <- -2.2
 
-lambda <- b0 + b1*temp_s
+lambda <- exp(b0 + b1*temp_s)
 ciervos <- rpois(n=500, lambda = lambda)
-#ciervos <- rbinom(n=500, lambda = lambda)
 # ??
 
 datos_ciervos <- data.frame(ciervos = ciervos, temp_s = temp_s)
@@ -51,4 +50,15 @@ datos_ciervos <- data.frame(ciervos = ciervos, temp_s = temp_s)
 m_ciervos <- glm(ciervos ~ temp_s, family = poisson(link = "log"), data = datos_ciervos)
 summary(m_ciervos)  
   
+# Prueba con presencia/ausencia y función vínculo logit
+prob_logit <- b0 + b1*temp_s
+prob <- exp(prob_logit)/(1+exp(prob_logit)) # Inverso de función logit
+ciervos_pres <- rbinom(n=500, size = 1, prob = prob)
+
+datos_ciervos$presencia <- ciervos_pres
+
+m_ciervos_pres <- glm(presencia ~ temp_s, family = binomial(link = "logit"), data = datos_ciervos)
+summary(m_ciervos)  
+plot(datos_ciervos$temp_s, datos_ciervos$presencia, pch=19, cex=0.3)
+
 
