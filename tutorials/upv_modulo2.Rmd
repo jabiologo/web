@@ -30,6 +30,12 @@ knitr::opts_chunk$set(echo = TRUE)
 klippy::klippy(tooltip_message = 'Click para copiar', tooltip_success = 'Hecho!',position = c('top', 'right'))
 ```
 
+# **Presentación**
+
+En este espacio se encuentran los materiales para el Módulo 2 - Modelos lineales generalizados, del curso Introducción a los Modelos Lineales: fundamentos teóricos y prácticos para la Universidad del Pais Vasco.
+
+  * En este [enlace](https://jabiologo.github.io/web/tutorials/modulo2_compressed.pdf) se irán actualizando las presentaciones del módulo.
+  * En este [enlace](https://jabiologo.github.io/web/tutorials/upv_practicas2.R) se encontrarán las plantillas de los scripts que iremos montando durante el curso.
  
 # **Caso práctico 1**
 
