@@ -184,23 +184,25 @@ plot(m1)
 summary(m1)$deviance        # Deviance del modelo
 summary(m1)$null.deviance   # Deviance del modelo nulo (solo intercepto)
 
-1 - (m1$deviance / m1$null.deviance)
+1 - (m1$deviance / m1$null.deviance) # Pseudo R2
 
-# Ejercicio 8) Modelo con heterogeneidad no modelada.
+# Ejercicio 8) Modelo con heterogeneidad no modelada, no linealidad y outlier.
 X1 <- runif(500, 40, 70)
 X2 <- runif(500, 40, 70)
 
 b0 <- -4
 b1 <- 0.5
 b2 <- -0.7
-mu <- b0 + b1*X1 + b2*X2
-
+b3 <- -0.5
+mu <- b0 + b1*X1 + b2*X2 + b3*X1^2
+mu[500] <- -800
 sigma_normal <- 3
 respuesta <- rnorm(500, mean = mu, sd = sigma_normal)
 
 datos <- data.frame(respuesta = respuesta, X1 = X1, X2 = X2)
+datos2 <- datos[-500,]
 
-m2 <- glm(respuesta ~ X1, family = "gaussian", data = datos)
+m2 <- glm(respuesta ~ X1 + I(X1^2) + X2, family = "gaussian", data = datos2)
 summary(m2)
 sigma(m2)
 
@@ -208,9 +210,10 @@ plot(x=X1, y=respuesta)
 abline(m2, lwd = 2, col = "darkred")
 
 res_m2 <- residuals(m2)
-hist(res_m2)
+hist(res_m2, breaks = 100)
 
 plot(m2)
+
 
 summary(m2)$deviance        
 summary(m2)$null.deviance   
