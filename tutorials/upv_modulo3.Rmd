@@ -1,0 +1,39 @@
+---
+title: "Módulo 3 - Modelos mixtos y otras extensiones"
+csl: nature.csl
+output:
+  html_document:
+    toc: yes
+    toc_float: yes
+    collapsed: no
+    number_sections: no
+    toc_depth: 1
+---
+
+<style>
+body {
+text-align: justify}
+</style>
+
+<br/>
+<br/>
+<p align="center">
+<img height=150 width=850 src="UPV.png"> </a>
+</p>
+<font size="3">
+<br/>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r klippy, echo=FALSE, include=TRUE, eval=T}
+klippy::klippy(tooltip_message = 'Click para copiar', tooltip_success = 'Hecho!',position = c('top', 'right'))
+```
+
+# **Presentación**
+
+En este espacio se encuentran los materiales para el Módulo 3 - Modelos mixtos y otras extensiones, del curso Introducción a los Modelos Lineales: fundamentos teóricos y prácticos para la Universidad del Pais Vasco.
+
+  * En este [enlace](https://jabiologo.github.io/web/tutorials/upv_modulo3.pdf) se irán actualizando las presentaciones del módulo.
+  * En este [enlace](https://jabiologo.github.io/web/tutorials/upv_practicas3.R) se encontrarán las plantillas de los scripts que iremos montando durante el curso.
+  

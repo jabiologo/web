@@ -133,7 +133,14 @@ AICc(m3)
 ##############################################################
 
 temp <- runif(n=500, min=7, max=35)
-temp_s <- scale(temp)
+hist(temp)
+mean(temp)
+sd(temp)
+temp_s <- scale(temp) # Poner la variable predictora con media 0 y sd=1
+hist(temp_s)
+mean(temp_s)
+sd(temp_s)
+
 b0 <- 1
 b1 <- -2.2
 
@@ -142,13 +149,15 @@ ciervos <- rpois(n=500, lambda = lambda)
 # ??
 
 datos_ciervos <- data.frame(ciervos = ciervos, temp_s = temp_s)
-  
+head(datos_ciervos)  
+
 m_ciervos <- glm(ciervos ~ temp_s, family = poisson(link = "log"), data = datos_ciervos)
 summary(m_ciervos)  
   
 # Prueba con presencia/ausencia y función vínculo logit
 prob_logit <- b0 + b1*temp_s
 prob <- exp(prob_logit)/(1+exp(prob_logit)) # Inverso de función logit
+# exp(3)/(1+exp(3)) # probar con diferentes valores para entender el vínculo logit
 ciervos_pres <- rbinom(n=500, size = 1, prob = prob)
 
 datos_ciervos$presencia <- ciervos_pres
@@ -167,19 +176,19 @@ library(car) # Necesario para la función VIF
 # Predictores poco correlacionados
 x1 <- rnorm(100, 0, 1)
 x2 <- rnorm(100, 0, 1)  # independiente de x1
-cor(x1, x2)
+cor(x1, x2) # ~0
 plot(x1,x2)
 
 # Predictor lineal
 beta0 <- 1
 beta1 <- 1
-mu <- beta0 + beta1 * x1
+mu <- beta0 + beta1 * x1 # Depende únicamente de un predictor, x1
 y  <- rnorm(100, mean = mu, sd = 2)
 
 # Ajuste del modelo con dos covariables no correlacionadas
 m_low <- glm(y ~ x1 + x2)
 summary(m_low)
-1 - (m_low$deviance / m_low$null.deviance)
+1 - (m_low$deviance / m_low$null.deviance) # Pseudo R2 (bondad de ajuste)
 vif(m_low)
 
 # Simulación: escenario B (predictores correlacionados entre sí)
@@ -193,8 +202,8 @@ plot(x1,x2)
 # Predictor lineal
 beta0 <- 1
 beta1 <- 1
-mu <- beta0 + beta1 * x1
-y  <- rnorm(n, mean = mu, sd = 2)
+mu <- beta0 + beta1 * x1 # Únicamente determinada por el predictor x1
+y  <- rnorm(100, mean = mu, sd = 2)
 m_high <- glm(y ~ x1 + x2)
 summary(m_high)
 1 - (m_high$deviance / m_high$null.deviance)
@@ -230,32 +239,40 @@ summary(m_gam)
 plot(m_gam, shade = TRUE)
 
 #######################################################
-# 2.4) Caso de estudio, invernada de aves en portugal #
+# 2.5) Caso de estudio, invernada de aves en portugal #
 #######################################################
 library(terra) # Manejo de rasters
+library(car) # VIF
 
 # Cargo covariables en formato ráster y los datos
 covar <- terra::unwrap(readRDS(url("https://raw.githubusercontent.com/jabiologo/web/master/tutorials/caso2_covar.rds")))
 datos <- readRDS(url("https://raw.githubusercontent.com/jabiologo/web/master/tutorials/caso2_datos.rds"))
+plot(covar)
+
+head(datos)
 
 summary()
 boxplot()
 plot()
 
 # Estudio de la correlación entre covariables
+# install.packages("corrplot") # Si se necesita instalar...
 library(corrplot)
-corrplot(cor(datos[,3:8]), method ="number")
+corrplot(cor(datos[ ,3:8]), method ="number")
 
 # Ajuste de modelo completo
-m_full <- glm(, family=binomial(link = "logit"), data = datos, na.action = na.fail)
+colnames(datos)
+m_full <- glm(pres ~ elev+temp+prec+agfor+forest+hfp, family=binomial(link = "logit"), data = datos, na.action = na.fail)
 summary(m_full)
-vif(m_full)
+vif(m_full) # Cómo de reduntante es cada uno de mis predictores en función del resto de predictores del modelo
 
 # Evaluación del modelo
+# install.packages("DHARMa") # Si se necesita instalar...
+# install.packages("pROC") # Si se necesita instalar...
 library(DHARMa) # Diagnostics for Hierarchical And Regression Models (el camino correcto)
 library(pROC) # Receiver Operating Characteristic
 plot(m_full)
-sim_res <- simulateResiduals(m_sel)
+sim_res <- simulateResiduals(m_full)
 plot(sim_res)
 
 # TPR (True Positive Rate) = sensibilidad
@@ -266,9 +283,25 @@ roc(datos$pres, fitted(m_full))$auc
 # Selección de modelos mediante AIC
 library(MuMIn) # Multi Model INference, selección de modelos
 modelos <- dredge(m_full)
+modelos
+
+# Selección automática mediante Stepwise slection (AIC)
+# Uso exploratiorio, no inferencial!
+seleccion_step <- step(m_full, direction = "both")
+summary(seleccion_step)
+
+# Predicciones
+# Crear un nuevo raster donde guardar las predicciones
+covar$pred <- terra::predict(covar, m_full, type = "response")
+plot(covar)
 
 ##########################
 # Relaciones no lineales #
 ##########################
+library(mgcv) # Ajustar GAM
+
 m_full <- glm(, family=binomial(link = "logit"), data = datos, na.action = na.fail)
 summary(m_full)
+
+m_gam <- gam(pres ~ s(temp) + agfor, family=binomial(link = "logit"), method = "REML", data = datos)
+summary(m_gam)
