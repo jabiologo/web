@@ -44,7 +44,7 @@ Las técnicas de regresión y sus extensiones forman parte de la gran mayoría d
   3. Evaluación y selección de modelos
   4. Predicciones
   
-### [Módulo 3 - Modelos mixtos y otras extensiones (5 horas)]()
+### [Módulo 3 - Modelos mixtos y otras extensiones (5 horas)](https://jabiologo.github.io/web/tutorials/upv_modulo3.html)
 
   1. Efectos fijos VS efectos aleatorios
   2. Relaciones no lineales
