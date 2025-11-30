@@ -75,6 +75,10 @@ abline(0, 1, lty = 2, col = "red")
 cbind(b_fijos,b_random)
 
 # 3.2) Modelos mixtos y medidas repetidas
+peso <- read.csv("https://raw.githubusercontent.com/jabiologo/web/master/tutorials/peso.csv")
 
 # 3.3) Modelos mixtos y medidas repetidas
+farmaco <- read.csv("https://raw.githubusercontent.com/jabiologo/web/master/tutorials/farmaco.csv")
+
 # 3.4) Modelos mixtos, medidas repetidas y caso/control
+longi <- read.csv("https://raw.githubusercontent.com/jabiologo/web/master/tutorials/logitudinal.csv")
