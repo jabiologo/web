@@ -76,9 +76,33 @@ cbind(b_fijos,b_random)
 
 # 3.2) Modelos mixtos y medidas repetidas
 peso <- read.csv("https://raw.githubusercontent.com/jabiologo/web/master/tutorials/peso.csv")
+colnames(peso)[2] <- "despues"
+peso$despues <- as.factor(peso$despues)
+m1 <- glmmTMB(peso_estand ~ despues, family = "gaussian", data = peso)
+summary(m1)
+m2 <- glmmTMB(peso_estand ~ despues + (1|id), family = "gaussian", data = peso)
+summary(m2)
 
-# 3.3) Modelos mixtos y medidas repetidas
+
+# 3.3) Modelos mixtos, medidas repetidas y caso/control
 farmaco <- read.csv("https://raw.githubusercontent.com/jabiologo/web/master/tutorials/farmaco.csv")
+colnames(farmaco)[2] <- "despues"
+farmaco$despues <- as.factor(farmaco$despues)
+farmaco$farmaco <- as.factor(farmaco$farmaco)
+summary(farmaco)
 
-# 3.4) Modelos mixtos, medidas repetidas y caso/control
-longi <- read.csv("https://raw.githubusercontent.com/jabiologo/web/master/tutorials/logitudinal.csv")
+m1 <- glmmTMB(peso ~ despues*farmaco, family = "gaussian", data = farmaco)
+summary(m1)
+m2 <- glmmTMB(peso ~ despues*farmaco + (1|id), family = "gaussian", data = farmaco)
+summary(m2)
+
+library(effects)
+plot(allEffects(m2))
+
+# 3.4) Modelos mixtos y estudios longitudinales
+longi <- read.csv("https://raw.githubusercontent.com/jabiologo/web/master/tutorials/longitudinal.csv")
+plot(longi$year, longi$count)
+
+m1 <- glmmTMB(count ~ year + I(year^2) + (1|site),
+              family ="poisson", data = longi)
+summary(m1)
