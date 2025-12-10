@@ -1,6 +1,5 @@
 ---
 title: "Modelización matemática en control de plagas"
-subtitle: "Seminario 1: el entorno de trabajo R"
 csl: nature.csl
 output:
   html_document:
@@ -241,3 +240,140 @@ help(mean)
 Quizás la lección más importante es que normalmente ningún usuario habitual ha asistido a ningún curso especializado de R: la mayoría aprende a base de prueba/error y muchas horas delante del ordendaor con `ERROR` o `WARNINGS` en nuestra pantalla. Por eso es esencial no perder la paciencia y preguntar siempre a Google antes de preguntar al compañero que sabe (siemrpe hay alguien que ha tenido la misma duda antes que nosotros y ha dejado un comentario en un foro o blog). De esta forma interiorizaremos mucho mejor el funcionamiento de este lenguaje y aprenderemos mucho más rápido!
 
 <br/><br/>
+
+# **Modelos demográficos**
+
+Los modelos demográficos son herramientas matemáticas que permiten describir y predecir la dinámica de poblaciones biológicas a lo largo del tiempo. Su importancia radica en que simplifican procesos ecológicos complejos en ecuaciones manejables, ayudando a comprender el crecimiento, la regulación y las interacciones entre especies. Entre los modelos más influyentes se encuentran el modelo de Malthus, el modelo logístico o de Verhulst y el modelo presa–depredador de Lotka–Volterra, cada uno capturando distintos mecanismos ecológicos.
+<br/><br/>
+
+### **Modelo de Malthus o exponencial**
+El modelo de Malthus describe una población que crece sin restricciones, suponiendo:
+
+* recursos ilimitados,
+* condiciones ambientales constantes,
+* ausencia de interacciones limitantes.
+
+Se formula con la siguiente ecuación diferencial:
+\begin{equation}
+N' = rN
+\end{equation}
+
+donde $r$ es la tasa intrínseca de crecimiento y $N$ el tamaño poblacional.
+
+La solución particular de esta ecuación diferencial es:
+\begin{equation}
+N(t) = N_{0}e^{rt}
+\end{equation}
+
+Este modelo predice un crecimiento exponencial indefinido. Es útil para describir fases iniciales de colonización, crecimiento microbiano en laboratorio o poblaciones invadiendo nuevos ambientes. Sin embargo, no considera límites ecológicos, por lo que no es realista a largo plazo.
+
+<br/><br/>
+
+### **Modelo de Verhulst o logístico**
+El modelo logístico introduce el concepto de capacidad de carga **(K)**, representando el nivel máximo de población que el ambiente puede sostener debido a recursos limitados o competencia intraespecífica. Su ecuación diferencial es:
+
+\begin{equation}
+N' = rN(1- \frac{N}{K})
+\end{equation}
+
+Cuando $N$ es pequeño, la población crece casi exponencialmente; cuando se acerca a $K$, la tasa de crecimiento disminuye hasta estabilizarse. La solución particular adopta una forma sigmoide o curva en “S”:
+
+\begin{equation}
+N(t) = \frac{K}{1 + \left(\frac{K - N_0}{N_0}\right)e^{-rt}}
+\end{equation}
+
+Este modelo es más realista para poblaciones naturales sometidas a límites ecológicos y procesos de autorregulación.
+
+<br/><br/>
+
+### **Modelo de Lotka–Volterra (presa–depredador)**
+
+El modelo de Lotka–Volterra extiende el análisis a dos especies que interactúan: una presa y un depredador. Supone que:
+
+* la presa crece sin depredador,
+* el depredador depende exclusivamente de la presa,
+* el encuentro entre ambas determina la tasa de consumo.
+
+Las ecuaciones clásicas son:
+
+\begin{equation}
+P' = aP - bPD
+\end{equation}
+\begin{equation}
+D' = -cD + dPD
+\end{equation}
+
+donde:
+
+* P: población de presas,
+* D: población de depredadores,
+* a: tasa de crecimiento de las presas,
+* b: tasa de depredación,
+* c: tasa de mortalidad de los depredadores.
+* d: tasa de conversión energética.
+
+El sistema produce ciclos poblacionales: aumentos de presas seguidos por aumentos de depredadores y viceversa. Es un modelo fundamental en ecología para entender dinámicas de depredación, control biológico y estabilidad ecológica.
+
+<br/><br/>
+
+# **Simulación demográfica con R**
+### **Simulación Modelo de Malthus**
+```{r malthus, echo=F, fig.height = 5.8, fig.width = 6, fig.align = "center"}
+# Parámetros
+N0 <- 10
+r  <- 0.3
+# Tiempos
+t <- seq(0, 50, length.out = 200)
+# Solución exacta
+N <- N0 * exp(r * t)
+plot(t, N, type="l", lwd=2,
+     xlab="Tiempo", ylab="N",
+     main="Modelo de Malthus (solución exacta)")
+```
+
+### **Simulación Modelo de Verhults**
+```{r verhulst, echo=F, fig.height = 5.8, fig.width = 6, fig.align = "center"}
+# Parámetros
+N0 <- 10
+r  <- 0.1
+K  <- 100
+# Tiempos
+t <- seq(0, 100, length.out = 200)
+# Solución exacta
+N <- K / (1 + ((K - N0) / N0) * exp(-r * t))
+plot(t, N, type="l", lwd=2,
+     xlab="Tiempo", ylab="N",
+     main="Modelo logístico (solución exacta)")
+abline(h = K, lty=2)
+```
+
+### **Simulación Modelo de Lotka–Volterra**
+```{r volterra, echo=F, fig.height = 5.8, fig.width = 6, fig.align = "center"}
+library(deSolve)
+lotka <- function(t, state, parms) {
+  with(as.list(c(state, parms)), {
+    dP <- a * P - b * P * D      # presa / plaga
+    dD <- -c * D + d * P * D     # depredador
+    list(c(dP, dD))
+  })
+}
+# Parámetros
+parms <- c(a = 1, b = 0.05, c = 0.5, d = 0.02)
+# Condiciones iniciales
+state <- c(P = 40, D = 9)
+# Tiempo
+times <- seq(0, 100, by = 0.1)
+# Resolver
+out_lv <- ode(y = state, times = times, func = lotka, parms = parms)
+out <- as.data.frame(out_lv)
+# Plot conjunto
+plot(out$time, out$P, type = "l", lwd = 2, col = "blue",
+     xlab = "Tiempo", ylab = "Abundancia",
+     main = "Modelo Lotka–Volterra: Presa y Depredador")
+lines(out$time, out$D, lwd = 2, col = "red", lty = 2)
+legend("topright",
+       legend = c("Presa / Plaga (P)", "Depredador (D)"),
+       col = c("blue", "red"),
+       lty = c(1, 2),
+       lwd = 2, bty = "n")
+```
