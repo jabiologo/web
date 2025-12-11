@@ -318,7 +318,7 @@ El sistema produce ciclos poblacionales: aumentos de presas seguidos por aumento
 
 # **Simulación demográfica con R**
 ### **Simulación Modelo de Malthus**
-```{r malthus, echo=F, fig.height = 5.8, fig.width = 6, fig.align = "center"}
+```{r malthus, echo=T, fig.height = 5.8, fig.width = 6, fig.align = "center"}
 # Parámetros
 N0 <- 10
 r  <- 0.3
@@ -332,7 +332,7 @@ plot(t, N, type="l", lwd=2,
 ```
 
 ### **Simulación Modelo de Verhults**
-```{r verhulst, echo=F, fig.height = 5.8, fig.width = 6, fig.align = "center"}
+```{r verhulst, echo=T, fig.height = 5.8, fig.width = 6, fig.align = "center"}
 # Parámetros
 N0 <- 10
 r  <- 0.1
@@ -348,7 +348,7 @@ abline(h = K, lty=2)
 ```
 
 ### **Simulación Modelo de Lotka–Volterra**
-```{r volterra, echo=F, fig.height = 5.8, fig.width = 6, fig.align = "center"}
+```{r volterra, echo=T, fig.height = 5.8, fig.width = 6, fig.align = "center"}
 library(deSolve)
 lotka <- function(t, state, parms) {
   with(as.list(c(state, parms)), {
@@ -377,3 +377,82 @@ legend("topright",
        lty = c(1, 2),
        lwd = 2, bty = "n")
 ```
+
+# **Ejercicio práctico**
+
+Un invernadero está sufriendo un brote/plaga de _Tuta absoluta_. Se ha monitorizado el número de individuos durante varios días antes de aplicar ningún control, con los siguientes resultados:
+
+| día| N_obs |
+|----|-------|
+| 0  | 15    |
+| 1  | 28    |
+| 2  | 39    |
+| 3  | 55    |
+| 4  | 77    |
+| 5  | 105   |
+| 6  | 138   |
+| 7  | 170   |
+| 8  | 195   |
+| 9  | 210   |
+| 10 | 218   |
+
+1) Introduce los datos en R y grafica los datos de la plaga a lo largo del tiempo.
+2) ¿Parece crecimiento exponencial o logístico? ¿Por qué?
+
+Se sabe que esta especie tiene una tasa de crecimiento $r$ entre 0.1 y 0.9.
+
+3) Simula un modelo (Malthus o Logístico) con diferentes valores para $r$ y razona qué tasa de crecimiento es más probable dados tus datos (ten en cuenta que quizás necesites valores para otros parámetros como $N_0$ o $K$).
+4) Según tú modelo, ¿cuántos individuos habrá el día 15?
+
+Una estrategia interesante de control biológico podría ser la instalación de cajas refugio para murciélagos insectívoros, con el objetivo de aumentar la depredación sobre los adultos de la plaga. Aunque el efecto puede ser difícil de cuantificar y no específico de una sola especie, constituye una medida complementaria dentro del manejo integrado de plagas.
+
+5) Simula un sistema de depredador-presa en el que evalúes cuál es el número de depredadores iniciales que deberías introducir para controlar la plaga (es decir, que su abundancia no supere nunca, por ejemplo, los 20 individuos a lo largo del tiempo). Utiliza el siguiente código.
+```{r volterra2, echo=T, fig.height = 5.8, fig.width = 6, fig.align = "center"}
+# Instalamos el paquete deSolve
+# install.packages("deSolve")
+# Cargamos el paquete deSolve
+library(deSolve)
+
+# Creamos una función para simular la dinámica del modelo Lotka-Volterra
+lotka <- function(t, state, parms) {
+  with(as.list(c(state, parms)), {
+    dP <- a * P - b * P * D      # presa / plaga
+    dD <- -c * D + d * P * D     # depredador
+    list(c(dP, dD))
+  })
+}
+# Tiempo
+tiempo <- seq(0, 100, by = 0.1)
+# Parámetros
+parms <- c(a = 0.5, b = 0.01, c = 0.5, d = 0.01)
+
+# Condiciones iniciales: Cambiar número de depredadores e
+# interpretar el resultado
+iniciales <- c(P = 15, D = 0)
+
+# Resolver
+out_lv <- ode(y = iniciales, times = tiempo, func = lotka, parms = parms)
+out <- as.data.frame(out_lv)
+
+# Plot conjunto
+plot(out$time, out$P, type = "l", lwd = 2, col = "blue",
+     xlab = "Tiempo", ylab = "Abundancia",
+     main = "Modelo Lotka–Volterra: Presa y Depredador")
+lines(out$time, out$D, lwd = 2, col = "red", lty = 2)
+legend("topright",
+       legend = c("Presa / Plaga (P)", "Depredador (D)"),
+       col = c("blue", "red"),
+       lty = c(1, 2),
+       lwd = 2, bty = "n")
+```
+
+
+
+
+
+
+
+
+
+
+
