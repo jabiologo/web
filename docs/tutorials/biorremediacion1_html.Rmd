@@ -424,7 +424,7 @@ lotka <- function(t, state, parms) {
 # Tiempo
 tiempo <- seq(0, 100, by = 0.1)
 # Parámetros
-parms <- c(a = 0.5, b = 0.01, c = 0.5, d = 0.01)
+parms <- c(a = 0.5, b = 0.01, c = 0.5, d = 0.05)
 
 # Condiciones iniciales: Cambiar número de depredadores e
 # interpretar el resultado
