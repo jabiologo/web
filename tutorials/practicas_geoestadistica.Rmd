@@ -242,4 +242,45 @@ Quizás la lección más importante es que normalmente ningún usuario habitual 
 
 <br/><br/>
 
-# Prac
+# **Manejo de bases de datos**
+
+Profundicemos ahora un poco en el manejo de bases de datos con R. La mayoría estamos acostumbrados a manejar archivos de hojas de cálculo tipo "Excel". Algunas de las acciones habituales son crear o eliminar columnas, modificar las existentes o filtrar filas. Todas estas acciones también las podemos hacer con R. Por comodidad, seguiremos utilizando nuestro `data.frame` que hemos denominado `datos`.
+
+```{r ch11, message=T, cache = T, eval = F}
+# Seleccionar sólo las columnas peso y habitat para quedarnos con ellas
+# Ojo, sobreescribiremos el objeto datos
+datos <- datos[,c(1,3)]
+
+# Crear una columna nueva que sea el peso en kg
+datos$peso_kg <- datos$peso/1000
+
+# Filtrar nuestro data.frame para uqedarnos con aquellos individuos que
+# estén en hábitats Agrícolas y Urbanos
+
+# Nos fijamos en el resultado de estos dos comandos
+datos$hab == "Agricola"
+datos$hab == "Urbano"
+# Esto devuelve un vector logic con TRUE o FALSE, dependiendo de si coincide
+# o no con "Agricola"/"Urbano". 
+
+# Para usar el operador "o" (union), se usa el caracter "|"
+datos$hab == "Agricola" | datos$hab == "Urbano"
+# Esto nos devuelve un vector con TRUE en todas aquellas filas en las que la
+# columna hab es "Agricola" o "Urbano". Con la siguiente orden obtenemos el
+# mismo resultado:
+datos$hab %in% c("Agricola", "Urbano")
+# Se leería: "qué elementos de datos$hab están EN el vector "Agricola" "Ubrbano"
+
+# Para comprobar que obtenemos el mismo resultado podríamos hacer:
+(datos$hab %in% c("Agricola", "Urbano")) == 
+  (datos$hab == "Agricola" | datos$hab == "Urbano")
+
+# Una vez tenemos esas filas que nos interesan, podemos meterlas en la estructura
+# habitual de manejo de data.frames para filtrar
+datos <- datos[datos$hab == "Agricola" | datos$hab == "Urbano",]
+```
+
+<br/><br/>
+
+Como podemos comprobar, esta forma de filtrar puede resultar un poco "engorrosa". Este ha sido el método clásico en R para manejar bases de datos.
+

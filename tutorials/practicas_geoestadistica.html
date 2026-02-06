@@ -1986,8 +1986,50 @@ este lenguaje y aprenderemos mucho más rápido!</p>
 <p><br /><br /></p>
 </div>
 </div>
-<div id="prac" class="section level1">
-<h1>Prac</h1>
+<div id="manejo-de-bases-de-datos" class="section level1">
+<h1><strong>Manejo de bases de datos</strong></h1>
+<p>Profundicemos ahora un poco en el manejo de bases de datos con R. La
+mayoría estamos acostumbrados a manejar archivos de hojas de cálculo
+tipo “Excel”. Algunas de las acciones habituales son crear o eliminar
+columnas, modificar las existentes o filtrar filas. Todas estas acciones
+también las podemos hacer con R. Por comodidad, seguiremos utilizando
+nuestro <code>data.frame</code> que hemos denominado
+<code>datos</code>.</p>
+<pre class="r"><code># Seleccionar sólo las columnas peso y habitat para quedarnos con ellas
+# Ojo, sobreescribiremos el objeto datos
+datos &lt;- datos[,c(1,3)]
+
+# Crear una columna nueva que sea el peso en kg
+datos$peso_kg &lt;- datos$peso/1000
+
+# Filtrar nuestro data.frame para uqedarnos con aquellos individuos que
+# estén en hábitats Agrícolas y Urbanos
+
+# Nos fijamos en el resultado de estos dos comandos
+datos$hab == &quot;Agricola&quot;
+datos$hab == &quot;Urbano&quot;
+# Esto devuelve un vector logic con TRUE o FALSE, dependiendo de si coincide
+# o no con &quot;Agricola&quot;/&quot;Urbano&quot;. 
+
+# Para usar el operador &quot;o&quot; (union), se usa el caracter &quot;|&quot;
+datos$hab == &quot;Agricola&quot; | datos$hab == &quot;Urbano&quot;
+# Esto nos devuelve un vector con TRUE en todas aquellas filas en las que la
+# columna hab es &quot;Agricola&quot; o &quot;Urbano&quot;. Con la siguiente orden obtenemos el
+# mismo resultado:
+datos$hab %in% c(&quot;Agricola&quot;, &quot;Urbano&quot;)
+# Se leería: &quot;qué elementos de datos$hab están EN el vector &quot;Agricola&quot; &quot;Ubrbano&quot;
+
+# Para comprobar que obtenemos el mismo resultado podríamos hacer:
+(datos$hab %in% c(&quot;Agricola&quot;, &quot;Urbano&quot;)) == 
+  (datos$hab == &quot;Agricola&quot; | datos$hab == &quot;Urbano&quot;)
+
+# Una vez tenemos esas filas que nos interesan, podemos meterlas en la estructura
+# habitual de manejo de data.frames para filtrar
+datos &lt;- datos[datos$hab == &quot;Agricola&quot; | datos$hab == &quot;Urbano&quot;,]</code></pre>
+<p><br /><br /></p>
+<p>Como podemos comprobar, esta forma de filtrar puede resultar un poco
+“engorrosa”. Este ha sido el método clásico en R para manejar bases de
+datos.</p>
 </div>
 
 
