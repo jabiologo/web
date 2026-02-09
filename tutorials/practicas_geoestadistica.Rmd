@@ -254,6 +254,9 @@ datos <- datos[,c(1,3)]
 # Crear una columna nueva que sea el peso en kg
 datos$peso_kg <- datos$peso/1000
 
+# Crear una columna nueva que sea un identificador para cada individuo
+datos$id <- 1:nrow(datos)
+
 # Filtrar nuestro data.frame para uqedarnos con aquellos individuos que
 # estén en hábitats Agrícolas y Urbanos
 
