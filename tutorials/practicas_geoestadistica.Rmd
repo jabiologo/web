@@ -8,7 +8,7 @@ output:
     toc_float: yes
     collapsed: no
     number_sections: no
-    toc_depth: 1
+    toc_depth: 4
   pdf_document:
     toc: yes
     toc_depth: '1'
@@ -244,9 +244,14 @@ Quizás la lección más importante es que normalmente ningún usuario habitual 
 
 # **Manejo de bases de datos**
 
+### **Manejo con R base**
+
 Profundicemos ahora un poco en el manejo de bases de datos con R. La mayoría estamos acostumbrados a manejar archivos de hojas de cálculo tipo "Excel". Algunas de las acciones habituales son crear o eliminar columnas, modificar las existentes o filtrar filas. Todas estas acciones también las podemos hacer con R. Por comodidad, seguiremos utilizando nuestro `data.frame` que hemos denominado `datos`.
 
 ```{r ch11, message=T, cache = T, eval = F}
+# Guardamos el archivo en un obejto que denominaremos "datos"
+datos <- read.csv("https://raw.githubusercontent.com/jabiologo/web/master/tutorials/estadisticaBasica_files/datosPracticas.csv")
+
 # Seleccionar sólo las columnas peso y habitat para quedarnos con ellas
 # Ojo, sobreescribiremos el objeto datos
 datos <- datos[,c(1,3)]
@@ -285,5 +290,246 @@ datos <- datos[datos$hab == "Agricola" | datos$hab == "Urbano",]
 
 <br/><br/>
 
-Como podemos comprobar, esta forma de filtrar puede resultar un poco "engorrosa". Este ha sido el método clásico en R para manejar bases de datos.
+### **Manejo con `tidyverse`**
+
+Como podemos comprobar, esta forma de trabajar con los data.frames puede resultar un poco "engorrosa". Este ha sido el método tradicional en R para manejar bases de datos. Además, muchos paquetes de R para manipulación, visualización y análisis de datos funcionaban bien por separado, pero no siempre de forma coherente entre sí. Por eso, en el 2010, aparecen una serie de paquetes cuyo objetivo fue mejorar los flujos de trabajo con bases de datos en R. A este "universo" de paquetes (`dplyr`, `ggplot2`, `lubridate`, etc) con una sintaxis consistente entre ellos se le denominó `tidyverse`, y es a día de hoy uno de los ecosistemas de trabajo más utilizados en "ciencia de datos".
+
+<br/>
+<p align="center">
+<img height=270 width=600 src="estadisticaBasica_files/tidyverse.png"> </a>
+</p>
+<font size="3">
+<br/><br/>
+
+`tidyverse`, a través del paquete `magrittr` introduce un nuevo estilo de lenguaje a través de "pipes", que hace la sintaxis más intuitiva y natural. Veamos cómo podríamos hacer las mismas taréas con `tidiverse`.
+
+```{r ch12, message=T, cache = T, eval = T}
+# Instalamos el ecosistema tidyverse si fuera necesario
+# install.packages("tidyverse")
+library(tidyverse)
+
+# Volvemos a cargar la base de datos original
+datos <- read.csv("https://raw.githubusercontent.com/jabiologo/web/master/tutorials/estadisticaBasica_files/datosPracticas.csv")
+
+# Realizamos todas las tareas usando dplyr, magrittr, etc.
+datos <- datos %>%    # el comando %>% puede leerse como "y luego"...
+  select(peso, hab) %>%   # Seleccionar solo las columnas peso y habitat
+  mutate(peso_kg = peso / 1000, id = row_number()) %>%   # Crear nuevas columnas
+  filter(hab %in% c("Agricola", "Urbano")) # Filtrar hábitats Agrícola y Urbano
+```
+
+<br/><br/>
+
+Aunque es cierto que puede costar un poco acostumbrarse a esta nueva sintaxis si se aprendió R de la fórma "clásica", para nuevos usuarios suele resultar más fácil por ser un lenguaje más natural. En cualquier caso, es necesario conocerla, ya que es muy potente y la más utilizada hoy en día. Veamos algunas otras utilidades de dplyr.
+
+```{r ch13, message=T, cache = T, eval = T}
+# Utilizamos summarise para obtener estadísticos resumen de toda la base de datos 
+datos %>% 
+  summarise(peso_medio = mean(peso, na.rm = TRUE))
+
+# Podemos usar group_by para que las siguientes acciones se apliquen por grupos
+datos %>% 
+  group_by(hab) %>% 
+  summarise(peso_medio = mean(peso, na.rm = TRUE))
+
+# Vamos a crear un nuevas medidas para algunos individuos
+longitud <- data.frame(id = c(1,3,5), longitud = c(33, 36, 38))
+
+# Ahora vamos a integrar estas nuevas medidas en nuestra base de datos
+datos <- datos %>% 
+  left_join(longitud, by = "id")
+
+# Visualizamos el resultado
+head(datos)
+
+```
+
+<br/><br/>
+
+Vamos ahora a crear varios gráficos o plots de nuestros datos. Volveremos a cargar los datos y utilizaremos primero `R base` y luego el paquete `ggplot2`.
+
+```{r ch14, message=T, cache = T, eval = T}
+# Volvemos a cargar la base de datos original
+datos <- read.csv("https://raw.githubusercontent.com/jabiologo/web/master/tutorials/estadisticaBasica_files/datosPracticas.csv")
+
+# Vamos a realizar un histograma de nuestra variable "peso", un gráfico de cajas
+# y bigotes que relacione el peso con el hábitat y un gráfico de dispersión que # relacione el peso con el contenido en triazoles.
+# Histograma de peso
+hist(datos$peso)
+
+# Boxplot de peso ~ hábitat
+boxplot(peso ~ hab, data = datos)
+
+# Scatterplot de peso ~ triazoles
+plot(datos$tri, datos$peso)
+
+# Si queremos exportar estos gráficos, también podemos hacer:
+# getwd()
+# png("mi_plot.png", width = 480, height = 480)
+# plot(datos$tri, datos$peso)
+# dev.off()
+
+# Veamos ahora las "equivalencias" con ggplot2
+
+library(ggplot2)
+
+# Histograma
+ggplot(datos, aes(x = peso)) +
+  geom_histogram(bins = 30, fill = "steelblue", color = "white") +
+  labs(
+    title = "Distribución del peso",
+    x = "Peso",
+    y = "Frecuencia"
+  ) +
+  theme_minimal()
+
+# Boxplot
+ggplot(datos, aes(x = hab, y = peso)) +
+  geom_boxplot(fill = "tan") +
+  labs(
+    title = "Peso por hábitat",
+    x = "Hábitat",
+    y = "Peso"
+  ) +
+  theme_minimal()
+
+# Scatterplot
+ggplot(datos, aes(x = tri, y = peso)) +
+  geom_point(size = 2, alpha = 0.7) +
+  labs(
+    title = "Relación entre triazoles y peso",
+    x = "Triazoles",
+    y = "Peso"
+  ) +
+  theme_minimal()
+
+```
+
+
+<br/><br/>
+
+`ggplot2` es un sistema de visualización para R basado en la *Gramática de los Gráficos*. En lugar de elegir directamente un tipo de gráfico, el usuario construye las figuras por capas: primero define los datos y las variables que quiere representar, y después añade capas que controlan cómo se dibujan (puntos, cajas, barras), cómo se agrupan, las escalas, y el estilo final del gráfico.
+
+```{r ch15, message=T, cache = T, eval = T}
+# Guardamos en el objeto g_base los datos, el estilo común
+g_base <- ggplot(datos) +
+  theme_minimal() +
+  labs(y = "Peso")
+
+# Ahora simplemente añadimos el tipo de gráfico y las variables a graficar
+g_base + aes(x = peso) + geom_histogram()
+g_base + aes(x = hab, y = peso)  + geom_boxplot()
+g_base + aes(x = tri, y = peso)  + geom_point()
+```
+
+# **Estadística descriptiva**
+
+La estadística descriptiva es la rama de la estadística que se ocupa de resumir y describir un conjunto de datos mediante valores numéricos representativos.
+En particular, utiliza medidas de tendencia central para indicar cuál es el valor “típico” de los datos, y medidas de dispersión para cuantificar cuánto varían o se alejan los datos entre sí.
+
+## **Medidas de tendencia central**
+
+### **La media**
+Es el promedio aritmético de los datos y viene dada por la fórmula:
+$$
+\bar{x} = \frac{1}{n}\sum_{i=1}^{n} x_i
+$$
+
+### **La mediana**
+Valor central cuando los datos están ordenados.
+
+### **La moda**
+Valor que aparece con mayor frecuencia.
+
+## **Medidas de dispersión**
+
+### **El rango**
+Diferencia entre el valor máximo y el mínimo.
+
+### **La varianza**
+Promedio del cuadrado de las desviaciones respecto a la media, y viene dada por la fórmula (varianza muestral):
+
+$$
+s^2 = \frac{1}{n-1}\sum_{i=1}^{n} (x_i - \bar{x})^2
+$$
+
+### **La desviación estándar**
+Raíz cuadrada de la varianza; mide la dispersión en las mismas unidades que los datos.
+
+### **El coeficiente de variación**
+Dispersión relativa respecto a la media.
+
+<br/><br/>
+
+Veamos ahora cómo podemos obtener algunas de estas medidas usando R:
+```{r ch16, message=T, cache = T, eval = T}
+# Volvemos a cargar la base de datos original
+datos <- read.csv("https://raw.githubusercontent.com/jabiologo/web/master/tutorials/estadisticaBasica_files/datosPracticas.csv")
+
+# Media del peso
+mean(datos$peso)
+
+# Varianza muestral del peso
+var(datos$peso)
+
+# Desviación estándar muestral del peso
+sd(datos$peso)
+
+# La función describe del paquete psych combina muchas medidas descriptivas
+#install.packages("psych")
+library(psych)
+
+describe(datos)
+# Podemos usar fix(describe) para ver qué hace la función "por dentro"
+
+```
+
+<br/><br/>
+
+**NOTA:** Es importante recordar que estas medidas descriptivas pueden hacer referencia a la población o a la muestra. Las fórmulas y funciones que hemos presentado se refieren a las medidas muestrales. Las letras griegas se suelen reservar para las medidas poblacionales. Así, la media poblacional es $\mu$ (la letra griega _mu_, que representa la m de _mean_), mientras que la media muestral se denota normalmente como $\bar{x}$. Para la desviación estándar ocurre lo mismo: se usa $\sigma$ _sigma_ para la poblacional (que alude a la _s_ de _standar deviation_), mientras que para la muestral se usa la $s$.
+
+| Concepto            | Muestra            | Población           |
+|---------------------|--------------------|---------------------|
+| Media               | $\bar{x}$          | $\mu$               |
+| Varianza            | $s^2$              | $\sigma^2$          |
+| Desv. estándar      | $s$                | $\sigma$            |
+
+<br/><br/>
+
+## **Ejercicios**
+
+Utilizando la base de datos `litologia.xlsx` realiza las siguientes operaciones:
+
+1) Carga el fichero en R. Intenta buscar información sobre el paquete `readxl`.
+2) ¿Cuántas filas tiene el fichero?¿Cuántas columnas?
+3) Indica el tipo de datos que tenemos en cada una de las columnas
+4) Explora las variables `ph` y `elev` calculando las siguientes medidas descriptivas: media, mediana, rango, varianza, desviación estándar y coeficiente de variación.
+5) ¿Cuál de las dos variables presenta una media mayor? ¿y una mediana?
+6) ¿Qué variable dirías que presenta una mayor "dispersión"?
+7) Realiza un histograma de cada una de las variables para estudiar de forma aproximada su distribución.
+8) Explora mediante representaciones gráficas si existe una relación entre el pH y la elevación.
+
+<br/><br/>
+
+# **Distribuciones de probabilidad**
+
+Podemos decir que las distribuciones de probabilidad son modelos matemáticos que describen cómo se reparten los posibles valores de una variable aleatoria y con qué probabilidad aparecen. Sirven como abstracciones matemáticas de realidades en las cuales estamos interesados y queremos investigar.
+
+<br/><br/>
+
+### **Distribución Normal o Gaussiana**
+
+La distribución Normal es una distribución continua, simétrica y con forma de campana, caracterizada por su media (μ) y su desviación estándar (σ). Se utiliza para modelar variables cuantitativas continuas. Es simétrica alrededor de la media. La media, la mediana y la moda coinciden.
+
+Aproximadamente:
+
+* 68% de los valores están dentro de ±1σ
+* 95% dentro de ±2σ
+* 99.7% dentro de ±3σ
+
+Ejemplos típicos:
+
+* Altura de individuos
+* Errores de medida
+* Variables biológicas agregadas
 
