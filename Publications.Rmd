@@ -5,6 +5,10 @@ csl: nature.csl
 output: 
   html_document:
     theme: sandstone
+    css: assets/site.css
+    includes:
+      in_header: _head.html
+      after_body: _footer.html
     fig_width: 20
     fig_height: 6
 nocite: |
@@ -19,33 +23,12 @@ nocite: |
   @Garrote_2018
   @Fernández-López_2014
 ---
-```{=html}
-<style type="text/css">
-.title {
-  display: none;
-}
 
-.main-container {
-  max-width: 1600px;
-  margin-left: auto;
-  margin-right: auto;
-}
 
-body {
-text-align: justify
-}
+<img class="publication-banner" src="images/moose.png" alt="Moose in its natural habitat">
 
-#getting-started img {
-  margin-right: 10px;
-}
-
-</style>
-```
-
-<img height=300 width=1600 src="images/moose.png"> </a>
-<font size="3">
 <br/>
 
-## **Publications**
 
-Here you have some selected publications. Find more in my [Google Schoolar](https://scholar.google.es/citations?hl=es&user=v3biyuIAAAAJ) profile or in my [Researchgate](https://www.researchgate.net/profile/Javier_Fernandez-Lopez).
+
+Here you have some selected publications. Find more in my [Google Scholar](https://scholar.google.es/citations?hl=es&user=v3biyuIAAAAJ) profile or in my [Researchgate](https://www.researchgate.net/profile/Javier_Fernandez-Lopez).

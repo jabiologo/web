@@ -4,67 +4,37 @@ bibliography: references.bib
 output: 
   html_document:
     theme: sandstone
+    css: assets/site.css
+    includes:
+      in_header: _head.html
+      after_body: _footer.html
     fig_width: 20
     fig_height: 6
 ---
+
 ```{=html}
-<style type="text/css">
-.title {
-  display: none;
-}
-
-.main-container {
-  max-width: 1600px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-body {
-text-align: justify
-}
-
-#getting-started img {
-  margin-right: 10px;
-}
-
-</style>
+<section class="profile-hero" aria-labelledby="hero-title">
+<div class="hero-copy">
+<p class="eyebrow">Ecology · Statistics · Conservation</p>
+<h1 id="hero-title">Understanding wildlife.<br><em>Connecting the data.</em></h1>
+<p class="hero-summary">I'm Javier Fernández-López. I work at the intersection of statistical ecology, spatial modelling and wildlife conservation.</p>
+<div class="hero-actions"><a class="button-primary" href="Research.html">Explore my research <span aria-hidden="true">↗</span></a><a class="button-secondary" href="Tutorials.html">Teaching & resources <span aria-hidden="true">→</span></a></div>
+</div>
+<div class="hero-portrait"><img src="images/javi_circulo.png" alt="Javier Fernández-López" width="409" height="308"><p>Javier Fernández-López<span>Researcher in statistical & spatial ecology</span></p></div>
+</section>
+<div class="research-topics" aria-label="Research interests"><span>Bayesian inference</span><span>Wildlife monitoring</span><span>Spatial ecology</span><span>Open science</span></div>
 ```
 
-<font size="3">
-
-<div class="row" style="padding-top: 30px;">
-<div class="col-sm-6">
-
-
-## **About my research...**
+## About my research
 
 I'm broadly interested in statistical/spatial ecology and wildlife conservation. I'm currently working on mammal abundance and distribution modeling focusing on game species. I combine different data sources such as camera-trap data, distance sampling or hunting statistics by using integrated distribution models in a hierarchical framework. I use Bayesian inference and cartography tools to help for evidence-based decision making in wildlife management and in the design of monitoring programs.
-<br/>
 
 
-## **About me...**
+## About me
 
 Graduated in Biology Sciences and Ms in Conservation Biology (Universidad Complutense de Madrid, Madrid, Spain). I developed my PhD about phylogeny, biogeography and distribution of the corticioid fungus genus Xylodon (Real Jardín Botánico, CSIC, Madrid, Spain). I worked during two years as researcher assistant at the Institute for Game and Wildlife Research IREC (UCLM – CSIC, Ciudad Real, Spain) for the [ENETWILD](https://enetwild.com/) project about mammal distribution at European scale. I performed one year postdoc at University of Massachusetts (Boston, USA) with [Liam Revell](https://faculty.umb.edu/liam.revell/people/index.html) and two year postdoc at Centre d’Ecologie Foncionnelle et Evolutive (Montpellier, France) with [Olivier Gimenez](https://www3.cefe.cnrs.fr/en/research/biodiversity-and-conservation/biostatistics-and-population-biology/846-french/recherche/bc/bbp/pdoc/4150-javier-fernandez-lopez). I’m currently a postdoctoral researcher at the Institute for Game and Wildlife Research IREC (UCLM – CSIC, Ciudad Real, Spain).
-<br/>
-<br/>
-Contact!
-
-[![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/javi_ferlop.svg?style=social&label=Follow%20%40javi_ferlop)](https://twitter.com/javi_ferlop)
-
-<span align="left">
-  <a href="mailto:jflopez.bio@gmail.com">
-    <img src="https://img.shields.io/badge/-jflopez.bio@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:jflopez.bio@gmail.com" />
-  </a>
-</span>
-</div>
 
 
-<div class="col-sm-6">
-<img height=308 width=409 src="images/javi_circulo.png" style="margin-left: 130px;"> 
-</div>
-
-
-<center>
-<img height=316 width=666 src="images/wordcloud.png"> </a>
-</center>
-
+```{=html}
+<div class="contact-panel"><div><p class="eyebrow">Get in touch</p><h2>Let's connect.</h2></div><a href="mailto:jflopez.bio@gmail.com">jflopez.bio@gmail.com <span aria-hidden="true">↗</span></a><a href="https://twitter.com/javi_ferlop">Twitter / X <span aria-hidden="true">↗</span></a></div>
+```

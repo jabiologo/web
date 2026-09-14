@@ -4,32 +4,15 @@ bibliography: references.bib
 output: 
   html_document:
     theme: sandstone
+    css: assets/site.css
+    includes:
+      in_header: _head.html
+      after_body: _footer.html
     fig_width: 20
     fig_height: 6
 ---
-```{=html}
-<style type="text/css">
-.title {
-  display: none;
-}
 
-.main-container {
-  max-width: 1600px;
-  margin-left: auto;
-  margin-right: auto;
-}
 
-body {
-text-align: justify
-}
-
-#getting-started img {
-  margin-right: 10px;
-}
-
-</style>
-```
-
-# People
+<p class="page-intro">People & collaborations</p>
 
 
