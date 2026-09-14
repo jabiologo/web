@@ -1,7 +1,5 @@
 ---
 title: "Publications"
-bibliography: references.bib
-csl: nature.csl
 output: 
   html_document:
     theme: sandstone
@@ -11,24 +9,159 @@ output:
       after_body: _footer.html
     fig_width: 20
     fig_height: 6
-nocite: |
-  @Fernández-López_2024
-  @Fernández-López_2023
-  @Gochanour_2023
-  @Fernández-López_2022
-  @Fernández-López_2021
-  @Palencia_2021
-  @Garrote_2020
-  @Fernández-López_2019
-  @Garrote_2018
-  @Fernández-López_2014
 ---
 
+<p class="page-intro">Publications on wildlife monitoring, spatial ecology, biodiversity and research software.</p>
 
-<img class="publication-banner" src="images/moose.png" alt="Moose in its natural habitat">
+```{=html}
+<div class="profile-links" aria-label="Academic profiles"><a class="button-secondary" href="https://orcid.org/0000-0003-4352-0252"><span class="profile-icon" aria-hidden="true">iD</span> ORCID ↗</a><a class="button-secondary" href="https://scholar.google.com/citations?user=v3biyuIAAAAJ"><span aria-hidden="true">↗</span> Google Scholar</a></div>
+```
 
-<br/>
+[UCM publication record](https://produccioncientifica.ucm.es/investigadores/1196011/publicaciones) · [Download bibliography (BibTeX)](publications.bib)
 
+## Journal articles
 
+### 2026
 
-Here you have some selected publications. Find more in my [Google Scholar](https://scholar.google.es/citations?hl=es&user=v3biyuIAAAAJ) profile or in my [Researchgate](https://www.researchgate.net/profile/Javier_Fernandez-Lopez).
+```{=html}
+<div class="publication-list">
+<article class="publication-entry"><h3><a href="https://doi.org/10.1007/s10344-026-02059-x">Mapping wild boar density across Europe: combining spatial models and density estimates</a></h3><p class="publication-authors">Smith, Graham C.; Vicente, Joaquin; Croft, Simon; Warren, Daniel; Blanco-Aguiar, José A.; Acevedo, Pelayo; et al.</p><p class="publication-meta">European Journal of Wildlife Research, 72 (2), 31 · 2026</p></article>
+</div>
+```
+
+### 2025
+
+```{=html}
+<div class="publication-list">
+<article class="publication-entry"><h3><a href="https://doi.org/10.1111/ecog.07766">Disentangling the effect of the spatial scale and species spatial pattern on the abundance–suitability relationship</a></h3><p class="publication-authors">Ferrer‐Ferrando, David; Tarroso, Pedro; Tellería, José Luis; Acevedo, Pelayo; Fernández‐López, Javier</p><p class="publication-meta">Ecography, 2025 (7), e07766 · 2025</p></article>
+<article class="publication-entry"><h3><a href="https://doi.org/10.1111/2041-210x.14458">Game target‐group: Implementing inhomogeneous Poisson point process to estimate animal abundance from harvest data</a></h3><p class="publication-authors">Fernández‐López, Javier; Acevedo, Pelayo; Illanas, Sonia; Blanco‐Aguiar, Jose Antonio; Vicente, Joaquín; Gimenez, Olivier</p><p class="publication-meta">Methods in Ecology and Evolution, 16 (1), 170-182 · 2025</p></article>
+<article class="publication-entry"><h3><a href="https://doi.org/10.1038/s41597-025-04574-z">Presence-only data for wild ungulates and red fox in Spain based on hunting yields over a 10-year period</a></h3><p class="publication-authors">Illanas, Sonia; Fernández-López, Javier; Vicente, Joaquín; Ruiz-Rodríguez, Carmen; López-Padilla, Sergio; Sebastián-Pardo, Mario; et al.</p><p class="publication-meta">Scientific Data, 12 (1), 236 · 2025</p></article>
+<article class="publication-entry"><h3><a href="https://doi.org/10.1016/j.gecco.2025.e03598">Rabbits on the road: Disentangling the factors driving the warren&#x27;s abundance on motorways</a></h3><p class="publication-authors">Fernández-López, Javier; López-Galán, Nuria; Acevedo, Pelayo; Blanco-Aguiar, José Antonio; Vicente, Joaquín; Santamaría, Ana Eugenia; et al.</p><p class="publication-meta">Global Ecology and Conservation, 60, e03598 · 2025</p></article>
+</div>
+```
+
+### 2024
+
+```{=html}
+<div class="publication-list">
+<article class="publication-entry"><h3><a href="https://doi.org/10.1016/j.prevetmed.2024.106280">A methodological framework to characterize the wildlife-livestock interface: The case of wild boar in mainland Spain</a></h3><p class="publication-authors">Ruiz-Rodriguez, Carmen; Blanco-Aguiar, Jose A.; Fernandez-Lopez, Javier; Acevedo, Pelayo; Montoro, Vidal; Illanas, Sonia; et al.</p><p class="publication-meta">Preventive Veterinary Medicine · 2024</p></article>
+<article class="publication-entry"><h3><a href="https://doi.org/10.21630/mcn.2024.72.01">Distribución, abundancia y éxito reproductivo del alcaudón dorsirrojo (Lanius collurio Linnaeus, 1758) en Bizkaia (País Vasco).</a></h3><p class="publication-authors">Galarza, Aitor; Fernández-López, Javier; Novoa, Iker; Aginako, Igor; Arzubia, Jon; Aurrekoetxea, Eneko; et al.</p><p class="publication-meta">Munibe Ciencias Naturales · 2024</p></article>
+<article class="publication-entry"><h3><a href="https://doi.org/10.3201/eid3006.231280">Effect of Myxoma Virus Species Jump on Iberian Hare Populations</a></h3><p class="publication-authors">Cardoso, Beatriz; García-Bocanegra, Ignacio; Queirós, João; Fernández-López, Javier; Alves, Paulo C.; Acevedo, Pelayo</p><p class="publication-meta">Emerging Infectious Diseases, 30 (6) · 2024</p></article>
+<article class="publication-entry"><h3><a href="https://doi.org/10.1093/biosci/biae043">Protecting stable biological nomenclatural systems enables universal communication: A collective international appeal</a></h3><p class="publication-authors">Jiménez-Mejías, Pedro; Manzano, Saúl; Gowda, Vinita; Krell, Frank-Thorsten; Lin, Mei-Ying; Martín-Bravo, Santiago; et al.</p><p class="publication-meta">BioScience, 74 (7), 467-472 · 2024</p></article>
+</div>
+```
+
+### 2023
+
+```{=html}
+<div class="publication-list">
+<article class="publication-entry"><h3><a href="https://doi.org/10.7818/ecos.2527">La unión hace la fuerza: modelos de distribución de especies integrando diferentes fuentes de datos</a></h3><p class="publication-authors">Fernández-López, Javier; Acevedo, Pelayo; Gimenez, Olivier</p><p class="publication-meta">Ecosistemas, 32 (1), 2527 · 2023</p></article>
+<article class="publication-entry"><h3><a href="https://doi.org/10.1016/j.scitotenv.2023.166053">The method matters. A comparative study of biologging and camera traps as data sources with which to describe wildlife habitat selection</a></h3><p class="publication-authors">Ferrer-Ferrando, David; Fernández-López, Javier; Triguero-Ocaña, Roxana; Palencia, Pablo; Vicente, Joaquín; Acevedo, Pelayo</p><p class="publication-meta">Science of The Total Environment, 902, 166053 · 2023</p></article>
+<article class="publication-entry"><h3><a href="https://doi.org/10.1007/s10344-023-01746-3">Towards standardising the collection of game statistics in Europe: a case study</a></h3><p class="publication-authors">Ruiz-Rodríguez, Carmen; Blanco-Aguiar, José A.; Gómez-Molina, Azahara; Illanas, Sonia; Fernández-López, Javier; Acevedo, Pelayo; et al.</p><p class="publication-meta">European Journal of Wildlife Research, 69 (6), 122 · 2023</p></article>
+<article class="publication-entry"><h3><a href="https://doi.org/10.1002/ece3.10534">Using species distribution modeling to generate relative abundance information in socio‐politically unstable territories: Conservation of Felidae in the central‐western region of Mexico</a></h3><p class="publication-authors">Charre‐Medellín, Juan F.; Ferrer‐Ferrando, David; Monterrubio‐Rico, Tiberio C.; Fernández‐López, Javier; Acevedo, Pelayo</p><p class="publication-meta">Ecology and Evolution, 13 (9), e10534 · 2023</p></article>
+<article class="publication-entry"><h3><a href="https://doi.org/10.1111/2041-210x.14014">abmR
+                    : An R package for agent‐based model analysis of large‐scale movements across taxa</a></h3><p class="publication-authors">Gochanour, Benjamin; Fernández‐López, Javier; Contina, Andrea</p><p class="publication-meta">Methods in Ecology and Evolution, 14 (1), 218-230 · 2023</p></article>
+</div>
+```
+
+### 2022
+
+```{=html}
+<div class="publication-list">
+<article class="publication-entry"><h3><a href="https://doi.org/10.1111/ecog.06113">Can we model distribution of population abundance from wildlife–vehicles collision data?</a></h3><p class="publication-authors">Fernández‐López, Javier; Blanco‐Aguiar, José A.; Vicente, Joaquín; Acevedo, Pelayo</p><p class="publication-meta">Ecography, 2022 (5), e06113 · 2022</p></article>
+<article class="publication-entry"><h3><a href="https://doi.org/10.1016/j.ecolmodel.2022.110041">Revisiting wild boar spatial models based on hunting yields to assess their predictive performance on interpolation and extrapolation areas</a></h3><p class="publication-authors">Ruiz-Rodríguez, Carmen; Fernández-López, Javier; Vicente, Joaquín; Blanco-Aguiar, José A.; Acevedo, Pelayo</p><p class="publication-meta">Ecological Modelling, 471, 110041 · 2022</p></article>
+</div>
+```
+
+### 2021
+
+```{=html}
+<div class="publication-list">
+<article class="publication-entry"><h3><a href="https://doi.org/10.1002/ece3.7737">DNA barcode analyses improve accuracy in fungal species distribution models</a></h3><p class="publication-authors">Fernández‐López, Javier; Telleria, M. Teresa; Dueñas, Margarita; May, Tom; Martín, María P.</p><p class="publication-meta">Ecology and Evolution, 11 (13), 8993-9009 · 2021</p></article>
+<article class="publication-entry"><h3><a href="https://doi.org/10.1111/2041-210x.13609">Innovations in movement and behavioural ecology from camera traps: Day range as model parameter</a></h3><p class="publication-authors">Palencia, Pablo; Fernández‐López, Javier; Vicente, Joaquín; Acevedo, Pelayo</p><p class="publication-meta">Methods in Ecology and Evolution, 12 (7), 1201-1212 · 2021</p></article>
+<article class="publication-entry"><h3><a href="https://doi.org/10.1111/tbed.13854">The wildlife‐livestock interface on extensive free‐ranging pig farms in central Spain during the “montanera” period</a></h3><p class="publication-authors">Triguero‐Ocaña, Roxana; Laguna, Eduardo; Jiménez‐Ruiz, Saúl; Fernández‐López, Javier; García‐Bocanegra, Ignacio; Barasona, Jose Ángel; et al.</p><p class="publication-meta">Transboundary and Emerging Diseases, 68 (4), 2066-2078 · 2021</p></article>
+<article class="publication-entry"><h3><a href="https://doi.org/10.13157/arla.68.1.2021.ra2">Winter Bird Richness Distribution in the South-Western Palearctic: Current Patterns and Potential Changes</a></h3><p class="publication-authors">Tellería, José Luis; Fandos, Guillermo; Fernández-López, Javier</p><p class="publication-meta">Ardeola, 68 (1), 17–32 · 2021</p></article>
+</div>
+```
+
+### 2020
+
+```{=html}
+<div class="publication-list">
+<article class="publication-entry"><h3><a href="https://doi.org/10.1038/s41598-020-78399-8">Linking morphological and molecular sources to disentangle the case of Xylodon australis</a></h3><p class="publication-authors">Fernández-López, J.; Telleria, M.T.; Dueñas, M.; Laguna-Castro, M.; Schliep, K.; Martín, M.P.</p><p class="publication-meta">Scientific Reports · 2020</p></article>
+<article class="publication-entry"><h3><a href="https://doi.org/10.1111/jbi.13967">Linking seascape with landscape genetics: Oceanic currents favour colonization across the Galápagos Islands by a coastal plant</a></h3><p class="publication-authors">Arjona, Yurena; Fernández‐López, Javier; Navascués, Miguel; Alvarez, Nadir; Nogales, Manuel; Vargas, Pablo</p><p class="publication-meta">Journal of Biogeography, 47 (12), 2622-2633 · 2020</p></article>
+<article class="publication-entry"><h3><a href="https://doi.org/10.1515/mammalia-2019-0052">Planning the peninsula-wide recovery of the Iberian lynx: identification of favourable habitat areas</a></h3><p class="publication-authors">Garrote, Germán; Fernández-López, Javier; Rojas, Eva; López, Guillermo; Simón, Miguel Angel</p><p class="publication-meta">Mammalia, 84 (5), 413-420 · 2020</p></article>
+</div>
+```
+
+### 2019
+
+```{=html}
+<div class="publication-list">
+<article class="publication-entry"><h3><a href="https://doi.org/10.1186/s43008-019-0010-x">Addressing the diversity of Xylodon raduloides complex through integrative taxonomy</a></h3><p class="publication-authors">Fernández-López, Javier; Telleria, M. Teresa; Dueñas, Margarita; Wilson, Andrew W.; Padamsee, Mahajabeen; Buchanan, Peter K.; et al.</p><p class="publication-meta">IMA Fungus, 10 (1), 9 · 2019</p></article>
+<article class="publication-entry"><h3><a href="https://doi.org/10.1111/ecog.03730">rWind: download, edit and include wind data in ecological and evolutionary analysis</a></h3><p class="publication-authors">Fernández‐López, Javier; Schliep, Klaus</p><p class="publication-meta">Ecography, 42 (4), 804-810 · 2019</p></article>
+</div>
+```
+
+### 2018
+
+```{=html}
+<div class="publication-list">
+<article class="publication-entry"><h3><a href="https://doi.org/10.3767/persoonia.2018.41.12">Fungal Planet description sheets: 785– 867</a></h3><p class="publication-authors">Crous, P.W.; Luangsa-ard, J.J.; Wingfield, M.J.; Carnegie, A.J.; Hernández-Restrepo, M.; Lombard, L.; et al.</p><p class="publication-meta">Persoonia - Molecular Phylogeny and Evolution of Fungi, 41 (1), 238-417 · 2018</p></article>
+<article class="publication-entry"><h3><a href="https://doi.org/10.1111/ibi.12549">Habitat segregation by breeding origin in the declining populations of European Robins wintering in southern Iberia</a></h3><p class="publication-authors">De La Hera, I.; Fandos, G.; Fernández-López, J.; Onrubia, A.; Pérez-Rodríguez, A.; Pérez-Tris, J.; et al.</p><p class="publication-meta">Ibis · 2018</p></article>
+<article class="publication-entry"><h3><a href="https://doi.org/10.3114/fuse.2018.02.05">Hyphoderma paramacaronesicum sp. nov. (Meruliaceae, Polyporales, Basidiomycota), a cryptic lineage to H. macaronesicum</a></h3><p class="publication-authors">Martín, M.P.; Zhang, L.-F.; Fernández-López, J.; Dueñas, M.; Rodríguez-Armas, J.L.; Beltrán-Tejera, E.; et al.</p><p class="publication-meta">Fungal Systematics and Evolution · 2018</p></article>
+<article class="publication-entry"><h3><a href="https://doi.org/10.3897/mycokeys.38.28497">Multilocus phylogeny reveals taxonomic misidentification of the Schizopora paradoxa (KUC8140) representative genome</a></h3><p class="publication-authors">Fernández-López, Javier; Martín, María P.; Dueñas, Margarita; Telleria, M. Teresa</p><p class="publication-meta">MycoKeys, 38, 121-127 · 2018</p></article>
+<article class="publication-entry"><h3><a href="https://doi.org/10.32800/abc.2018.41.0217">Prediction of Iberian lynx road–mortality in southern Spain: a new approach using the MaxEnt algorithm</a></h3><p class="publication-authors">Garrote, G.; Fernández–López, J.; López, G.; Ruiz, G.; Simón, M. A.</p><p class="publication-meta">Animal Biodiversity and Conservation, 41 (2), 217-225 · 2018</p></article>
+</div>
+```
+
+### 2017
+
+```{=html}
+<div class="publication-list">
+<article class="publication-entry"><h3><a href="https://doi.org/10.13157/arla.64.2.2017.sc1">Stable Isotope Analysis Reveals Biases in the Performance of a Morphological Method to Distinguish the Migratory Behaviour of European Robins Erithacus Rubecula</a></h3><p class="publication-authors">Hera, Iván De la; Fandos, Guillermo; Fernández-López, Javier; Onrubia, Alejandro; Pérez-Rodríguez, Antón; Pérez-Tris, Javier; et al.</p><p class="publication-meta">Ardeola, 64 (2), 67-76 · 2017</p></article>
+</div>
+```
+
+### 2016
+
+```{=html}
+<div class="publication-list">
+<article class="publication-entry"><h3><a href="https://doi.org/10.1127/nova_hedwigia/2016/0345">Corticioid fungi (Basidiomycota) from the Biosphere Reserve of Arganeraie, Morocco: a preliminary survey</a></h3><p class="publication-authors">Telleria, M. Teresa; Dueñas, Margarita; Melo, Ireneia; Salcedo, Isabel; Cardoso, José; Fernández-López, Javier; et al.</p><p class="publication-meta">Nova Hedwigia, 103 (1-2), 193-210 · 2016</p></article>
+<article class="publication-entry"><h3><a href="https://doi.org/10.1371/journal.pone.0146958">Effect of Climate Change on Mediterranean Winter Ranges of Two Migratory Passerines</a></h3><p class="publication-authors">Tellería, José L.; Fernández-López, Javier; Fandos, Guillermo</p><p class="publication-meta">PLOS ONE, 11 (1), e0146958 · 2016</p></article>
+</div>
+```
+
+### 2015
+
+```{=html}
+<div class="publication-list">
+<article class="publication-entry"><h3><a href="https://doi.org/10.7325/galemys.2015.n3">Uso del ecotono bosque-sabana por la comunidad de Carnívoros terrestres en los Llanos Orientales de Colombia</a></h3><p class="publication-authors">Garrote, Germán; Fernández-López, Javier</p><p class="publication-meta">Galemys, Spanish Journal of Mammalogy, 27, 67-70 · 2015</p></article>
+</div>
+```
+
+### 2014
+
+```{=html}
+<div class="publication-list">
+<article class="publication-entry"><h3><a href="https://doi.org/10.4404/hystrix-25.1-9437">Effect of wildlife refuges on small carnivores in a hunting area in Mediterranean habitat</a></h3><p class="publication-authors">Fernández-López, J.; Fandos, G.; Cano, L.S.; Garcia, F.J.; Tellería, J.L.</p><p class="publication-meta">Hystrix · 2014</p></article>
+<article class="publication-entry"><h3><a href="https://doi.org/10.1080/00063657.2014.953033">Using ring records and field surveys to predict the winter distribution of a migratory passerine</a></h3><p class="publication-authors">Tellería, José Luis; Fernández-López, Javier; Fandos, Guillermo</p><p class="publication-meta">Bird Study, 61 (4), 527-536 · 2014</p></article>
+<article class="publication-entry"><h3><a href="https://doi.org/10.13157/arla.61.2.2014.335">Winter Distribution of Passerine Richness in the Maghreb (North Africa): A Conservation Assessment</a></h3><p class="publication-authors">Tellería, José Luis; Fandos, Guillermo; López, Javier Fernández; Onrubia, Alejandro; Refoyo, Pablo</p><p class="publication-meta">Ardeola, 61 (2), 335-350 · 2014</p></article>
+</div>
+```
+
+### 2012
+
+```{=html}
+<div class="publication-list">
+<article class="publication-entry"><h3><a href="https://doi.org/10.1515/mammalia-2011-0050">Incursion of domestic carnivores around urban areas: a test in central Spain</a></h3><p class="publication-authors">Fandos, Guillermo; Fernández-López, Javier; Tellería, José Luis</p><p class="publication-meta">mammalia, 76 (2) · 2012</p></article>
+</div>
+```
+
+## Preprints
+
+```{=html}
+<article class="publication-entry"><h3><a href="https://doi.org/10.2139/ssrn.6529378">Image Surveys, Agricultural Landowners and Residents Hold the Key: Optimizing the Use of Local Ecological Knowledge to Reveal Carnivore Community</a></h3><p class="publication-authors">Fernández-Vizcaíno, Elena; Fernández-López, Javier</p><p class="publication-meta">SSRN · Preprint — not peer reviewed · 2026</p></article>
+```
+
+Records checked against ORCID, the UCM research portal and publisher metadata. Updated September 2026.

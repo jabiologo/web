@@ -13,31 +13,41 @@ output:
   
 ---
 
+<p class="page-intro">From observed patterns to ecological processes: quantitative tools for biodiversity research and wildlife conservation.</p>
 
+## Research focus
 
-## Ongoing projects
-#### Mammal distribution and abundance monitoring
-**INTHERIA: data integration for mammal monitoring at large-scales**  
-Project funded by the Regional Government of Castile-La Mancha (Talent Return and Retention Program), its main objective is to optimize the design of large-scale multispecies mammal monitoring programs. As principal investigator, I'm using optimization techniques for sampling sites selection as well as hierarchical modeling through Bayesian inference to integrate different data sources for mammal monitoring at national scales (hunting yields, camera trap data, etc.). 
-<br/><br/>
-**Life Iberconejo**   
-Project co-financed by the European Commission’s LIFE programme, its main aim is to analyse the state of rabbit populations in the Iberian Peninsula, their health status and the damage they cause to agriculture. As an external consultant, I'm involved in population monitoring and abundance modeling by combining different data sources such as distance sampling or kilometric abundance indexes. More info at the [Iberconejo project](https://www.iberconejo.eu/en/home/) dedicated website.
-<br/><br/>
+I combine Bayesian models, spatial data and ecological knowledge to study mammal abundance, distribution and habitat use. My work connects camera traps, distance sampling and hunting records, with applications in monitoring design and wildlife management.
 
-#### Software developing for statistical and spatial ecology
+## Funded projects
 
-**rWind R package**   
-Tools for download and manage surface wind and sea currents data from the [Global Forecasting System](https://www.ncei.noaa.gov/products/weather-climate-models/global-forecast) and to compute connectivity between locations. More info at the dedicated publication in Ecography: [rWind: download, edit and include wind data in ecological and evolutionary analysis](https://nsojournals.onlinelibrary.wiley.com/doi/full/10.1111/ecog.03730). Main author, creator and maintainer. License: GPL (≥ 3).
-<br/><br/>
-**abmR R package**    
-Supplies tools for running agent-based models (ABM) in R. The package contains two movement functions, each of which is based on the Ornstein-Uhlenbeck (OU) model. It also contains several visualization and data summarization functions to facilitate the presentation of simulation results. More info at the dedicated publication in Methods in Ecology and Evolution: [abmR: An R package for agent-based model analysis of large-scale movements across taxa](https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.14014). Author. License: GPL (≥ 3).
-<br/><br/>
+```{=html}
+<div class="project-grid">
+<article class="project-card"><p class="eyebrow">2024–2025 · Team member</p><h3>Ecological and social indicators of wild ungulates in National Parks</h3><p>Indicadores ecológicos y sociales de ungulados silvestres en Parques Nacionales: ciencia para gestionar e (in)formar a la sociedad</p><p class="project-meta">Organismo Autónomo de Parques Nacionales</p><p class="project-meta">Grant: OAPN-3034S/2023</p></article>
+<article class="project-card"><p class="eyebrow">September 2024–April 2026 · Principal investigator</p><h3>INTHERIA · Data integration for wildlife monitoring</h3><p>Data integration for wildlife monitoring: optimising mammal monitoring programmes</p><p class="project-meta">Junta de Comunidades de Castilla-La Mancha</p><p class="project-meta">Grant: SBPLY/23/180225/000176</p></article>
+<article class="project-card"><p class="eyebrow">2023–2026 · Team member</p><h3>Coexisting oaks: colonisation, acorn dispersal and facilitation</h3><p>Diferencias de colonización de quercíneas coexistentes: desde las propiedades y la dispersión de las bellotas a la facilitación</p><p class="project-meta">Agencia Estatal de Investigación</p><p class="project-meta">Grant: PID2022-141762OB-I00</p></article>
+<article class="project-card"><p class="eyebrow">2021–2022 · Team member</p><h3>Computational infrastructure for phylogenetic analysis in R</h3><p>Computational infrastructure for phylogenetic analysis in the R environment</p><p class="project-meta">U.S. National Science Foundation</p><p class="project-meta">Grant: NSF–1759940</p></article>
+<article class="project-card"><p class="eyebrow">2019–2020 · Team member</p><h3>Biosecurity, ungulate management and shared diseases</h3><p>Evaluación de protocolos de bioseguridad y de la gestión de ungulados en la transmisión de enfermedades compartidas</p><p class="project-meta">Agencia Estatal de Investigación</p><p class="project-meta">Grant: AGL2016–76358–R</p></article>
+<article class="project-card"><p class="eyebrow">2019–2020 · Team member</p><h3>ENETWILD · Wildlife population data and disease agents</h3><p>Wildlife: collecting and sharing data on wildlife populations, transmiting animal and human disease agents</p><p class="project-meta">European Food Safety Authority</p><p class="project-meta">Grant: OC/EFSA/ALPHA/2016/01</p></article>
+<article class="project-card"><p class="eyebrow">2013–2016 · Team member</p><h3>Hidden diversity of Macaronesian corticioid fungi</h3><p>Desenmascarando la diversidad oculta de los hongos corticioides macaronésicos</p><p class="project-meta">Agencia Estatal de Investigación</p></article>
+<article class="project-card"><p class="eyebrow">2012–2014 · Team member</p><h3>Migratory bird conservation in Iberia and the Maghreb</h3><p>Conservación de la avifauna migratoria en Iberia y el Magreb: patrones actuales y perspectivas de cambio</p><p class="project-meta">Ministerio de Ciencia e Innovación</p><p class="project-meta">Grant: CGL2011–22953/BOS</p></article>
+</div>
+```
 
-## Previous work
+Project periods and roles follow my [ORCID funding record](https://orcid.org/0000-0003-4352-0252).
 
-#### Fungal taxonomy and phylogeography
-#### Birds distribution under climate change scenarios
+## Applied collaborations
 
+### LIFE Iberconejo
 
+My contribution as an external consultant has focused on rabbit population monitoring and abundance modelling, combining distance sampling and abundance indices. [Project website](https://www.iberconejo.eu/en/home/).
 
+## Research software
 
+### rWind
+
+An R package for working with wind and sea-current data and measuring connectivity between locations. Creator and maintainer. [Read the paper](https://doi.org/10.1111/ecog.03730).
+
+### abmR
+
+An R package for spatially explicit, agent-based simulations of animal movement. Co-author. [Read the paper](https://doi.org/10.1111/2041-210X.14014).
