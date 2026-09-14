@@ -15,4 +15,17 @@ output:
 
 <p class="page-intro">People & collaborations</p>
 
+## Former PhD students
 
+```{=html}
+<article class="project-card" aria-labelledby="david-name">
+<p class="eyebrow">Former PhD student · PhD 2025</p>
+<h3 id="david-name">David Ferrer-Ferrando</h3>
+<p>David was my PhD student at the University of Castilla-La Mancha, co-supervised with Pelayo Acevedo. His research explores habitat selection across individuals, populations and species, combining wildlife monitoring, camera traps, telemetry and spatial modelling.</p>
+<p>He defended his thesis, <a href="https://produccioncientifica.ucm.es/documentos/690a507235a17033cdba296b"><em>Crossing borders: associating information across different levels of habitat selection, from the individual to the species</em></a>, in July 2025.</p>
+<div class="profile-links" aria-label="David Ferrer-Ferrando academic profiles">
+<a class="button-secondary" href="https://www.researchgate.net/profile/David-Ferrer-Ferrando">ResearchGate <span aria-hidden="true">↗</span></a>
+<a class="button-secondary" href="https://scholar.google.com/citations?user=U8cRspcAAAAJ&amp;hl=es">Google Scholar <span aria-hidden="true">↗</span></a>
+</div>
+</article>
+```
