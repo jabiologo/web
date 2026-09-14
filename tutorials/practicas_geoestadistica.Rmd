@@ -533,3 +533,267 @@ Ejemplos típicos:
 * Errores de medida
 * Variables biológicas agregadas
 
+<br/><br/>
+
+# **El modelo lineal generalizado (GLM)**
+
+\begin{equation}
+precipitación (mm) \sim Normal(mean=825, sd=25)
+\end{equation}
+
+::: {.fragment .fade-in}
+\begin{equation}
+    Y \sim Normal(\mu,\sigma )
+    \end{equation}
+:::
+
+::: {.fragment .fade-in}
+\begin{equation}
+Y \sim Normal(825,25)
+\end{equation}
+:::
+
+::: {.fragment .fade-in}
+```{r, echo = FALSE, fig.align = 'center'}
+library(ggplot2)
+set.seed(1)
+pdata <- data.frame(x=rnorm(100,825,25), y= rep(0,100))
+ggplot(data.frame(x = c(750, 900)), aes(x = x)) + 
+  stat_function(fun = dnorm, args = list(825,25), color = "darkgreen",
+                aes(colour = "Normal(825,25)"), size = 2, alpha = 0.8) +
+  geom_point(data = pdata, 
+             mapping = aes(x = x, y = y), col = "darkblue") +
+  ylab("densidad") +
+  xlab("precipitación (mm)") +
+  theme_bw()
+```
+:::
+
+## Generalized linear model
+
+\begin{equation}
+    precipitación_i \sim Normal(\mu_i,\sigma )
+    \end{equation}
+
+::: {.fragment .fade-in}
+\begin{equation}
+    \mu_i = \beta_0 + \beta_1X_i
+    \end{equation}
+:::
+
+::: {.fragment .fade-in}
+\begin{equation}
+    \mu_i = \beta_0 + \beta_1Elevación_i
+    \end{equation}
+:::
+
+## Generalized linear model
+
+\begin{equation}
+    precipitación_i \sim Normal(\mu_i,\sigma )
+    \end{equation} \begin{equation}
+    \mu_i = \beta_0 + \beta_1Elevación_i
+    \end{equation}
+
+```{r, echo = FALSE, fig.align = 'center'}
+x <- runif(100, 600, 1500)
+y <- 450 + 0.5*x + rnorm(100, 0, 25)
+df <- data.frame(x, y)
+lm_fit <- lm(y ~ x, data = df)
+
+k <- 2.5
+sigma <- sigma(lm_fit)
+ab <- coef(lm_fit)
+a <- ab[1]
+b <- ab[2]
+
+# OJO: no pises x,y (datos). Usa xg/yg para la campana
+xg <- seq(-k*sigma, k*sigma, length.out = 50)
+yg <- dnorm(xg, 0, sigma)/dnorm(0, 0, sigma) * 100  # 80 = "ancho" visual en eje X
+
+# x0 dentro de tu xlim (400,1700)
+
+x0 <- 750
+y0 <- a + b*x0
+path1 <- data.frame(x = yg + x0, y = xg + y0)
+segment1 <- data.frame(x = x0, y = y0 - k*sigma, xend = x0, yend = y0 + k*sigma)
+
+x0 <- 1000
+y0 <- a + b*x0
+path2 <- data.frame(x = yg + x0, y = xg + y0)
+segment2 <- data.frame(x = x0, y = y0 - k*sigma, xend = x0, yend = y0 + k*sigma)
+
+x0 <- 1250
+y0 <- a + b*x0
+path3 <- data.frame(x = yg + x0, y = xg + y0)
+segment3 <- data.frame(x = x0, y = y0 - k*sigma, xend = x0, yend = y0 + k*sigma)
+
+ggplot(df, mapping = aes(x = x, y = y)) + 
+  #geom_point(alpha = 0.6, col = "darkblue") +
+  #geom_abline(intercept = a, slope = b, linewidth = 0.9, col = "darkred") +
+  
+  geom_path(data = path1, aes(x, y), inherit.aes = FALSE,
+            color = "darkgreen", linewidth = 1.2) + 
+  geom_segment(data = segment1, aes(x = x, y = y, xend = xend, yend = yend),
+               inherit.aes = FALSE, color = "darkgreen", linetype = "dashed") +
+  
+  # geom_path(data = path2, aes(x, y), inherit.aes = FALSE,
+  #           color = "darkgreen", linewidth = 1.2) + 
+  # geom_segment(data = segment2, aes(x = x, y = y, xend = xend, yend = yend),
+  #              inherit.aes = FALSE, color = "darkgreen", linetype = "dashed") +
+  # 
+  # geom_path(data = path3, aes(x, y), inherit.aes = FALSE,
+  #           color = "darkgreen", linewidth = 1.2) + 
+  # geom_segment(data = segment3, aes(x = x, y = y, xend = xend, yend = yend),
+  #              inherit.aes = FALSE, color = "darkgreen", linetype = "dashed") + 
+  
+  xlim(c(600, 1500)) +
+  ylim(c(min(df$y) - 50, max(df$y) + 50)) +
+  ylab("precipitación") +
+  xlab("elevación") +
+  theme_bw()
+```
+
+## Generalized linear model
+
+\begin{equation}
+    precipitación_i \sim Normal(\mu_i,\sigma )
+    \end{equation} \begin{equation}
+    \mu_i = \beta_0 + \beta_1Elevación_i
+    \end{equation}
+
+```{r, echo = FALSE, fig.align = 'center'}
+
+ggplot(df, mapping = aes(x = x, y = y)) + 
+  #geom_point(alpha = 0.6, col = "darkblue") +
+  #geom_abline(intercept = a, slope = b, linewidth = 0.9, col = "darkred") +
+  
+  geom_path(data = path1, aes(x, y), inherit.aes = FALSE,
+            color = "darkgreen", linewidth = 1.2) + 
+  geom_segment(data = segment1, aes(x = x, y = y, xend = xend, yend = yend),
+               inherit.aes = FALSE, color = "darkgreen", linetype = "dashed") +
+  
+  geom_path(data = path2, aes(x, y), inherit.aes = FALSE,
+            color = "darkgreen", linewidth = 1.2) +
+  geom_segment(data = segment2, aes(x = x, y = y, xend = xend, yend = yend),
+               inherit.aes = FALSE, color = "darkgreen", linetype = "dashed") +
+
+  # geom_path(data = path3, aes(x, y), inherit.aes = FALSE,
+  #           color = "darkgreen", linewidth = 1.2) + 
+  # geom_segment(data = segment3, aes(x = x, y = y, xend = xend, yend = yend),
+  #              inherit.aes = FALSE, color = "darkgreen", linetype = "dashed") + 
+  
+  xlim(c(600, 1500)) +
+  ylim(c(min(df$y) - 50, max(df$y) + 50)) +
+  ylab("precipitación") +
+  xlab("elevación") +
+  theme_bw()
+```
+
+## Generalized linear model
+
+\begin{equation}
+    precipitación_i \sim Normal(\mu_i,\sigma )
+    \end{equation} \begin{equation}
+    \mu_i = \beta_0 + \beta_1Elevación_i
+    \end{equation}
+    
+```{r, echo = FALSE, fig.align = 'center'}
+
+ggplot(df, mapping = aes(x = x, y = y)) + 
+  #geom_point(alpha = 0.6, col = "darkblue") +
+  #geom_abline(intercept = a, slope = b, linewidth = 0.9, col = "darkred") +
+  
+  geom_path(data = path1, aes(x, y), inherit.aes = FALSE,
+            color = "darkgreen", linewidth = 1.2) + 
+  geom_segment(data = segment1, aes(x = x, y = y, xend = xend, yend = yend),
+               inherit.aes = FALSE, color = "darkgreen", linetype = "dashed") +
+  
+  geom_path(data = path2, aes(x, y), inherit.aes = FALSE,
+            color = "darkgreen", linewidth = 1.2) +
+  geom_segment(data = segment2, aes(x = x, y = y, xend = xend, yend = yend),
+               inherit.aes = FALSE, color = "darkgreen", linetype = "dashed") +
+
+  geom_path(data = path3, aes(x, y), inherit.aes = FALSE,
+            color = "darkgreen", linewidth = 1.2) + 
+  geom_segment(data = segment3, aes(x = x, y = y, xend = xend, yend = yend),
+              inherit.aes = FALSE, color = "darkgreen", linetype = "dashed") + 
+  
+  xlim(c(600, 1500)) +
+  ylim(c(min(df$y) - 50, max(df$y) + 50)) +
+  ylab("precipitación") +
+  xlab("elevación") +
+  theme_bw()
+```
+
+## Generalized linear model
+
+\begin{equation}
+    precipitación_i \sim Normal(\mu_i,\sigma )
+    \end{equation} \begin{equation}
+    \mu_i = \beta_0 + \beta_1Elevación_i
+    \end{equation}
+
+```{r, echo = FALSE, fig.align = 'center'}
+
+ggplot(df, mapping = aes(x = x, y = y)) + 
+  geom_point(alpha = 0.6, col = "darkblue") +
+  #geom_abline(intercept = a, slope = b, linewidth = 0.9, col = "darkred") +
+  
+  geom_path(data = path1, aes(x, y), inherit.aes = FALSE,
+            color = "darkgreen", linewidth = 1.2) + 
+  geom_segment(data = segment1, aes(x = x, y = y, xend = xend, yend = yend),
+               inherit.aes = FALSE, color = "darkgreen", linetype = "dashed") +
+  
+  geom_path(data = path2, aes(x, y), inherit.aes = FALSE,
+            color = "darkgreen", linewidth = 1.2) +
+  geom_segment(data = segment2, aes(x = x, y = y, xend = xend, yend = yend),
+               inherit.aes = FALSE, color = "darkgreen", linetype = "dashed") +
+
+  geom_path(data = path3, aes(x, y), inherit.aes = FALSE,
+            color = "darkgreen", linewidth = 1.2) + 
+  geom_segment(data = segment3, aes(x = x, y = y, xend = xend, yend = yend),
+               inherit.aes = FALSE, color = "darkgreen", linetype = "dashed") + 
+  
+  xlim(c(600, 1500)) +
+  ylim(c(min(df$y) - 50, max(df$y) + 50)) +
+  ylab("precipitación") +
+  xlab("elevación") +
+  theme_bw()
+```
+
+## Generalized linear model
+
+\begin{equation}
+    precipitación_i \sim Normal(\mu_i,\sigma )
+    \end{equation} \begin{equation}
+    \mu_i = \beta_0 + \beta_1Elevación_i
+    \end{equation}
+
+```{r, echo = FALSE, fig.align = 'center'}
+
+ggplot(df, mapping = aes(x = x, y = y)) + 
+  geom_point(alpha = 0.6, col = "darkblue") +
+  geom_abline(intercept = a, slope = b, linewidth = 0.9, col = "darkred") +
+  
+  geom_path(data = path1, aes(x, y), inherit.aes = FALSE,
+            color = "darkgreen", linewidth = 1.2) + 
+  geom_segment(data = segment1, aes(x = x, y = y, xend = xend, yend = yend),
+               inherit.aes = FALSE, color = "darkgreen", linetype = "dashed") +
+  
+  geom_path(data = path2, aes(x, y), inherit.aes = FALSE,
+            color = "darkgreen", linewidth = 1.2) +
+  geom_segment(data = segment2, aes(x = x, y = y, xend = xend, yend = yend),
+               inherit.aes = FALSE, color = "darkgreen", linetype = "dashed") +
+
+  geom_path(data = path3, aes(x, y), inherit.aes = FALSE,
+           color = "darkgreen", linewidth = 1.2) + 
+  geom_segment(data = segment3, aes(x = x, y = y, xend = xend, yend = yend),
+              inherit.aes = FALSE, color = "darkgreen", linetype = "dashed") + 
+  
+  xlim(c(600, 1500)) +
+  ylim(c(min(df$y) - 50, max(df$y) + 50)) +
+  ylab("precipitación") +
+  xlab("elevación") +
+  theme_bw()
+```
